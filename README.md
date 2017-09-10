@@ -1,3 +1,5 @@
+My name is Shiyu Wang. I'm graduate student at northeastern. I have some experiences in web development with MEAN and Angular. 
+
 # AngularFourMEANSeed
 
 After you clone this repository and run "npm install"
