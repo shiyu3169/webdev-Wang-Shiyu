@@ -14,3 +14,14 @@ input {
 .text-white{
   color: #fff;
 }
+
+.borderless {
+  border-top: 0 none;
+  border-bottom: 0 none;
+  border-left: 0 none;
+  border-right: 0 none;
+}
+
+.icon-padding {
+  padding-right: 15px;
+}
