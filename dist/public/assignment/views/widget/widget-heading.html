@@ -1,10 +1,83 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+  <!-- Meta tags for making website for mobile-->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="viewport" content="initial-scale=1.25, user-scalable=no">
 
+
+  <meta charset="UTF-8">
+  <title>widget-heading</title>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="../../css/style.css">
+  <!-- STYLE sheet comes after all the libraries are loaded. Document style-->
+  <link href="../css/style.css" rel="stylesheet"/>
+</head>
+
+<body>
+<!-- top navbar-->
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container-fluid">
+    <p class="navbar-text pull-left">
+      <a href="widget-list.html"
+         class="navbar-link">
+        <span class="glyphicon glyphicon-chevron-left text-black"></span>
+      </a>
+    </p>
+    <a href="widget-chooser.html"
+       class="pull-left navbar-brand thick">
+      <b>Choose Widget</b>
+    </a>
+  </div>
+</nav>
+
+<!--form-->
+<div class="container-fluid">
+  <form>
+    <div class="form-group">
+      <label for="heading-name">Name</label>
+      <input type="text"
+             id="heading-name"
+             placeholder="Name of the heading"
+             class="form-control"/>
+    </div>
+    <div class="form-group">
+      <label for="heading-text">Text</label>
+      <input type="text"
+             id="heading-text"
+             placeholder="Text of the heading"
+             value="Countryside Ragdolls"
+             class="form-control"/>
+    </div>
+    <div class="form-group">
+      <label for="heading-size">Text</label>
+      <input type="number"
+             id="heading-size"
+             placeholder="Size of the heading"
+             value="3"
+             class="form-control"/>
+    </div>
+    <div class="row">
+      <div class="col-xs-6">
+        <a href="widget-list.html"
+           class="btn btn-danger btn-block">Delete</a>
+      </div>
+      <div class="col-xs-6 pull-right">
+        <a href="widget-list.html"
+           class="btn btn-warning btn-block">Cancel</a>
+      </div>
+    </div>
+  </form>
+</div>
+
+<!-- Footer -->
+<nav class="navbar navbar-default navbar-fixed-bottom">
+  <div class="container-fluid navbar-text">
+    <a href="../user/profile.html">
+      <span class="glyphicon glyphicon-user icon-padding pull-right"></span>
+    </a>
+  </div>
+</nav>
 </body>
 </html>
