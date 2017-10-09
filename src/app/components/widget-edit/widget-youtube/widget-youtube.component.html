@@ -1,3 +1,73 @@
-<p>
-  widget-youtube works!
-</p>
+<!-- top navbar-->
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container-fluid">
+    <p class="navbar-text pull-left">
+      <a href="widget-list.html"
+         class="navbar-link">
+        <span class="glyphicon glyphicon-chevron-left sw-text-black"></span>
+      </a>
+    </p>
+    <a href="widget-choose.html"
+       class="pull-left navbar-brand thick">
+      <b>Widget edit</b>
+    </a>
+    <a href="widget-list.html"
+       class="navbar-link navbar-text pull-right sw-icon-padding">
+      <span class="glyphicon glyphicon-ok sw-text-black"></span>
+    </a>
+  </div>
+</nav>
+
+<!--form-->
+<div class="container-fluid">
+  <form>
+    <div class="form-group">
+      <label for="video-name">Name</label>
+      <input type="text"
+             id="video-name"
+             placeholder="Name of the video"
+             class="form-control"/>
+    </div>
+    <div class="form-group">
+      <label for="image-text">Text</label>
+      <input type="text"
+             id="image-text"
+             placeholder="Text of the video"
+             class="form-control"/>
+    </div>
+    <div class="form-group">
+      <label for="image-url">URL</label>
+      <input type="text"
+             id="image-url"
+             placeholder="url of the image"
+             value="https://youtu.be/OdNyue6iBQY"
+             class="form-control"/>
+    </div>
+    <div class="form-group">
+      <label for="image-width">Width</label>
+      <input type="text"
+             id="image-width"
+             placeholder="100%"
+             class="form-control"/>
+    </div>
+    <div class="row">
+      <div class="col-xs-6">
+        <a href="widget-list.html"
+           class="btn btn-warning btn-block">Cancel</a>
+      </div>
+      <div class="col-xs-6">
+        <a href="widget-list.html"
+           class="btn btn-danger btn-block">Delete</a>
+      </div>
+    </div>
+  </form>
+</div>
+
+<!-- Footer -->
+<nav class="navbar navbar-default navbar-fixed-bottom">
+  <div class="container-fluid navbar-text">
+    <a href="../user/profile.html">
+      <span class="glyphicon glyphicon-user sw-icon-padding pull-right"></span>
+    </a>
+  </div>
+</nav>
