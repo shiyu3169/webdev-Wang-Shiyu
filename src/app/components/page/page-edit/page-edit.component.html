@@ -2,16 +2,16 @@
 <nav class="navbar navbar-default navbar-fixed-top">
   <div class="container-fluid">
     <p class="navbar-text pull-left">
-      <a href="page-list.html"
+      <a [routerLink]="['/page-list]"
          class="navbar-link">
         <span class="glyphicon glyphicon-chevron-left sw-text-black"></span>
       </a>
     </p>
-    <a href="page-edit.html"
+    <a [routerLink]="['/page-edit]"
        class="pull-left navbar-brand thick">
       <b>Edit Page</b>
     </a>
-    <a href="page-list.html"
+    <a [routerLink]="['/page-edit]"
        class="navbar-link navbar-text pull-right sw-icon-padding">
       <span class="glyphicon glyphicon-ok sw-text-black"></span>
     </a>
@@ -39,11 +39,11 @@
     </div>
     <div class="row">
       <div class="col-xs-6">
-        <a href="page-list.html"
+        <a [routerLink]="['/page-list]"
            class="btn btn-danger btn-block">Delete</a>
       </div>
       <div class="col-xs-6 pull-right">
-        <a href="page-list.html"
+        <a [routerLink]="['/page-list]"
            class="btn btn-warning btn-block">Cancel</a>
       </div>
     </div>
@@ -53,7 +53,7 @@
 <!-- Footer -->
 <nav class="navbar navbar-default navbar-fixed-bottom">
   <div class="container-fluid navbar-text pull-right">
-    <a href="../user/profile.html">
+    <a [routerLink]="['/profile]">
       <span class="glyphicon glyphicon-user sw-icon-padding"></span>
     </a>
   </div>

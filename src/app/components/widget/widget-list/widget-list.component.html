@@ -1,16 +1,16 @@
 <nav class="navbar navbar-default navbar-fixed-top">
   <div class="container-fluid">
     <p class="navbar-text pull-left">
-      <a href="../page/page-list.html"
+      <a [routerLink]="['/page-list]"
          class="navbar-link">
         <span class="glyphicon glyphicon-chevron-left sw-text-black"></span>
       </a>
     </p>
-    <a href="widget-list.html"
+    <a [routerLink]="['/widget-list]"
        class="pull-left navbar-brand thick">
       <b>Widgets</b>
     </a>
-    <a href="widget-choose.html"
+    <a [routerLink]="['/widget-chooser]"
        class="navbar-link navbar-text pull-right sw-icon-padding">
       <span class="glyphicon glyphicon-plus sw-text-black"></span>
     </a>
@@ -22,7 +22,7 @@
   <!--header-->
   <div>
     <div class="sw-icon-right">
-      <a href="widget-heading.html">
+      <a [routerLink]="['/widget-header]">
         <span class="glyphicon glyphicon-cog"></span>
       </a>
       <a href="#">
@@ -34,7 +34,7 @@
   <!--header-->
   <div>
     <div class="sw-icon-right">
-      <a href="widget-heading.html">
+      <a [routerLink]="['/widget-header]">
         <span class="glyphicon glyphicon-cog"></span>
       </a>
       <a href="#">
@@ -46,7 +46,7 @@
   <!--img-->
   <div>
     <div class="sw-icon-right">
-      <a href="widget-image.html">
+      <a [routerLink]="['/widget-image]">
         <span class="glyphicon glyphicon-cog"></span>
       </a>
       <a href="#">
@@ -59,7 +59,7 @@
   <!--link?-->
   <div>
     <div class="sw-icon-right">
-      <a href="widget-heading.html">
+      <a [routerLink]="['/widget-header]">
         <span class="glyphicon glyphicon-cog"></span>
       </a>
       <a href="#">
@@ -71,7 +71,7 @@
   <!--header-->
   <div>
     <div class="sw-icon-right">
-      <a href="widget-heading.html">
+      <a [routerLink]="['/widget-header]">
         <span class="glyphicon glyphicon-cog"></span>
       </a>
       <a href="#">
@@ -89,7 +89,7 @@
               frameborder="0"
               allowfullscreen></iframe>
       <div class="sw-video-icon-right">
-        <a href="widget-youtube.html">
+        <a [routerLink]="['/widget-youtube]">
           <span class="glyphicon glyphicon-cog"></span>
         </a>
         <a href="#">
@@ -101,7 +101,7 @@
   <!--link?-->
   <div>
     <div class="sw-icon-right">
-      <a href="widget-heading.html">
+      <a [routerLink]="['/widget-header]">
         <span class="glyphicon glyphicon-cog"></span>
       </a>
       <a href="#">
@@ -116,7 +116,7 @@
 <!-- Footer -->
 <nav class="navbar navbar-default navbar-fixed-bottom">
   <div class="container-fluid navbar-text">
-    <a href="../user/profile.html">
+    <a [routerLink]="['/profile]">
       <span class="glyphicon glyphicon-user sw-icon-padding pull-right"></span>
     </a>
   </div>

@@ -2,12 +2,12 @@
 <nav class="navbar navbar-default navbar-fixed-top">
   <div class="container-fluid">
     <p class="navbar-text pull-left">
-      <a href="widget-list.html"
+      <a [routerLink]="['/widget-list]"
          class="navbar-link">
         <span class="glyphicon glyphicon-chevron-left sw-text-black"></span>
       </a>
     </p>
-    <a href="widget-chooser.html"
+    <a [routerLink]="['/widget-chooser]"
        class="pull-left navbar-brand thick">
       <b>Choose Widget</b>
     </a>
@@ -18,7 +18,7 @@
 <div class="container-fluid">
   <ul class="list-group">
     <li class="list-group-item sw-borderless">
-      <a class="sw-link" href="widget-heading.html">Header</a>
+      <a class="sw-link" [routerLink]="['/widget-header]">Header</a>
     </li>
     <li class="list-group-item sw-borderless">
       <a class="sw-link" href="#">Label</a>
@@ -30,22 +30,22 @@
       <a class="sw-link" href="#">Text Input</a>
     </li>
     <li class="list-group-item sw-borderless">
-      <a class="sw-link" href="Link">Link</a>
+      <a class="sw-link" href="#">Link</a>
     </li>
     <li class="list-group-item sw-borderless">
-      <a class="sw-link" href="Link">Button</a>
+      <a class="sw-link" href="#">Button</a>
     </li>
     <li class="list-group-item sw-borderless">
-      <a class="sw-link" href="widget-image.html">Image</a>
+      <a class="sw-link" [routerLink]="['/widget-image]">Image</a>
     </li>
     <li class="list-group-item sw-borderless">
-      <a class="sw-link" href="widget-youtube.html">YouTube</a>
+      <a class="sw-link"[routerLink]="['/widget-youtube]">YouTube</a>
     </li>
     <li class="list-group-item sw-borderless">
-      <a class="sw-link" href="Link">Data Table</a>
+      <a class="sw-link" href="#">Data Table</a>
     </li>
     <li class="list-group-item sw-borderless">
-      <a class="sw-link" href="Link">Repeater</a>
+      <a class="sw-link" href="#">Repeater</a>
     </li>
   </ul>
 </div>
@@ -53,7 +53,7 @@
 <!-- Footer -->
 <nav class="navbar navbar-default navbar-fixed-bottom">
   <div class="container-fluid navbar-text">
-    <a href="../user/profile.html">
+    <a [routerLink]="['/profile]">
       <span class="glyphicon glyphicon-user sw-icon-padding pull-right"></span>
     </a>
   </div>
