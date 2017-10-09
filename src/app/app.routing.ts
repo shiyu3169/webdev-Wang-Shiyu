@@ -7,7 +7,7 @@ import {HomeComponent} from './components/home/home.component';
 import {ModuleWithProviders} from '@angular/core';
 import {TestComponent} from './components/test/test.component';
 import {LoginComponent} from './components/user/login/login.component';
-// import {ProfileComponent} from "./components/user/profile/profile.component";
+import {ProfileComponent} from './components/user/profile/profile.component';
 import {RegisterComponent} from './components/user/register/register.component';
 // import {RegisterComponent} from './components/user/register/register.component';
 // import {ProfileComponent} from './components/user/profile/profile.component';
@@ -28,8 +28,8 @@ const APP_ROUTES: Routes = [
   {path: 'test', component: TestComponent},
   {path: '', component: LoginComponent},
   {path: 'login', component: LoginComponent},
-  {path: 'register', component: RegisterComponent}
-  // {path: 'user/:uid', component: ProfileComponent},
+  {path: 'register', component: RegisterComponent},
+  {path: 'user/:uid', component: ProfileComponent}
   // {path: 'user/:uid/website/:wid/page/:pid', component: PageEditComponent},
   // {path: 'user/:uid/website/:wid/page', component: PageListComponent},
   // {path: 'user/:uid/website/:wid/page/new', component: PageNewComponent},

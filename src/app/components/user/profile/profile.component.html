@@ -2,7 +2,7 @@
   <div class="container-fluid">
 
     <!--heading on the nav bar-->
-    <a [routerLink]="['/profile]"
+    <a routerLink="/profile/123"
        class="navbar-header pull-left navbar-brand thick">
       <b class="sw-text-white">Profile</b>
     </a>
@@ -10,7 +10,7 @@
 
     <!--tick mark-->
     <p class="navbar-text pull-right">
-      <a [routerLink]="['/profile]" class="navbar-link">
+      <a routerLink="/profile/123" class="navbar-link">
         <span class="glyphicon glyphicon-ok sw-text-white"></span>
       </a>
     </p>
@@ -19,16 +19,15 @@
 </nav>
 
 
-<div class="container">
-
+<div class="container sw-body">
   <form>
     <div class="form-group">
       <label for="username">Username</label>
       <input type="text"
              class="form-control"
              id="username"
-             value="jannunzi"
-             placeholder="walice">
+             value= {{user.username}}
+             placeholder="username">
     </div>
   </form>
 
@@ -38,7 +37,6 @@
       <input type="email"
              class="form-control"
              id="email"
-             value="jannunzi@gmail.com"
              placeholder="alice.wonderland@unicorn.com">
     </div>
   </form>
@@ -49,7 +47,7 @@
       <input type="text"
              class="form-control"
              id="first-name"
-             value="Jose"
+             value={{user.firstName}}
              placeholder="Alice">
     </div>
   </form>
@@ -60,22 +58,22 @@
       <input type="text"
              class="form-control"
              id="last-name"
-             value="Annunziato"
+             value={{user.lastName}}
              placeholder="Wonderland">
     </div>
   </form>
 
   <a class="btn btn-primary btn-block"
-     [routerLink]="['/website-list]">Websites</a>
+     routerLink="/website-list">Websites</a>
   <a class="btn btn-danger btn-block "
-     [routerLink]="['/login]" >Logout</a>
+     routerLink="/login" >Logout</a>
 
 </div>
 
 <!-- Footer -->
 <nav class="navbar navbar-default navbar-fixed-bottom sw-nav-blue">
   <div class="container-fluid">
-    <a [routerLink]="['/profile]"
+    <a routerLink="/profile/123"
        class="navbar-text pull-right">
       <span class="glyphicon glyphicon-user sw-text-white"></span>
     </a>
