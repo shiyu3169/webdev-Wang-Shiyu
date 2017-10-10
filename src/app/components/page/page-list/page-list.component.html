@@ -2,16 +2,16 @@
 <nav class="navbar navbar-default navbar-fixed-top">
   <div class="container-fluid">
     <p class="navbar-text pull-left">
-      <a routerLink="/page-list"
+      <a routerLink="/user/{{uid}}/website"
          class="navbar-link">
         <span class="glyphicon glyphicon-chevron-left sw-text-black"></span>
       </a>
     </p>
-    <a routerLink="/page-list"
+    <a routerLink="/user/{{uid}}/website/{{wid}}/page"
        class="pull-left navbar-brand thick">
       <b>Pages</b>
     </a>
-    <a routerLink="/page-list"
+    <a routerLink="/user/{{uid}}/website/{{wid}}/page/new"
        class="navbar-link navbar-text pull-right sw-icon-padding">
       <span class="glyphicon glyphicon-plus sw-text-black"></span>
     </a>
@@ -21,33 +21,10 @@
 <!--pages list-->
 <div class="container-fluid">
   <ul class="list-group">
-    <li class="list-group-item sw-borderless">
-      <a class="sw-link" routerLink="/widget-list">Blog Post</a>
-      <a routerLink="/page-edit">
-        <span class="glyphicon glyphicon-cog pull-right"></span>
-      </a>
-    </li>
-    <li class="list-group-item sw-borderless">
-      <a class="sw-link" routerLink="/widget-list">Blogs</a>
-      <a routerLink="/page-edit">
-        <span class="glyphicon glyphicon-cog pull-right"></span>
-      </a>
-    </li>
-    <li class="list-group-item sw-borderless">
-      <a class="sw-link" routerLink="/widget-list">>Home</a>
-      <a routerLink="/page-edit">
-        <span class="glyphicon glyphicon-cog pull-right"></span>
-      </a>
-    </li>
-    <li class="list-group-item sw-borderless">
-      <a class="sw-link" routerLink="/widget-list">>About</a>
-      <a routerLink="/page-edit">
-        <span class="glyphicon glyphicon-cog pull-right"></span>
-      </a>
-    </li>
-    <li class="list-group-item sw-borderless">
-      <a class="sw-link" routerLink="/widget-list">>Contact Us</a>
-      <a routerLink="/page-edit">
+    <li class="list-group-item sw-borderless"
+        *ngFor="let page of pages">
+      <a class="sw-link" routerLink="user/{{uid}}/website/{{wid}}/page/new">{{page.name}}</a>
+      <a routerLink="user/{{uid}}/website/{{wid}}/page/new">
         <span class="glyphicon glyphicon-cog pull-right"></span>
       </a>
     </li>
@@ -57,7 +34,7 @@
 <!-- Footer -->
 <nav class="navbar navbar-default navbar-fixed-bottom">
   <div class="container-fluid navbar-text pull-right">
-    <a routerLink="/profile">
+    <a routerLink="user/{{uid}}">
       <span class="glyphicon glyphicon-user sw-icon-padding"></span>
     </a>
   </div>
