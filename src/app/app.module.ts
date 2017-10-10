@@ -37,10 +37,10 @@ import {WidgetService} from "./services/widget.service.client";
     TestComponent,
     LoginComponent,
     ProfileComponent,
-    RegisterComponent
+    RegisterComponent,
     // WebsiteNewComponent,
     // WebsiteEditComponent,
-    // WebsiteListComponent,
+    WebsiteListComponent
     // PageNewComponent,
     // PageEditComponent,
     // PageListComponent,

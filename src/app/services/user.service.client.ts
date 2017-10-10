@@ -49,6 +49,7 @@ export class UserService {
   updateUser(userId, user) {
     const oldUser = this.findUserById(userId);
     const index = this.users.indexOf(oldUser);
+    this.users[index].username = user.username;
     this.users[index].firstName = user.firstName;
     this.users[index].lastName = user.lastName;
     this.users[index].email = user.email;

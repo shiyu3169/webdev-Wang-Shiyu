@@ -2,16 +2,16 @@
 <nav class="navbar navbar-fixed-top sw-nav-blue">
   <div class="container-fluid">
     <p class="navbar-text pull-left">
-      <a [routerLink]="['/profile]"
+      <a routerLink="/user/123"
          class="navbar-link sw-text-white">
         <span class="glyphicon glyphicon-chevron-left"></span>
       </a>
     </p>
-    <a [routerLink]="['/website-list]"
+    <a routerLink="/user/123/website"
        class="pull-left navbar-brand thick">
       <b class="sw-text-white">Websites</b>
     </a>
-    <a [routerLink]="['/website-new]"
+    <a routerLink="/website-new"
        class="navbar-link navbar-text pull-right sw-icon-padding">
       <span class="glyphicon glyphicon-plus sw-text-white"></span>
     </a>
@@ -22,26 +22,27 @@
 <div class="container-fluid">
   <ul class="list-group">
     <li class="list-group-item sw-borderless">
-      <a class="sw-link"[routerLink]="['/page-list]">Address Book App</a>
-      <a [routerLink]="['/website-edit]">
+      <a class="sw-link"
+         routerLink="/page-list">Address Book App</a>
+      <a routerLink="/website-edit">
         <span class="glyphicon glyphicon-cog pull-right"></span>
       </a>
     </li>
     <li class="list-group-item sw-borderless">
-      <a class="sw-link" [routerLink]="['/page-list]">Biogger</a>
-      <a [routerLink]="['/website-edit]">
+      <a class="sw-link" routerLink="/page-list">Biogger</a>
+      <a routerLink="/website-edit">
         <span class="glyphicon glyphicon-cog pull-right"></span>
       </a>
     </li>
     <li class="list-group-item sw-borderless">
-      <a class="sw-link" [routerLink]="['/page-list]">Biogging App</a>
-      <a [routerLink]="['/website-edit]">
+      <a class="sw-link" routerLink="/page-list">Biogging App</a>
+      <a routerLink="/website-edit">
         <span class="glyphicon glyphicon-cog pull-right"></span>
       </a>
     </li>
     <li class="list-group-item sw-borderless">
-      <a class="sw-link" [routerLink]="['/page-list]">Script Testing App</a>
-      <a [routerLink]="['/website-edit]">
+      <a class="sw-link" routerLink="/page-list">Script Testing App</a>
+      <a routerLink="/website-edit">
         <span class="glyphicon glyphicon-cog pull-right"></span>
       </a>
     </li>
@@ -51,7 +52,7 @@
 <!-- Footer -->
 <nav class="navbar navbar-default navbar-fixed-bottom sw-nav-blue">
   <div class="container-fluid">
-    <a [routerLink]="['/profile]" class="navbar-text pull-right">
+    <a routerLink="/profile" class="navbar-text pull-right">
       <span class="glyphicon glyphicon-user sw-icon-padding sw-text-white"></span>
     </a>
   </div>
