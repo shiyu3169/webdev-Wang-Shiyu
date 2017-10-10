@@ -10,14 +10,27 @@ import {User} from '../../../models/user.model.client';
 })
 export class RegisterComponent implements OnInit {
 
+  username: String;
+  password: String;
+  verifyPassword: String;
+
   constructor(private userService: UserService, private router: Router) { }
 
-  register(username: String, password: String, verify_password: String) {
-    // const user: User = this.userService.findUserByUsername(username);
-    // const new_user: User = new User(username, password, '', '');
-    // if (!user) {
-    //   this.userService.createUser(user);
-    // }
+  register(username: String, password: String, verifyPassword: String) {
+    if (password !== verifyPassword) {
+      alert('password does not match');
+    } else {
+      const user: User = this.userService.findUserByUsername(username);
+      if (!user) {
+        const newUser = {
+          username: this.username,
+          password: this.password
+        }
+        this.userService.createUser(newUser);
+        const newUserWithId: User = this.userService.findUserByUsername(newUser.username);
+        this.router.navigate(['/user', newUserWithId._id]);
+      }
+    }
   }
 
   ngOnInit() {

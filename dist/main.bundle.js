@@ -84,12 +84,18 @@ AppComponent = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__components_user_profile_profile_component__ = __webpack_require__("../../../../../src/app/components/user/profile/profile.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__components_user_register_register_component__ = __webpack_require__("../../../../../src/app/components/user/register/register.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__services_user_service_client__ = __webpack_require__("../../../../../src/app/services/user.service.client.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__services_website_service_client__ = __webpack_require__("../../../../../src/app/services/website.service.client.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__services_page_service_client__ = __webpack_require__("../../../../../src/app/services/page.service.client.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__services_widget_service_client__ = __webpack_require__("../../../../../src/app/services/widget.service.client.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
+
+
 
 
 
@@ -140,7 +146,10 @@ AppModule = __decorate([
         // Client Side services here
         providers: [
             __WEBPACK_IMPORTED_MODULE_8__services_test_service_client__["a" /* TestService */],
-            __WEBPACK_IMPORTED_MODULE_12__services_user_service_client__["a" /* UserService */]
+            __WEBPACK_IMPORTED_MODULE_12__services_user_service_client__["a" /* UserService */],
+            __WEBPACK_IMPORTED_MODULE_13__services_website_service_client__["a" /* WebsiteService */],
+            __WEBPACK_IMPORTED_MODULE_14__services_page_service_client__["a" /* PageService */],
+            __WEBPACK_IMPORTED_MODULE_15__services_widget_service_client__["a" /* WidgetService */]
         ],
         bootstrap: [__WEBPACK_IMPORTED_MODULE_2__app_component__["a" /* AppComponent */]]
     })
@@ -382,7 +391,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/user/login/login.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\n  <h1>Login</h1>\n\n  <form>\n    <div class=\"form-group\">\n      <input type=\"text\"\n             [(ngModel)] = \"username\"\n             id=\"username\"\n             name=\"username\"\n             placeholder=\"username\"\n             class=\"form-control\"/>\n    </div>\n    <div class=\"form-group\">\n      <input type=\"password\"\n             [(ngModel)] = \"password\"\n             id=\"password\"\n             name=\"password\"\n             placeholder=\"password\"\n             class=\"form-control\"/>\n    </div>\n    <a class=\"btn btn-primary btn-block\" (click)=\"login(username, password)\">Login</a>\n    <a class=\"btn btn-success btn-block\" routerLink=\"/register\">Register</a>\n  </form>\n\n</div>\n"
+module.exports = "<div class=\"container\">\n  <h1>Login</h1>\n\n  <form>\n    <div class=\"form-group\">\n      <input type=\"text\"\n             [(ngModel)] = \"username\"\n             id=\"username\"\n             name=\"username\"\n             placeholder=\"username\"\n             class=\"form-control\"/>\n    </div>\n    <div class=\"form-group\">\n      <input type=\"password\"\n             [(ngModel)] = \"password\"\n             id=\"password\"\n             name=\"password\"\n             placeholder=\"password\"\n             class=\"form-control\"/>\n    </div>\n    <a class=\"btn btn-primary btn-block\"\n       (click)=\"login(username, password)\">Login</a>\n    <a class=\"btn btn-success btn-block\" routerLink=\"/register\">Register</a>\n  </form>\n\n</div>\n"
 
 /***/ }),
 
@@ -529,7 +538,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/user/register/register.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\n  <h1>Register</h1>\n  <form>\n    <div class=\"form-group\">\n      <input type=\"text\"\n             id=\"username\"\n             placeholder=\"username\"\n             class=\"form-control\"/>\n    </div>\n    <div class=\"form-group\">\n      <input type=\"password\"\n             id=\"password\"\n             placeholder=\"password\"\n             class=\"form-control\"/>\n    </div>\n    <div class=\"form-group\">\n      <input type=\"password\"\n             id=\"verify-password\"\n             placeholder=\"verify password\"\n             class=\"form-control\"/>\n    </div>\n    <a class=\"btn btn-primary btn-block\"\n       routerLink=\"/profile\">Register</a>\n    <a class=\"btn btn-danger btn-block\"\n       routerLink=\"/login\" >Cancel</a>\n  </form>\n</div>\n"
+module.exports = "<div class=\"container\">\n  <h1>Register</h1>\n  <form>\n    <div class=\"form-group\">\n      <input type=\"text\"\n             id=\"username\"\n             name=\"username\"\n             [(ngModel)] = \"username\"\n             placeholder=\"username\"\n             class=\"form-control\"/>\n    </div>\n    <div class=\"form-group\">\n      <input type=\"password\"\n             id=\"password\"\n             name=\"password\"\n             [(ngModel)] = \"password\"\n             placeholder=\"password\"\n             class=\"form-control\"/>\n    </div>\n    <div class=\"form-group\">\n      <input type=\"password\"\n             id=\"verify-password\"\n             name=\"verify-password\"\n             [(ngModel)] = \"verifyPassword\"\n             placeholder=\"verify password\"\n             class=\"form-control\"/>\n    </div>\n    <a class=\"btn btn-primary btn-block\"\n       (click)=\"register(username, password, verifyPassword)\">Register</a>\n    <a class=\"btn btn-danger btn-block\"\n       routerLink=\"/login\" >Cancel</a>\n  </form>\n</div>\n"
 
 /***/ }),
 
@@ -558,12 +567,22 @@ var RegisterComponent = (function () {
         this.userService = userService;
         this.router = router;
     }
-    RegisterComponent.prototype.register = function (username, password, verify_password) {
-        // const user: User = this.userService.findUserByUsername(username);
-        // const new_user: User = new User(username, password, '', '');
-        // if (!user) {
-        //   this.userService.createUser(user);
-        // }
+    RegisterComponent.prototype.register = function (username, password, verifyPassword) {
+        if (password !== verifyPassword) {
+            alert('password does not match');
+        }
+        else {
+            var user = this.userService.findUserByUsername(username);
+            if (!user) {
+                var newUser = {
+                    username: this.username,
+                    password: this.password
+                };
+                this.userService.createUser(newUser);
+                var newUserWithId = this.userService.findUserByUsername(newUser.username);
+                this.router.navigate(['/user', newUserWithId._id]);
+            }
+        }
     };
     RegisterComponent.prototype.ngOnInit = function () {
     };
@@ -580,6 +599,77 @@ RegisterComponent = __decorate([
 
 var _a, _b;
 //# sourceMappingURL=register.component.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/services/page.service.client.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PageService; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+var PageService = (function () {
+    function PageService() {
+        this.pages = [
+            { '_id': '321', 'name': 'Post 1', 'websiteId': '456', 'description': 'Lorem' },
+            { '_id': '432', 'name': 'Post 2', 'websiteId': '456', 'description': 'Lorem' },
+            { '_id': '543', 'name': 'Post 3', 'websiteId': '456', 'description': 'Lorem' }
+        ];
+    }
+    // adds the page parameter instance to the local pages array. The new page's websiteId is set to the websiteId parameter
+    PageService.prototype.createPage = function (websiteId, page) {
+        var nextId = (Number(this.pages[this.pages.length - 1]._id) + 1).toString();
+        var newPage = {
+            _id: nextId,
+            name: page.name,
+            websiteId: websiteId,
+            description: page.description
+        };
+        this.pages.push(newPage);
+    };
+    // retrieves the pages in local pages array whose websiteId matches the parameter websiteId
+    PageService.prototype.findPageByWebsiteId = function (websiteId) {
+        var results = [];
+        for (var x = 0; x < this.pages.length; x++) {
+            if (this.pages[x].websiteId === websiteId) {
+                results.push(this.pages[x]);
+            }
+        }
+        return results;
+    };
+    // retrieves the page in local pages array whose _id matches the pageId parameter
+    PageService.prototype.findPageById = function (pageId) {
+        return this.pages.find(function (page) {
+            return page._id === pageId;
+        });
+    };
+    // updates the page in local pages array whose _id matches the pageId parameter
+    PageService.prototype.updatePage = function (pageId, page) {
+        var oldPage = this.findPageById(pageId);
+        var index = this.pages.indexOf(oldPage);
+        this.pages[index].name = page.name;
+        this.pages[index].description = page.description;
+    };
+    // removes the page from local pages array whose _id matches the pageId parameter
+    PageService.prototype.deletePage = function (pageId) {
+        var oldPage = this.findPageById(pageId);
+        var index = this.pages.indexOf(oldPage);
+        this.pages.splice(index);
+    };
+    return PageService;
+}());
+PageService = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["C" /* Injectable */])()
+], PageService);
+
+//# sourceMappingURL=page.service.client.js.map
 
 /***/ }),
 
@@ -664,10 +754,10 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var UserService = (function () {
     function UserService() {
         this.users = [
-            { _id: '123', username: 'alice', password: 'alice', firstName: 'Alice', lastName: 'Wonder', email: 'alice@gmail.com' },
-            { _id: '234', username: 'bob', password: 'bob', firstName: 'Bob', lastName: 'Marley', email: 'bob@gmail.com' },
-            { _id: '345', username: 'charly', password: 'charly', firstName: 'Charly', lastName: 'Garcia', email: 'charly@gmail.com' },
-            { _id: '456', username: 'jannunzi', password: 'jannunzi', firstName: 'Jose', lastName: 'Annunzi', email: 'jose@gmail.com' }
+            { _id: '123', username: 'alice', password: 'alice', firstName: 'Alice', lastName: 'Wonder' },
+            { _id: '234', username: 'bob', password: 'bob', firstName: 'Bob', lastName: 'Marley' },
+            { _id: '345', username: 'charly', password: 'charly', firstName: 'Charly', lastName: 'Garcia' },
+            { _id: '456', username: 'jannunzi', password: 'jannunzi', firstName: 'Jose', lastName: 'Annunzi' }
         ];
     }
     // returns the user whose username and password match the username and password parameters
@@ -722,6 +812,161 @@ UserService = __decorate([
 ], UserService);
 
 //# sourceMappingURL=user.service.client.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/services/website.service.client.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return WebsiteService; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+var WebsiteService = (function () {
+    function WebsiteService() {
+        this.websites = [
+            { '_id': '123', 'name': 'Facebook', 'developerId': '456', 'description': 'Lorem' },
+            { '_id': '234', 'name': 'Tweeter', 'developerId': '456', 'description': 'Lorem' },
+            { '_id': '456', 'name': 'Gizmodo', 'developerId': '456', 'description': 'Lorem' },
+            { '_id': '890', 'name': 'Go', 'developerId': '123', 'description': 'Lorem' },
+            { '_id': '567', 'name': 'Tic Tac Toe', 'developerId': '123', 'description': 'Lorem' },
+            { '_id': '678', 'name': 'Checkers', 'developerId': '123', 'description': 'Lorem' },
+            { '_id': '789', 'name': 'Chess', 'developerId': '234', 'description': 'Lorem' }
+        ];
+    }
+    // adds the website parameter instance to the local websites array. The new website's developerId is set to the userId parameter
+    WebsiteService.prototype.createWebsite = function (userId, website) {
+        var nextId = (Number(this.websites[this.websites.length - 1]._id) + 1).toString();
+        var newWeb = {
+            _id: nextId,
+            name: website.name,
+            developerId: userId,
+            description: website.description
+        };
+        website.push(newWeb);
+    };
+    // retrieves the websites in local websites array whose developerId matches the parameter userId
+    WebsiteService.prototype.findWebsitesByUser = function (userId) {
+        var results = [];
+        for (var x = 0; x < this.websites.length; x++) {
+            if (this.websites[x].developerId === userId) {
+                results.push(this.websites[x]);
+            }
+        }
+        return results;
+    };
+    // retrieves the website in local websites array whose _id matches the websiteId parameter
+    WebsiteService.prototype.findWebsiteById = function (websiteId) {
+        return this.websites.find(function (website) {
+            return website._id === websiteId;
+        });
+    };
+    // updates the website in local websites array whose _id matches the websiteId parameter
+    WebsiteService.prototype.updateWebsite = function (websiteId, website) {
+        var oldWeb = this.findWebsiteById(websiteId);
+        var index = this.websites.indexOf(oldWeb);
+        this.websites[index].name = website.name;
+        this.websites[index].description = website.description;
+    };
+    // removes the website from local websites array whose _id matches the websiteId parameter
+    WebsiteService.prototype.deleteWebsite = function (websiteId) {
+        var oldWeb = this.findWebsiteById(websiteId);
+        var index = this.websites.indexOf(oldWeb);
+        this.websites.splice(index);
+    };
+    return WebsiteService;
+}());
+WebsiteService = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["C" /* Injectable */])()
+], WebsiteService);
+
+//# sourceMappingURL=website.service.client.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/services/widget.service.client.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return WidgetService; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+var WidgetService = (function () {
+    function WidgetService() {
+        this.widgets = [
+            { '_id': '123', 'widgetType': 'HEADING', 'pageId': '321', 'size': 2, 'text': 'GIZMODO' },
+            { '_id': '234', 'widgetType': 'HEADING', 'pageId': '321', 'size': 4, 'text': 'Lorem ipsum' },
+            { '_id': '345', 'widgetType': 'IMAGE', 'pageId': '321', 'width': '100%', 'url': 'http://lorempixel.com/400/200/' },
+            { '_id': '456', 'widgetType': 'HTML', 'pageId': '321', 'text': '<p>Lorem ipsum</p>' },
+            { '_id': '567', 'widgetType': 'HEADING', 'pageId': '321', 'size': 4, 'text': 'Lorem ipsum' },
+            { '_id': '678', 'widgetType': 'YOUTUBE', 'pageId': '321', 'width': '100%', 'url': 'https://youtu.be/AM2Ivdi9c4E' },
+            { '_id': '789', 'widgetType': 'HTML', 'pageId': '321', 'text': '<p>Lorem ipsum</p>' }
+        ];
+    }
+    // adds the widget parameter instance to the local widgets array. The new widget's pageId is set to the pageId parameter
+    WidgetService.prototype.createWidget = function (pageId, widget) {
+        var nextId = (Number(this.widgets[this.widgets.length - 1]._id) + 1).toString();
+        var newWidget = {
+            _id: nextId,
+            widgetType: widget.widgetType,
+            pageId: pageId,
+            size: widget.size,
+            text: widget.text,
+            width: widget.width,
+            url: widget.url
+        };
+        this.widgets.push(widget);
+    };
+    // retrieves the widgets in local widgets array whose pageId matches the parameter pageId
+    WidgetService.prototype.findWidgetsByPageId = function (pageId) {
+        var results = [];
+        for (var x = 0; x < this.widgets.length; x++) {
+            if (this.widgets[x].pageId === pageId) {
+                results.push(this.widgets[x]);
+            }
+        }
+        return results;
+    };
+    // retrieves the widget in local widgets array whose _id matches the widgetId parameter
+    WidgetService.prototype.findWidgetById = function (widgetId) {
+        return this.widgets.find(function (widget) {
+            return widget._id === widgetId;
+        });
+    };
+    // updates the widget in local widgets array whose _id matches the widgetId parameter
+    WidgetService.prototype.updateWidget = function (widgetId, widget) {
+        var oldWidget = this.findWidgetById(widgetId);
+        var index = this.widgets.indexOf(oldWidget);
+        this.widgets[index].size = widget.size;
+        this.widgets[index].text = widget.text;
+        this.widgets[index].width = widget.width;
+        this.widgets[index].url = widget.url;
+    };
+    // removes the widget from local widgets array whose _id matches the widgetId parameter
+    WidgetService.prototype.deleteWidget = function (widgetId) {
+        var oldPage = this.findWidgetById(widgetId);
+        var index = this.widgets.indexOf(oldPage);
+        this.widgets.splice(index);
+    };
+    return WidgetService;
+}());
+WidgetService = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["C" /* Injectable */])()
+], WidgetService);
+
+//# sourceMappingURL=widget.service.client.js.map
 
 /***/ }),
 

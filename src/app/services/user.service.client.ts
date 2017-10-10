@@ -4,10 +4,10 @@ import {User} from '../models/user.model.client';
 @Injectable()
 export class UserService {
   users: User[] = [
-    {_id: '123', username: 'alice',    password: 'alice',    firstName: 'Alice',  lastName: 'Wonder', email: 'alice@gmail.com' },
-    {_id: '234', username: 'bob',      password: 'bob',      firstName: 'Bob',    lastName: 'Marley', email: 'bob@gmail.com' },
-    {_id: '345', username: 'charly',   password: 'charly',   firstName: 'Charly', lastName: 'Garcia', email: 'charly@gmail.com' },
-    {_id: '456', username: 'jannunzi', password: 'jannunzi', firstName: 'Jose',   lastName: 'Annunzi', email: 'jose@gmail.com' }
+    {_id: '123', username: 'alice',    password: 'alice',    firstName: 'Alice',  lastName: 'Wonder' },
+    {_id: '234', username: 'bob',      password: 'bob',      firstName: 'Bob',    lastName: 'Marley' },
+    {_id: '345', username: 'charly',   password: 'charly',   firstName: 'Charly', lastName: 'Garcia' },
+    {_id: '456', username: 'jannunzi', password: 'jannunzi', firstName: 'Jose',   lastName: 'Annunzi' }
   ];
 
   // returns the user whose username and password match the username and password parameters
