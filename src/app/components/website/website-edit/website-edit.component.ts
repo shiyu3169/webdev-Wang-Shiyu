@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router} from '@angular/router';
 import { WebsiteService} from '../../../services/website.service.client';
 import {Website} from '../../../models/website.model.client';
+import {NgForm} from '@angular/forms';
 
 @Component({
   selector: 'app-website-edit',
@@ -9,6 +10,8 @@ import {Website} from '../../../models/website.model.client';
   styleUrls: ['./website-edit.component.css']
 })
 export class WebsiteEditComponent implements OnInit {
+
+  @ViewChild('f') webForm: NgForm;
 
   uid: String;
   wid: String;
@@ -20,12 +23,15 @@ export class WebsiteEditComponent implements OnInit {
   constructor(private websiteService: WebsiteService,
               private activeRouter: ActivatedRoute, private router: Router) { }
 
-  update(name: String, description: String) {
+  update() {
+    this.name = this.webForm.value.name;
+    this.description = this.webForm.value.description;
+
     const updatedWeb: Website = {
       _id: this.websiteService.nextId(),
-      name: name,
+      name: this.name,
       developerId: this.uid,
-      description: description
+      description: this.description
     };
     this.websiteService.updateWebsite(this.wid, updatedWeb);
     this.router.navigate(['user', this.uid, 'website']);
