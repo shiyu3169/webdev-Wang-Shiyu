@@ -14,11 +14,15 @@ export class WidgetService {
       { '_id': '789', 'widgetType': 'HTML', 'pageId': '321', 'text': '<p>Lorem ipsum</p>'}
     ];
 
+  // generates next id for new widget
+  nextId() {
+    return (Number(this.widgets[this.widgets.length - 1]._id) + 1).toString();
+  }
+
   // adds the widget parameter instance to the local widgets array. The new widget's pageId is set to the pageId parameter
   createWidget(pageId, widget) {
-    const nextId = (Number(this.widgets[this.widgets.length - 1]._id) + 1).toString();
     const newWidget = {
-      _id: nextId,
+      _id: this.nextId(),
       widgetType: widget.widgetType,
       pageId: pageId,
       size: widget.size,

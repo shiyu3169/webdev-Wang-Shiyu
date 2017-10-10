@@ -22,9 +22,13 @@ export class RegisterComponent implements OnInit {
     } else {
       const user: User = this.userService.findUserByUsername(username);
       if (!user) {
-        const newUser = {
+        const newUser: User = {
+          _id: this.userService.nextId(),
           username: this.username,
-          password: this.password
+          password: this.password,
+          firstName: '',
+          lastName: '',
+          email: ''
         }
         this.userService.createUser(newUser);
         const newUserWithId: User = this.userService.findUserByUsername(newUser.username);

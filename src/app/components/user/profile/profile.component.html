@@ -2,7 +2,7 @@
   <div class="container-fluid">
 
     <!--heading on the nav bar-->
-    <a routerLink="/user/{{user._id}}"
+    <a routerLink="/user/{{uid}}"
        class="navbar-header pull-left navbar-brand thick">
       <b class="sw-text-white">Profile</b>
     </a>
@@ -12,8 +12,7 @@
     <p class="navbar-text pull-right">
       <a (click)="update(username, email, firstName, lastName)"
          class="navbar-link"
-         routerLink="/user/{{user._id}}"
-         href="#">
+         routerLink="/user/{{uid}}">
         <span class="glyphicon glyphicon-ok sw-text-white"></span>
       </a>
     </p>
@@ -29,6 +28,7 @@
              class="form-control"
              id="username"
              name="username"
+             value= {{user.username}}
              [(ngModel)] = "username"
              placeholder="username">
     </div>
@@ -41,6 +41,7 @@
              class="form-control"
              id="email"
              name="email"
+             value={{user.email}}
              [(ngModel)] = "email"
              placeholder="alice.wonderland@unicorn.com">
     </div>
@@ -53,6 +54,7 @@
              class="form-control"
              id="first-name"
              name="first-name"
+             value={{this.lastName}}
              [(ngModel)] = "firstName"
              placeholder="Alice">
     </div>
@@ -65,13 +67,14 @@
              class="form-control"
              id="last-name"
              name="last-name"
+             value={{user.lastName}}
              [(ngModel)] = "lastName"
              placeholder="Wonderland">
     </div>
   </form>
 
   <a class="btn btn-primary btn-block"
-     routerLink="/user/{{user._id}}/website">Websites</a>
+     routerLink="/user/{{uid}}/website">Websites</a>
   <a class="btn btn-danger btn-block "
      routerLink="/login" >Logout</a>
 
@@ -80,7 +83,7 @@
 <!-- Footer -->
 <nav class="navbar navbar-default navbar-fixed-bottom sw-nav-blue">
   <div class="container-fluid">
-    <a routerLink="/user/{{user._id}}"
+    <a routerLink="/user/{{uid}}"
        class="navbar-text pull-right">
       <span class="glyphicon glyphicon-user sw-text-white"></span>
     </a>

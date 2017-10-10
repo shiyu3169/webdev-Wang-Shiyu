@@ -3,16 +3,16 @@
 <nav class="navbar navbar-fixed-top sw-nav-blue">
   <div class="container-fluid">
     <p class="navbar-text pull-left">
-      <a routerLink="/user/123"
+      <a routerLink="/user/{{uid}}"
          class="navbar-link sw-text-white">
         <span class="glyphicon glyphicon-chevron-left"></span>
       </a>
     </p>
-    <a routerLink="/user/123/website"
+    <a routerLink="/user/{{uid}}/website"
        class="pull-left navbar-brand thick">
       <b class="sw-text-white">Websites</b>
     </a>
-    <a routerLink="/website-new"
+    <a routerLink="/user/{{uid}}/website/new"
        class="navbar-link navbar-text pull-right sw-icon-padding">
       <span class="glyphicon glyphicon-plus sw-text-white"></span>
     </a>

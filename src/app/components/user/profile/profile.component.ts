@@ -23,12 +23,11 @@ export class ProfileComponent implements OnInit {
 
   update(username: String, email: String, firstName: String, lastName: String) {
     const aUser: User = this.userService.findUserByUsername(this.username);
-    console.log(this.prevUsername);
-    console.log(aUser);
     if (aUser && username !== this.prevUsername) {
       alert('username is taken, please try another one');
     } else {
-      const updatedUser = {
+      const updatedUser: User = {
+        _id: this.uid,
         username: username,
         password: this.user.password,
         firstName: firstName,
@@ -48,7 +47,7 @@ export class ProfileComponent implements OnInit {
       this.email = this.user.email;
       this.firstName = this.user.firstName;
       this.lastName = this.user.lastName;
-      this.prevUsername = this.username
+      this.prevUsername = this.username;
     });
   }
 

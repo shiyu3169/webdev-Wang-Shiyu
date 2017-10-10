@@ -10,11 +10,15 @@ export class PageService {
       { '_id': '543', 'name': 'Post 3', 'websiteId': '456', 'description': 'Lorem' }
     ];
 
+  // generates next id for new page
+  nextId() {
+    return (Number(this.pages[this.pages.length - 1]._id) + 1).toString();
+  }
+
   // adds the page parameter instance to the local pages array. The new page's websiteId is set to the websiteId parameter
   createPage(websiteId, page) {
-    const nextId = (Number(this.pages[this.pages.length - 1]._id) + 1).toString();
     const newPage = {
-      _id: nextId,
+      _id: this.nextId(),
       name: page.name,
       websiteId: websiteId,
       description: page.description

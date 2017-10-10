@@ -4,10 +4,10 @@ import {User} from '../models/user.model.client';
 @Injectable()
 export class UserService {
   users: User[] = [
-    {_id: '123', username: 'alice',    password: 'alice',    firstName: 'Alice',  lastName: 'Wonder' },
-    {_id: '234', username: 'bob',      password: 'bob',      firstName: 'Bob',    lastName: 'Marley' },
-    {_id: '345', username: 'charly',   password: 'charly',   firstName: 'Charly', lastName: 'Garcia' },
-    {_id: '456', username: 'jannunzi', password: 'jannunzi', firstName: 'Jose',   lastName: 'Annunzi' }
+    {_id: '123', username: 'alice',    password: 'alice',    firstName: 'Alice',  lastName: 'Wonder', email: 'alice@gmail.com' },
+    {_id: '234', username: 'bob',      password: 'bob',      firstName: 'Bob',    lastName: 'Marley', email: 'bob@gmail.com' },
+    {_id: '345', username: 'charly',   password: 'charly',   firstName: 'Charly', lastName: 'Garcia', email: 'charly@gmail.com' },
+    {_id: '456', username: 'jannunzi', password: 'jannunzi', firstName: 'Jose',   lastName: 'Annunzi', email: 'jan@hotmail.com' }
   ];
 
   // returns the user whose username and password match the username and password parameters
@@ -24,11 +24,15 @@ export class UserService {
     });
   }
 
+  // generates next id for new user
+  nextId() {
+    return (Number(this.users[this.users.length - 1]._id) + 1).toString();
+  }
+
   //  adds the user parameter instance to the local users array
   createUser(user) {
-    const nextId = (Number(this.users[this.users.length - 1]._id) + 1).toString();
     const newUser = {
-      _id: nextId,
+      _id: this.nextId(),
       username: user.username,
       password: user.password,
       firstName: user.firstName,

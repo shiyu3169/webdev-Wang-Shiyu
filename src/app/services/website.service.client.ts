@@ -14,16 +14,20 @@ export class WebsiteService {
     { '_id': '789', 'name': 'Chess',       'developerId': '234', 'description': 'Lorem' }
   ];
 
+  // generates next id for new website
+  nextId() {
+    return (Number(this.websites[this.websites.length - 1]._id) + 1).toString();
+  }
+
   // adds the website parameter instance to the local websites array. The new website's developerId is set to the userId parameter
   createWebsite(userId, website) {
-    const nextId = (Number(this.websites[this.websites.length - 1]._id) + 1).toString();
     const newWeb = {
-      _id: nextId,
+      _id: this.nextId(),
       name: website.name,
       developerId: userId,
       description: website.description
     };
-    website.push(newWeb);
+    this.websites.push(newWeb);
   }
 
   // retrieves the websites in local websites array whose developerId matches the parameter userId
