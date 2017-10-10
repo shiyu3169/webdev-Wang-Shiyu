@@ -756,7 +756,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/user/profile/profile.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "\n<nav class=\"navbar navbar-default navbar-fixed-top  sw-nav-blue\">\n  <div class=\"container-fluid\">\n\n    <!--heading on the nav bar-->\n    <a routerLink=\"/user/{{uid}}\"\n       class=\"navbar-header pull-left navbar-brand thick\">\n      <b class=\"sw-text-white\">Profile</b>\n    </a>\n\n\n    <!--tick mark-->\n    <p class=\"navbar-text pull-right\">\n      <a (click)=\"update(username, email, firstName, lastName)\"\n         class=\"navbar-link\"\n         routerLink=\"/user/{{uid}}\">\n        <span class=\"glyphicon glyphicon-ok sw-text-white\"></span>\n      </a>\n    </p>\n  </div>\n</nav>\n\n\n<div class=\"container\">\n  <form>\n    <div class=\"form-group\">\n      <label for=\"username\">Username</label>\n      <input type=\"text\"\n             class=\"form-control\"\n             id=\"username\"\n             name=\"username\"\n             value= {{user.username}}\n             [(ngModel)] = \"username\"\n             placeholder=\"username\">\n    </div>\n  </form>\n\n  <form>\n    <div class=\"form-group\">\n      <label for=\"email\">Email address</label>\n      <input type=\"email\"\n             class=\"form-control\"\n             id=\"email\"\n             name=\"email\"\n             value={{user.email}}\n             [(ngModel)] = \"email\"\n             placeholder=\"alice.wonderland@unicorn.com\">\n    </div>\n  </form>\n\n  <form>\n    <div class=\"form-group\">\n      <label for=\"first-name\">First Name</label>\n      <input type=\"text\"\n             class=\"form-control\"\n             id=\"first-name\"\n             name=\"first-name\"\n             value={{this.lastName}}\n             [(ngModel)] = \"firstName\"\n             placeholder=\"Alice\">\n    </div>\n  </form>\n\n  <form>\n    <div class=\"form-group\">\n      <label for=\"last-name\">Last Name</label>\n      <input type=\"text\"\n             class=\"form-control\"\n             id=\"last-name\"\n             name=\"last-name\"\n             value={{user.lastName}}\n             [(ngModel)] = \"lastName\"\n             placeholder=\"Wonderland\">\n    </div>\n  </form>\n\n  <a class=\"btn btn-primary btn-block\"\n     routerLink=\"/user/{{uid}}/website\">Websites</a>\n  <a class=\"btn btn-danger btn-block \"\n     routerLink=\"/login\" >Logout</a>\n\n</div>\n\n<!-- Footer -->\n<nav class=\"navbar navbar-default navbar-fixed-bottom sw-nav-blue\">\n  <div class=\"container-fluid\">\n    <a routerLink=\"/user/{{uid}}\"\n       class=\"navbar-text pull-right\">\n      <span class=\"glyphicon glyphicon-user sw-text-white\"></span>\n    </a>\n  </div>\n</nav>\n"
+module.exports = "\n<nav class=\"navbar navbar-default navbar-fixed-top  sw-nav-blue\">\n  <div class=\"container-fluid\">\n\n    <!--heading on the nav bar-->\n    <a routerLink=\"/user/{{uid}}\"\n       class=\"navbar-header pull-left navbar-brand thick\">\n      <b class=\"sw-text-white\">Profile</b>\n    </a>\n\n\n    <!--tick mark-->\n    <p class=\"navbar-text pull-right\">\n      <button type=\"submit\"\n              [disabled]=\"!f.valid\"\n              form=\"profileForm\"\n              class=\"navbar-link sw-button-transparent\"\n              routerLink=\"/user/{{uid}}\">\n        <span class=\"glyphicon glyphicon-ok sw-text-white\"></span>\n      </button>\n    </p>\n  </div>\n</nav>\n\n<div class=\"container-fluid\">\n  <div *ngIf=\"usernameTaken\"\n       class=\"alert alert-danger\" >\n    Username was taken!\n  </div>\n  <form (ngSubmit)=\"update()\"\n        #f =\"ngForm\"\n        id=\"profileForm\">\n    <div class=\"form-group\">\n      <label for=\"username\">Username</label>\n      <input type=\"text\"\n             class=\"form-control\"\n             id=\"username\"\n             name=\"username\"\n             required\n             ngModel=\"{{user.username}}\"\n             #username=\"ngModel\"\n             placeholder=\"username\">\n    </div>\n    <span class=\"help-block\"\n          *ngIf=\"!username.valid && username.touched\">Please enter username!</span>\n\n    <div class=\"form-group\">\n      <label for=\"email\">Email address</label>\n      <input type=\"email\"\n             class=\"form-control\"\n             id=\"email\"\n             name=\"email\"\n             email\n             ngModel=\"{{user.email}}\"\n             #email=\"ngModel\"\n             placeholder=\"alice.wonderland@unicorn.com\">\n    </div>\n    <span class=\"help-block\"\n          *ngIf=\"!email.valid && email.touched\">Invalid email!</span>\n    <div class=\"form-group\">\n      <label for=\"firstName\">First Name</label>\n      <input type=\"text\"\n             class=\"form-control\"\n             id=\"firstName\"\n             name=\"firstName\"\n             ngModel=\"{{user.firstName}}\"\n             #firstName=\"ngModel\"\n             placeholder=\"Alice\">\n    </div>\n    <div class=\"form-group\">\n      <label for=\"lastName\">Last Name</label>\n      <input type=\"text\"\n             class=\"form-control\"\n             id=\"lastName\"\n             name=\"lastName\"\n             ngModel=\"{{user.lastName}}\"\n             #lastName=\"ngModel\"\n             placeholder=\"Wonderland\">\n    </div>\n  </form>\n\n  <a class=\"btn btn-primary btn-block\"\n     routerLink=\"/user/{{uid}}/website\">Websites</a>\n  <a class=\"btn btn-danger btn-block \"\n     routerLink=\"/login\" >Logout</a>\n</div>\n\n<!-- Footer -->\n<nav class=\"navbar navbar-default navbar-fixed-bottom sw-nav-blue\">\n  <div class=\"container-fluid\">\n    <a routerLink=\"/user/{{uid}}\"\n       class=\"navbar-text pull-right\">\n      <span class=\"glyphicon glyphicon-user sw-text-white\"></span>\n    </a>\n  </div>\n</nav>\n"
 
 /***/ }),
 
@@ -768,6 +768,7 @@ module.exports = "\n<nav class=\"navbar navbar-default navbar-fixed-top  sw-nav-
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_user_service_client__ = __webpack_require__("../../../../../src/app/services/user.service.client.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_forms__ = __webpack_require__("../../../forms/@angular/forms.es5.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -780,27 +781,34 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var ProfileComponent = (function () {
     function ProfileComponent(userService, router) {
         this.userService = userService;
         this.router = router;
     }
-    ProfileComponent.prototype.update = function (username, email, firstName, lastName) {
+    ProfileComponent.prototype.update = function () {
+        console.log('submit');
+        this.username = this.profileForm.value.username;
+        this.email = this.profileForm.value.email;
+        this.firstName = this.profileForm.value.firstName;
+        this.lastName = this.profileForm.value.lastName;
+        this.usernameTaken = false;
         var aUser = this.userService.findUserByUsername(this.username);
-        if (aUser && username !== this.prevUsername) {
-            alert('username is taken, please try another one');
+        if (aUser && this.username !== this.prevUsername) {
+            this.usernameTaken = true;
         }
         else {
             var updatedUser = {
                 _id: this.userService.nextId(),
-                username: username,
+                username: this.username,
                 password: this.user.password,
-                firstName: firstName,
-                lastName: lastName,
-                email: email
+                firstName: this.firstName,
+                lastName: this.lastName,
+                email: this.email
             };
             this.userService.updateUser(this.uid, updatedUser);
-            this.prevUsername = username;
+            this.prevUsername = this.username;
         }
     };
     ProfileComponent.prototype.ngOnInit = function () {
@@ -817,16 +825,20 @@ var ProfileComponent = (function () {
     };
     return ProfileComponent;
 }());
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_16" /* ViewChild */])('f'),
+    __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_3__angular_forms__["b" /* NgForm */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__angular_forms__["b" /* NgForm */]) === "function" && _a || Object)
+], ProfileComponent.prototype, "profileForm", void 0);
 ProfileComponent = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Component */])({
         selector: 'app-profile',
         template: __webpack_require__("../../../../../src/app/components/user/profile/profile.component.html"),
         styles: [__webpack_require__("../../../../../src/app/components/user/profile/profile.component.css")]
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__services_user_service_client__["a" /* UserService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_user_service_client__["a" /* UserService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */]) === "function" && _b || Object])
+    __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__services_user_service_client__["a" /* UserService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_user_service_client__["a" /* UserService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */]) === "function" && _c || Object])
 ], ProfileComponent);
 
-var _a, _b;
+var _a, _b, _c;
 //# sourceMappingURL=profile.component.js.map
 
 /***/ }),

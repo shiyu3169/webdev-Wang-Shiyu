@@ -11,65 +11,70 @@
 
     <!--tick mark-->
     <p class="navbar-text pull-right">
-      <a (click)="update(username, email, firstName, lastName)"
-         class="navbar-link"
-         routerLink="/user/{{uid}}">
+      <button type="submit"
+              [disabled]="!f.valid"
+              form="profileForm"
+              class="navbar-link sw-button-transparent"
+              routerLink="/user/{{uid}}">
         <span class="glyphicon glyphicon-ok sw-text-white"></span>
-      </a>
+      </button>
     </p>
   </div>
 </nav>
 
-
-<div class="container">
-  <form>
+<div class="container-fluid">
+  <div *ngIf="usernameTaken"
+       class="alert alert-danger" >
+    Username was taken!
+  </div>
+  <form (ngSubmit)="update()"
+        #f ="ngForm"
+        id="profileForm">
     <div class="form-group">
       <label for="username">Username</label>
       <input type="text"
              class="form-control"
              id="username"
              name="username"
-             value= {{user.username}}
-             [(ngModel)] = "username"
+             required
+             ngModel="{{user.username}}"
+             #username="ngModel"
              placeholder="username">
     </div>
-  </form>
+    <span class="help-block"
+          *ngIf="!username.valid && username.touched">Please enter username!</span>
 
-  <form>
     <div class="form-group">
       <label for="email">Email address</label>
       <input type="email"
              class="form-control"
              id="email"
              name="email"
-             value={{user.email}}
-             [(ngModel)] = "email"
+             email
+             ngModel="{{user.email}}"
+             #email="ngModel"
              placeholder="alice.wonderland@unicorn.com">
     </div>
-  </form>
-
-  <form>
+    <span class="help-block"
+          *ngIf="!email.valid && email.touched">Invalid email!</span>
     <div class="form-group">
-      <label for="first-name">First Name</label>
+      <label for="firstName">First Name</label>
       <input type="text"
              class="form-control"
-             id="first-name"
-             name="first-name"
-             value={{this.lastName}}
-             [(ngModel)] = "firstName"
+             id="firstName"
+             name="firstName"
+             ngModel="{{user.firstName}}"
+             #firstName="ngModel"
              placeholder="Alice">
     </div>
-  </form>
-
-  <form>
     <div class="form-group">
-      <label for="last-name">Last Name</label>
+      <label for="lastName">Last Name</label>
       <input type="text"
              class="form-control"
-             id="last-name"
-             name="last-name"
-             value={{user.lastName}}
-             [(ngModel)] = "lastName"
+             id="lastName"
+             name="lastName"
+             ngModel="{{user.lastName}}"
+             #lastName="ngModel"
              placeholder="Wonderland">
     </div>
   </form>
@@ -78,7 +83,6 @@
      routerLink="/user/{{uid}}/website">Websites</a>
   <a class="btn btn-danger btn-block "
      routerLink="/login" >Logout</a>
-
 </div>
 
 <!-- Footer -->

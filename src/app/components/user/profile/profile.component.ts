@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute} from '@angular/router';
-import { UserService} from '../../../services/user.service.client';
-import { User } from '../../../models/user.model.client';
-
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {ActivatedRoute} from '@angular/router';
+import {UserService} from '../../../services/user.service.client';
+import {User} from '../../../models/user.model.client';
+import {NgForm} from '@angular/forms';
 
 @Component({
   selector: 'app-profile',
@@ -11,6 +11,8 @@ import { User } from '../../../models/user.model.client';
 })
 export class ProfileComponent implements OnInit {
 
+  @ViewChild('f') profileForm: NgForm;
+
   uid: String;
   user: User;
   username: String;
@@ -18,26 +20,37 @@ export class ProfileComponent implements OnInit {
   firstName: String;
   lastName: String;
   prevUsername: String;
+  usernameTaken: boolean;
 
-  constructor(private userService: UserService, private router: ActivatedRoute) { }
+  constructor(private userService: UserService, private router: ActivatedRoute) {
+  }
 
-  update(username: String, email: String, firstName: String, lastName: String) {
+  update() {
+    console.log('submit');
+    this.username = this.profileForm.value.username;
+    this.email = this.profileForm.value.email;
+    this.firstName = this.profileForm.value.firstName;
+    this.lastName = this.profileForm.value.lastName;
+
+    this.usernameTaken = false;
+
     const aUser: User = this.userService.findUserByUsername(this.username);
-    if (aUser && username !== this.prevUsername) {
-      alert('username is taken, please try another one');
+    if (aUser && this.username !== this.prevUsername) {
+      this.usernameTaken = true;
     } else {
       const updatedUser: User = {
         _id: this.userService.nextId(),
-        username: username,
+        username: this.username,
         password: this.user.password,
-        firstName: firstName,
-        lastName: lastName,
-        email: email
+        firstName: this.firstName,
+        lastName: this.lastName,
+        email: this.email
       };
       this.userService.updateUser(this.uid, updatedUser);
-      this.prevUsername = username;
+      this.prevUsername = this.username;
     }
   }
+
 
   ngOnInit() {
     this.router.params.subscribe(params => {
