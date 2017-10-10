@@ -35,7 +35,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "/* You can add global styles to this file, and also import other style files */\r\n", ""]);
+exports.push([module.i, "body {\r\n  padding-top: 70px;\r\n  padding-bottom: 70px;\r\n}\r\n\r\n.sw-nav-blue {\r\n  background-color: #337ab7;\r\n}\r\n\r\n.sw-text-white{\r\n  color: #fff;\r\n}\r\n\r\n.sw-borderless {\r\n  border-top: 0 none;\r\n  border-bottom: 0 none;\r\n  border-left: 0 none;\r\n  border-right: 0 none;\r\n}\r\n\r\n.sw-icon-padding {\r\n  padding-right: 15px;\r\n}\r\n\r\n.sw-text-black{\r\n  color: #000000;\r\n}\r\n\r\n.sw-icon-right{\r\n  position: absolute;\r\n  right: 15px;\r\n  padding: 7px;\r\n  border-bottom-left-radius: 10px;\r\n  background-color: #fff;\r\n}\r\n\r\n.sw-video-icon-right{\r\n  position: absolute;\r\n  right: 0px;\r\n  padding: 7px;\r\n  border-bottom-left-radius: 10px;\r\n  background-color: #fff;\r\n}\r\n\r\n.sw-link{\r\n  text-decoration : none !important;\r\n}\r\n", ""]);
 
 // exports
 

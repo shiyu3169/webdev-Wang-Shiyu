@@ -25,7 +25,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, ".sw-body {\r\n  padding-top: 70px;\r\n  padding-bottom: 70px;\r\n}\r\n\r\n.sw-nav-blue {\r\n  background-color: #337ab7;\r\n}\r\n\r\n.sw-text-white{\r\n  color: #fff;\r\n}\r\n\r\n.sw-borderless {\r\n  border-top: 0 none;\r\n  border-bottom: 0 none;\r\n  border-left: 0 none;\r\n  border-right: 0 none;\r\n}\r\n\r\n.sw-icon-padding {\r\n  padding-right: 15px;\r\n}\r\n\r\n.sw-text-black{\r\n  color: #000000;\r\n}\r\n\r\n.sw-icon-right{\r\n  position: absolute;\r\n  right: 15px;\r\n  padding: 7px;\r\n  border-bottom-left-radius: 10px;\r\n  background-color: #fff;\r\n}\r\n\r\n.sw-video-icon-right{\r\n  position: absolute;\r\n  right: 0px;\r\n  padding: 7px;\r\n  border-bottom-left-radius: 10px;\r\n  background-color: #fff;\r\n}\r\n\r\n.sw-link{\r\n  text-decoration : none !important;\r\n}\r\n", ""]);
+exports.push([module.i, "", ""]);
 
 // exports
 
@@ -443,10 +443,28 @@ var _a;
 
 /***/ }),
 
+/***/ "../../../../../src/app/components/user/login/login.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
 /***/ "../../../../../src/app/components/user/login/login.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container sw-body\">\n  <h1>Login</h1>\n\n  <form>\n    <div class=\"form-group\">\n      <input type=\"text\"\n             [(ngModel)] = \"username\"\n             id=\"username\"\n             name=\"username\"\n             placeholder=\"username\"\n             class=\"form-control\"/>\n    </div>\n    <div class=\"form-group\">\n      <input type=\"password\"\n             [(ngModel)] = \"password\"\n             id=\"password\"\n             name=\"password\"\n             placeholder=\"password\"\n             class=\"form-control\"/>\n    </div>\n    <a class=\"btn btn-primary btn-block\"\n       (click)=\"login(username, password)\">Login</a>\n    <a class=\"btn btn-success btn-block\" routerLink=\"/register\">Register</a>\n  </form>\n\n</div>\n"
+module.exports = "<div class=\"container\">\n  <h1>Login</h1>\n\n  <form>\n    <div class=\"form-group\">\n      <input type=\"text\"\n             [(ngModel)] = \"username\"\n             id=\"username\"\n             name=\"username\"\n             placeholder=\"username\"\n             class=\"form-control\"/>\n    </div>\n    <div class=\"form-group\">\n      <input type=\"password\"\n             [(ngModel)] = \"password\"\n             id=\"password\"\n             name=\"password\"\n             placeholder=\"password\"\n             class=\"form-control\"/>\n    </div>\n    <a class=\"btn btn-primary btn-block\"\n       (click)=\"login(username, password)\">Login</a>\n    <a class=\"btn btn-success btn-block\" routerLink=\"/register\">Register</a>\n  </form>\n\n</div>\n"
 
 /***/ }),
 
@@ -489,7 +507,7 @@ LoginComponent = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Component */])({
         selector: 'app-login',
         template: __webpack_require__("../../../../../src/app/components/user/login/login.component.html"),
-        styles: [__webpack_require__("../../../../../src/app/app.component.css")]
+        styles: [__webpack_require__("../../../../../src/app/components/user/login/login.component.css")]
     }),
     __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__services_user_service_client__["a" /* UserService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_user_service_client__["a" /* UserService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */]) === "function" && _b || Object])
 ], LoginComponent);
@@ -499,10 +517,28 @@ var _a, _b;
 
 /***/ }),
 
+/***/ "../../../../../src/app/components/user/profile/profile.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, ".sw-nav-blue {\r\n  background-color: #337ab7;\r\n}\r\n", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
 /***/ "../../../../../src/app/components/user/profile/profile.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-default navbar-fixed-top sw-nav-blue\">\n  <div class=\"container-fluid\">\n\n    <!--heading on the nav bar-->\n    <a routerLink=\"/user/{{uid}}\"\n       class=\"navbar-header pull-left navbar-brand thick\">\n      <b class=\"sw-text-white\">Profile</b>\n    </a>\n\n\n    <!--tick mark-->\n    <p class=\"navbar-text pull-right\">\n      <a (click)=\"update(username, email, firstName, lastName)\"\n         class=\"navbar-link\"\n         routerLink=\"/user/{{uid}}\">\n        <span class=\"glyphicon glyphicon-ok sw-text-white\"></span>\n      </a>\n    </p>\n  </div>\n</nav>\n\n\n<div class=\"container sw-body\">\n  <form>\n    <div class=\"form-group\">\n      <label for=\"username\">Username</label>\n      <input type=\"text\"\n             class=\"form-control\"\n             id=\"username\"\n             name=\"username\"\n             value= {{user.username}}\n             [(ngModel)] = \"username\"\n             placeholder=\"username\">\n    </div>\n  </form>\n\n  <form>\n    <div class=\"form-group\">\n      <label for=\"email\">Email address</label>\n      <input type=\"email\"\n             class=\"form-control\"\n             id=\"email\"\n             name=\"email\"\n             value={{user.email}}\n             [(ngModel)] = \"email\"\n             placeholder=\"alice.wonderland@unicorn.com\">\n    </div>\n  </form>\n\n  <form>\n    <div class=\"form-group\">\n      <label for=\"first-name\">First Name</label>\n      <input type=\"text\"\n             class=\"form-control\"\n             id=\"first-name\"\n             name=\"first-name\"\n             value={{this.lastName}}\n             [(ngModel)] = \"firstName\"\n             placeholder=\"Alice\">\n    </div>\n  </form>\n\n  <form>\n    <div class=\"form-group\">\n      <label for=\"last-name\">Last Name</label>\n      <input type=\"text\"\n             class=\"form-control\"\n             id=\"last-name\"\n             name=\"last-name\"\n             value={{user.lastName}}\n             [(ngModel)] = \"lastName\"\n             placeholder=\"Wonderland\">\n    </div>\n  </form>\n\n  <a class=\"btn btn-primary btn-block\"\n     routerLink=\"/user/{{uid}}/website\">Websites</a>\n  <a class=\"btn btn-danger btn-block \"\n     routerLink=\"/login\" >Logout</a>\n\n</div>\n\n<!-- Footer -->\n<nav class=\"navbar navbar-default navbar-fixed-bottom sw-nav-blue\">\n  <div class=\"container-fluid\">\n    <a routerLink=\"/user/{{uid}}\"\n       class=\"navbar-text pull-right\">\n      <span class=\"glyphicon glyphicon-user sw-text-white\"></span>\n    </a>\n  </div>\n</nav>\n"
+module.exports = "\n<nav class=\"navbar navbar-default navbar-fixed-top  sw-nav-blue\">\n  <div class=\"container-fluid\">\n\n    <!--heading on the nav bar-->\n    <a routerLink=\"/user/{{uid}}\"\n       class=\"navbar-header pull-left navbar-brand thick\">\n      <b class=\"sw-text-white\">Profile</b>\n    </a>\n\n\n    <!--tick mark-->\n    <p class=\"navbar-text pull-right\">\n      <a (click)=\"update(username, email, firstName, lastName)\"\n         class=\"navbar-link\"\n         routerLink=\"/user/{{uid}}\">\n        <span class=\"glyphicon glyphicon-ok sw-text-white\"></span>\n      </a>\n    </p>\n  </div>\n</nav>\n\n\n<div class=\"container\">\n  <form>\n    <div class=\"form-group\">\n      <label for=\"username\">Username</label>\n      <input type=\"text\"\n             class=\"form-control\"\n             id=\"username\"\n             name=\"username\"\n             value= {{user.username}}\n             [(ngModel)] = \"username\"\n             placeholder=\"username\">\n    </div>\n  </form>\n\n  <form>\n    <div class=\"form-group\">\n      <label for=\"email\">Email address</label>\n      <input type=\"email\"\n             class=\"form-control\"\n             id=\"email\"\n             name=\"email\"\n             value={{user.email}}\n             [(ngModel)] = \"email\"\n             placeholder=\"alice.wonderland@unicorn.com\">\n    </div>\n  </form>\n\n  <form>\n    <div class=\"form-group\">\n      <label for=\"first-name\">First Name</label>\n      <input type=\"text\"\n             class=\"form-control\"\n             id=\"first-name\"\n             name=\"first-name\"\n             value={{this.lastName}}\n             [(ngModel)] = \"firstName\"\n             placeholder=\"Alice\">\n    </div>\n  </form>\n\n  <form>\n    <div class=\"form-group\">\n      <label for=\"last-name\">Last Name</label>\n      <input type=\"text\"\n             class=\"form-control\"\n             id=\"last-name\"\n             name=\"last-name\"\n             value={{user.lastName}}\n             [(ngModel)] = \"lastName\"\n             placeholder=\"Wonderland\">\n    </div>\n  </form>\n\n  <a class=\"btn btn-primary btn-block\"\n     routerLink=\"/user/{{uid}}/website\">Websites</a>\n  <a class=\"btn btn-danger btn-block \"\n     routerLink=\"/login\" >Logout</a>\n\n</div>\n\n<!-- Footer -->\n<nav class=\"navbar navbar-default navbar-fixed-bottom sw-nav-blue\">\n  <div class=\"container-fluid\">\n    <a routerLink=\"/user/{{uid}}\"\n       class=\"navbar-text pull-right\">\n      <span class=\"glyphicon glyphicon-user sw-text-white\"></span>\n    </a>\n  </div>\n</nav>\n"
 
 /***/ }),
 
@@ -567,7 +603,7 @@ ProfileComponent = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Component */])({
         selector: 'app-profile',
         template: __webpack_require__("../../../../../src/app/components/user/profile/profile.component.html"),
-        styles: [__webpack_require__("../../../../../src/app/app.component.css")]
+        styles: [__webpack_require__("../../../../../src/app/components/user/profile/profile.component.css")]
     }),
     __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__services_user_service_client__["a" /* UserService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_user_service_client__["a" /* UserService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */]) === "function" && _b || Object])
 ], ProfileComponent);
@@ -577,10 +613,28 @@ var _a, _b;
 
 /***/ }),
 
+/***/ "../../../../../src/app/components/user/register/register.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
 /***/ "../../../../../src/app/components/user/register/register.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container sw-body\">\n  <h1>Register</h1>\n  <form>\n    <div class=\"form-group\">\n      <input type=\"text\"\n             id=\"username\"\n             name=\"username\"\n             [(ngModel)] = \"username\"\n             placeholder=\"username\"\n             class=\"form-control\"/>\n    </div>\n    <div class=\"form-group\">\n      <input type=\"password\"\n             id=\"password\"\n             name=\"password\"\n             [(ngModel)] = \"password\"\n             placeholder=\"password\"\n             class=\"form-control\"/>\n    </div>\n    <div class=\"form-group\">\n      <input type=\"password\"\n             id=\"verify-password\"\n             name=\"verify-password\"\n             [(ngModel)] = \"verifyPassword\"\n             placeholder=\"verify password\"\n             class=\"form-control\"/>\n    </div>\n    <a class=\"btn btn-primary btn-block\"\n       (click)=\"register(username, password, verifyPassword)\">Register</a>\n    <a class=\"btn btn-danger btn-block\"\n       routerLink=\"/login\" >Cancel</a>\n  </form>\n</div>\n"
+module.exports = "<div class=\"container\">\n  <h1>Register</h1>\n  <form>\n    <div class=\"form-group\">\n      <input type=\"text\"\n             id=\"username\"\n             name=\"username\"\n             [(ngModel)] = \"username\"\n             placeholder=\"username\"\n             class=\"form-control\"/>\n    </div>\n    <div class=\"form-group\">\n      <input type=\"password\"\n             id=\"password\"\n             name=\"password\"\n             [(ngModel)] = \"password\"\n             placeholder=\"password\"\n             class=\"form-control\"/>\n    </div>\n    <div class=\"form-group\">\n      <input type=\"password\"\n             id=\"verify-password\"\n             name=\"verify-password\"\n             [(ngModel)] = \"verifyPassword\"\n             placeholder=\"verify password\"\n             class=\"form-control\"/>\n    </div>\n    <a class=\"btn btn-primary btn-block\"\n       (click)=\"register(username, password, verifyPassword)\">Register</a>\n    <a class=\"btn btn-danger btn-block\"\n       routerLink=\"/login\" >Cancel</a>\n  </form>\n</div>\n"
 
 /***/ }),
 
@@ -637,7 +691,7 @@ RegisterComponent = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Component */])({
         selector: 'app-register',
         template: __webpack_require__("../../../../../src/app/components/user/register/register.component.html"),
-        styles: [__webpack_require__("../../../../../src/app/app.component.css")]
+        styles: [__webpack_require__("../../../../../src/app/components/user/register/register.component.css")]
     }),
     __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__services_user_service_client__["a" /* UserService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_user_service_client__["a" /* UserService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */]) === "function" && _b || Object])
 ], RegisterComponent);
@@ -647,10 +701,28 @@ var _a, _b;
 
 /***/ }),
 
+/***/ "../../../../../src/app/components/website/website-edit/website-edit.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
 /***/ "../../../../../src/app/components/website/website-edit/website-edit.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "\n<!-- top navbar-->\n<nav class=\"navbar navbar-fixed-top sw-nav-blue\">\n  <div class=\"row\">\n    <div class=\"col-xs-4 hidden-xs\">\n      <div class=\"container-fluid\">\n        <p class=\"navbar-text pull-left\">\n          <a routerLink=\"/user/{{uid}}\"\n             class=\"navbar-link sw-text-white\">\n            <span class=\"glyphicon glyphicon-chevron-left\"></span>\n          </a>\n        </p>\n        <a routerLink=\"/user/{{uid}}/website\"\n           class=\"pull-left navbar-brand thick\">\n          <b class=\"sw-text-white\">Websites</b>\n        </a>\n        <a routerLink=\"/user/{{uid}}/website/new\"\n           class=\"navbar-link navbar-text pull-right sw-icon-padding\">\n          <span class=\"glyphicon glyphicon-plus sw-text-white\"></span>\n        </a>\n      </div>\n    </div>\n    <div class=\"col-xs-12 col-sm-8 pull-right\">\n      <div class=\"container-fluid\">\n        <a routerLink=\"/user/{{uid}}/website/{{wid}}\"\n           class=\"pull-left navbar-brand thick\">\n          <b class=\"sw-text-white\">Edit Website</b>\n        </a>\n        <a (click)=\"update(name, description)\"\n           class=\"navbar-link navbar-text pull-right sw-icon-padding\">\n          <span class=\"glyphicon glyphicon-ok sw-text-white\"></span>\n        </a>\n      </div>\n    </div>\n  </div>\n</nav>\n\n<!--left websites-->\n<div class=\"container-fluid sw-body\">\n  <div class=\"row\">\n    <div class=\"col-xs-4 hidden-xs\">\n      <ul class=\"list-group\">\n        <li class=\"list-group-item sw-borderless\"\n            *ngFor=\"let website of websites\">\n          <a class=\"sw-link\"\n             routerLink=\"/user/{{uid}}/website/{{website._id}}/page\">{{website.name}}</a>\n          <a routerLink=\"/user/{{uid}}/website/{{website._id}}\">\n            <span class=\"glyphicon glyphicon-cog pull-right\"></span>\n          </a>\n        </li>\n      </ul>\n    </div>\n\n    <!--right editor-->\n    <div class=\"col-sm-8 col-xs-12\">\n      <form>\n        <div class=\"form-group\">\n          <label for=\"website-name\">Name</label>\n          <input type=\"text\"\n                 id=\"website-name\"\n                 name=\"website-name\"\n                 placeholder=\"any name\"\n                 value={{name}}\n                 [(ngModel)] = \"name\"\n                 class=\"form-control\"/>\n        </div>\n        <div class=\"form-group\">\n          <label for=\"website-description\">Website Desciption</label>\n          <textarea id=\"website-description\"\n                    name=\"website-description\"\n                    rows=\"5\"\n                    placeholder=\"anything related to this website\"\n                    [(ngModel)] = \"description\"\n                    class=\"form-control\">{{description}}</textarea>\n        </div>\n        <div class=\"row\">\n          <div class=\"col-xs-4\">\n            <a (click)=\"delete()\"\n               class=\"btn btn-danger btn-block\">Delete</a>\n          </div>\n          <div class=\"col-xs-4 pull-right\">\n            <a routerLink=\"/user/{{uid}}/website\"\n               class=\"btn btn-warning btn-block\">Cancel</a>\n          </div>\n        </div>\n      </form>\n    </div>\n  </div>\n</div>\n\n<!-- Footer -->\n<nav class=\"navbar navbar-default navbar-fixed-bottom sw-nav-blue\">\n  <div class=\"container-fluid\">\n    <a routerLink=\"/user/{{uid}}\"\n       class=\"navbar-text pull-right\">\n      <span class=\"glyphicon glyphicon-user sw-icon-padding sw-text-white\"></span>\n    </a>\n  </div>\n</nav>\n"
+module.exports = "\n<!-- top navbar-->\n<nav class=\"navbar navbar-fixed-top sw-nav-blue\">\n  <div class=\"row\">\n    <div class=\"col-xs-4 hidden-xs\">\n      <div class=\"container-fluid\">\n        <p class=\"navbar-text pull-left\">\n          <a routerLink=\"/user/{{uid}}\"\n             class=\"navbar-link sw-text-white\">\n            <span class=\"glyphicon glyphicon-chevron-left\"></span>\n          </a>\n        </p>\n        <a routerLink=\"/user/{{uid}}/website\"\n           class=\"pull-left navbar-brand thick\">\n          <b class=\"sw-text-white\">Websites</b>\n        </a>\n        <a routerLink=\"/user/{{uid}}/website/new\"\n           class=\"navbar-link navbar-text pull-right sw-icon-padding\">\n          <span class=\"glyphicon glyphicon-plus sw-text-white\"></span>\n        </a>\n      </div>\n    </div>\n    <div class=\"col-xs-12 col-sm-8 pull-right\">\n      <div class=\"container-fluid\">\n        <a routerLink=\"/user/{{uid}}/website/{{wid}}\"\n           class=\"pull-left navbar-brand thick\">\n          <b class=\"sw-text-white\">Edit Website</b>\n        </a>\n        <a (click)=\"update(name, description)\"\n           class=\"navbar-link navbar-text pull-right sw-icon-padding\">\n          <span class=\"glyphicon glyphicon-ok sw-text-white\"></span>\n        </a>\n      </div>\n    </div>\n  </div>\n</nav>\n\n<!--left websites-->\n<div class=\"container-fluid\">\n  <div class=\"row\">\n    <div class=\"col-xs-4 hidden-xs\">\n      <ul class=\"list-group\">\n        <li class=\"list-group-item sw-borderless\"\n            *ngFor=\"let website of websites\">\n          <a class=\"sw-link\"\n             routerLink=\"/user/{{uid}}/website/{{website._id}}/page\">{{website.name}}</a>\n          <a routerLink=\"/user/{{uid}}/website/{{website._id}}\">\n            <span class=\"glyphicon glyphicon-cog pull-right\"></span>\n          </a>\n        </li>\n      </ul>\n    </div>\n\n    <!--right editor-->\n    <div class=\"col-sm-8 col-xs-12\">\n      <form>\n        <div class=\"form-group\">\n          <label for=\"website-name\">Name</label>\n          <input type=\"text\"\n                 id=\"website-name\"\n                 name=\"website-name\"\n                 placeholder=\"any name\"\n                 value={{name}}\n                 [(ngModel)] = \"name\"\n                 class=\"form-control\"/>\n        </div>\n        <div class=\"form-group\">\n          <label for=\"website-description\">Website Desciption</label>\n          <textarea id=\"website-description\"\n                    name=\"website-description\"\n                    rows=\"5\"\n                    placeholder=\"anything related to this website\"\n                    [(ngModel)] = \"description\"\n                    class=\"form-control\">{{description}}</textarea>\n        </div>\n        <div class=\"row\">\n          <div class=\"col-xs-4\">\n            <a (click)=\"delete()\"\n               class=\"btn btn-danger btn-block\">Delete</a>\n          </div>\n          <div class=\"col-xs-4 pull-right\">\n            <a routerLink=\"/user/{{uid}}/website\"\n               class=\"btn btn-warning btn-block\">Cancel</a>\n          </div>\n        </div>\n      </form>\n    </div>\n  </div>\n</div>\n\n<!-- Footer -->\n<nav class=\"navbar navbar-default navbar-fixed-bottom sw-nav-blue\">\n  <div class=\"container-fluid\">\n    <a routerLink=\"/user/{{uid}}\"\n       class=\"navbar-text pull-right\">\n      <span class=\"glyphicon glyphicon-user sw-icon-padding sw-text-white\"></span>\n    </a>\n  </div>\n</nav>\n"
 
 /***/ }),
 
@@ -711,7 +783,7 @@ WebsiteEditComponent = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Component */])({
         selector: 'app-website-edit',
         template: __webpack_require__("../../../../../src/app/components/website/website-edit/website-edit.component.html"),
-        styles: [__webpack_require__("../../../../../src/app/app.component.css")]
+        styles: [__webpack_require__("../../../../../src/app/components/website/website-edit/website-edit.component.css")]
     }),
     __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__services_website_service_client__["a" /* WebsiteService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_website_service_client__["a" /* WebsiteService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */]) === "function" && _c || Object])
 ], WebsiteEditComponent);
@@ -721,10 +793,28 @@ var _a, _b, _c;
 
 /***/ }),
 
+/***/ "../../../../../src/app/components/website/website-list/website-list.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
 /***/ "../../../../../src/app/components/website/website-list/website-list.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "\n<!-- top navbar-->\n<nav class=\"navbar navbar-fixed-top sw-nav-blue\">\n  <div class=\"container-fluid\">\n    <p class=\"navbar-text pull-left\">\n      <a routerLink=\"/user/{{uid}}\"\n         class=\"navbar-link sw-text-white\">\n        <span class=\"glyphicon glyphicon-chevron-left\"></span>\n      </a>\n    </p>\n    <a routerLink=\"/user/{{uid}}/website\"\n       class=\"pull-left navbar-brand thick\">\n      <b class=\"sw-text-white\">Websites</b>\n    </a>\n    <a routerLink=\"/user/{{uid}}/website/new\"\n       class=\"navbar-link navbar-text pull-right sw-icon-padding\">\n      <span class=\"glyphicon glyphicon-plus sw-text-white\"></span>\n    </a>\n  </div>\n</nav>\n\n<!--websites list-->\n<div  class=\"container-fluid sw-body\">\n  <ul class=\"list-group\">\n    <li class=\"list-group-item sw-borderless\"\n        *ngFor=\"let website of websites\">\n      <a class=\"sw-link\"\n         routerLink=\"/user/{{uid}}/website/{{website._id}}/page\">{{website.name}}</a>\n      <a routerLink=\"/user/{{uid}}/website/{{website._id}}\">\n        <span class=\"glyphicon glyphicon-cog pull-right\"></span>\n      </a>\n    </li>\n  </ul>\n</div>\n\n<!-- Footer -->\n<nav class=\"navbar navbar-default navbar-fixed-bottom sw-nav-blue\">\n  <div class=\"container-fluid\">\n    <a routerLink=\"/user/{{uid}}\" class=\"navbar-text pull-right\">\n      <span class=\"glyphicon glyphicon-user sw-icon-padding sw-text-white\"></span>\n    </a>\n  </div>\n</nav>\n"
+module.exports = "\n<!-- top navbar-->\n<nav class=\"navbar navbar-fixed-top sw-nav-blue\">\n  <div class=\"container-fluid\">\n    <p class=\"navbar-text pull-left\">\n      <a routerLink=\"/user/{{uid}}\"\n         class=\"navbar-link sw-text-white\">\n        <span class=\"glyphicon glyphicon-chevron-left\"></span>\n      </a>\n    </p>\n    <a routerLink=\"/user/{{uid}}/website\"\n       class=\"pull-left navbar-brand thick\">\n      <b class=\"sw-text-white\">Websites</b>\n    </a>\n    <a routerLink=\"/user/{{uid}}/website/new\"\n       class=\"navbar-link navbar-text pull-right sw-icon-padding\">\n      <span class=\"glyphicon glyphicon-plus sw-text-white\"></span>\n    </a>\n  </div>\n</nav>\n\n<!--websites list-->\n<div  class=\"container-fluid\">\n  <ul class=\"list-group\">\n    <li class=\"list-group-item sw-borderless\"\n        *ngFor=\"let website of websites\">\n      <a class=\"sw-link\"\n         routerLink=\"/user/{{uid}}/website/{{website._id}}/page\">{{website.name}}</a>\n      <a routerLink=\"/user/{{uid}}/website/{{website._id}}\">\n        <span class=\"glyphicon glyphicon-cog pull-right\"></span>\n      </a>\n    </li>\n  </ul>\n</div>\n\n<!-- Footer -->\n<nav class=\"navbar navbar-default navbar-fixed-bottom sw-nav-blue\">\n  <div class=\"container-fluid\">\n    <a routerLink=\"/user/{{uid}}\" class=\"navbar-text pull-right\">\n      <span class=\"glyphicon glyphicon-user sw-icon-padding sw-text-white\"></span>\n    </a>\n  </div>\n</nav>\n"
 
 /***/ }),
 
@@ -766,7 +856,7 @@ WebsiteListComponent = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Component */])({
         selector: 'app-website-list',
         template: __webpack_require__("../../../../../src/app/components/website/website-list/website-list.component.html"),
-        styles: [__webpack_require__("../../../../../src/app/app.component.css")]
+        styles: [__webpack_require__("../../../../../src/app/components/website/website-list/website-list.component.css")]
     }),
     __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__services_website_service_client__["a" /* WebsiteService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_website_service_client__["a" /* WebsiteService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */]) === "function" && _b || Object])
 ], WebsiteListComponent);
@@ -776,10 +866,28 @@ var _a, _b;
 
 /***/ }),
 
+/***/ "../../../../../src/app/components/website/website-new/website-new.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
 /***/ "../../../../../src/app/components/website/website-new/website-new.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<!-- top navbar-->\n<nav class=\"navbar navbar-fixed-top sw-nav-blue\">\n  <div class=\"row\">\n    <div class=\"col-xs-4 hidden-xs\">\n      <div class=\"container-fluid\">\n        <p class=\"navbar-text pull-left\">\n          <a routerLink=\"/user/{{uid}}/website\"\n             class=\"navbar-link sw-text-white\">\n            <span class=\"glyphicon glyphicon-chevron-left\"></span>\n          </a>\n        </p>\n        <a routerLink=\"/user/{{uid}}/website\"\n           class=\"pull-left navbar-brand thick\">\n          <b class=\"sw-text-white\">Websites</b>\n        </a>\n        <a routerLink=\"/user/{{uid}}/website/new\"\n           class=\"navbar-link navbar-text pull-right sw-icon-padding\">\n          <span class=\"glyphicon glyphicon-plus sw-text-white\"></span>\n        </a>\n      </div>\n    </div>\n    <div class=\"col-xs-12 col-sm-8 pull-right\">\n      <div class=\"container-fluid\">\n        <a routerLink=\"/user/{{uid}}/website/new\"\n           class=\"pull-left navbar-brand thick\">\n          <b class=\"sw-text-white\">New Website</b>\n        </a>\n        <a (click)=\"create(name, description)\"\n           class=\"navbar-link navbar-text pull-right sw-icon-padding\">\n          <span class=\"glyphicon glyphicon-ok sw-text-white\"></span>\n        </a>\n      </div>\n    </div>\n  </div>\n</nav>\n\n<!--left websites-->\n<div class=\"container-fluid sw-body\">\n  <div class=\"row\">\n    <div class=\"col-xs-4 hidden-xs\">\n      <ul class=\"list-group\">\n        <li class=\"list-group-item sw-borderless\"\n            *ngFor=\"let website of websites\">\n          <a class=\"sw-link\"\n             routerLink=\"/user/{{uid}}/website/{{website._id}}/page\">{{website.name}}</a>\n          <a routerLink=\"/user/{{uid}}/website/{{website._id}}\">\n            <span class=\"glyphicon glyphicon-cog pull-right\"></span>\n          </a>\n        </li>\n      </ul>\n    </div>\n\n    <!--right editor-->\n    <div class=\"col-sm-8 col-xs-12\">\n      <form>\n        <div class=\"form-group\">\n          <label for=\"website-name\">Name</label>\n          <input type=\"text\"\n                 id=\"website-name\"\n                 placeholder=\"Name\"\n                 name=\"website-name\"\n                 [(ngModel)] = \"name\"\n                 class=\"form-control\"/>\n        </div>\n        <div class=\"form-group\">\n          <label for=\"website-description\">Website Desciption</label>\n          <textarea id=\"website-description\"\n                    rows=\"5\"\n                    name=\"website-description\"\n                    placeholder=\"Description\"\n                    [(ngModel)] = \"description\"\n                    class=\"form-control\"></textarea>\n        </div>\n        <div>\n          <a routerLink=\"/user/{{uid}}/website\"\n             class=\"btn btn-warning btn-block\">Cancel</a>\n        </div>\n      </form>\n    </div>\n  </div>\n</div>\n\n<!-- Footer -->\n<nav class=\"navbar navbar-default navbar-fixed-bottom sw-nav-blue\">\n  <div class=\"container-fluid\">\n    <a routerLink=\"/user/{{uid}}\" class=\"navbar-text pull-right\">\n      <span class=\"glyphicon glyphicon-user sw-icon-padding sw-text-white\"></span>\n    </a>\n  </div>\n</nav>\n"
+module.exports = "<!-- top navbar-->\n<nav class=\"navbar navbar-fixed-top sw-nav-blue\">\n  <div class=\"row\">\n    <div class=\"col-xs-4 hidden-xs\">\n      <div class=\"container-fluid\">\n        <p class=\"navbar-text pull-left\">\n          <a routerLink=\"/user/{{uid}}/website\"\n             class=\"navbar-link sw-text-white\">\n            <span class=\"glyphicon glyphicon-chevron-left\"></span>\n          </a>\n        </p>\n        <a routerLink=\"/user/{{uid}}/website\"\n           class=\"pull-left navbar-brand thick\">\n          <b class=\"sw-text-white\">Websites</b>\n        </a>\n        <a routerLink=\"/user/{{uid}}/website/new\"\n           class=\"navbar-link navbar-text pull-right sw-icon-padding\">\n          <span class=\"glyphicon glyphicon-plus sw-text-white\"></span>\n        </a>\n      </div>\n    </div>\n    <div class=\"col-xs-12 col-sm-8 pull-right\">\n      <div class=\"container-fluid\">\n        <a routerLink=\"/user/{{uid}}/website/new\"\n           class=\"pull-left navbar-brand thick\">\n          <b class=\"sw-text-white\">New Website</b>\n        </a>\n        <a (click)=\"create(name, description)\"\n           class=\"navbar-link navbar-text pull-right sw-icon-padding\">\n          <span class=\"glyphicon glyphicon-ok sw-text-white\"></span>\n        </a>\n      </div>\n    </div>\n  </div>\n</nav>\n\n<!--left websites-->\n<div class=\"container-fluid\">\n  <div class=\"row\">\n    <div class=\"col-xs-4 hidden-xs\">\n      <ul class=\"list-group\">\n        <li class=\"list-group-item sw-borderless\"\n            *ngFor=\"let website of websites\">\n          <a class=\"sw-link\"\n             routerLink=\"/user/{{uid}}/website/{{website._id}}/page\">{{website.name}}</a>\n          <a routerLink=\"/user/{{uid}}/website/{{website._id}}\">\n            <span class=\"glyphicon glyphicon-cog pull-right\"></span>\n          </a>\n        </li>\n      </ul>\n    </div>\n\n    <!--right editor-->\n    <div class=\"col-sm-8 col-xs-12\">\n      <form>\n        <div class=\"form-group\">\n          <label for=\"website-name\">Name</label>\n          <input type=\"text\"\n                 id=\"website-name\"\n                 placeholder=\"Name\"\n                 name=\"website-name\"\n                 [(ngModel)] = \"name\"\n                 class=\"form-control\"/>\n        </div>\n        <div class=\"form-group\">\n          <label for=\"website-description\">Website Desciption</label>\n          <textarea id=\"website-description\"\n                    rows=\"5\"\n                    name=\"website-description\"\n                    placeholder=\"Description\"\n                    [(ngModel)] = \"description\"\n                    class=\"form-control\"></textarea>\n        </div>\n        <div>\n          <a routerLink=\"/user/{{uid}}/website\"\n             class=\"btn btn-warning btn-block\">Cancel</a>\n        </div>\n      </form>\n    </div>\n  </div>\n</div>\n\n<!-- Footer -->\n<nav class=\"navbar navbar-default navbar-fixed-bottom sw-nav-blue\">\n  <div class=\"container-fluid\">\n    <a routerLink=\"/user/{{uid}}\" class=\"navbar-text pull-right\">\n      <span class=\"glyphicon glyphicon-user sw-icon-padding sw-text-white\"></span>\n    </a>\n  </div>\n</nav>\n"
 
 /***/ }),
 
@@ -832,7 +940,7 @@ WebsiteNewComponent = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Component */])({
         selector: 'app-website-new',
         template: __webpack_require__("../../../../../src/app/components/website/website-new/website-new.component.html"),
-        styles: [__webpack_require__("../../../../../src/app/app.component.css")]
+        styles: [__webpack_require__("../../../../../src/app/components/website/website-new/website-new.component.css")]
     }),
     __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__services_website_service_client__["a" /* WebsiteService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_website_service_client__["a" /* WebsiteService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */]) === "function" && _c || Object])
 ], WebsiteNewComponent);

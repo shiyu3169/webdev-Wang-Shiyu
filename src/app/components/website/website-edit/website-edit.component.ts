@@ -6,7 +6,7 @@ import {Website} from '../../../models/website.model.client';
 @Component({
   selector: 'app-website-edit',
   templateUrl: './website-edit.component.html',
-  styleUrls: ['../../../app.component.css']
+  styleUrls: ['./website-edit.component.css']
 })
 export class WebsiteEditComponent implements OnInit {
 

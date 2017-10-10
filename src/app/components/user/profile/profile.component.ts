@@ -7,7 +7,7 @@ import { User } from '../../../models/user.model.client';
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
-  styleUrls: ['../../../app.component.css']
+  styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
 

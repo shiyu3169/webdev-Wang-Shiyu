@@ -6,7 +6,7 @@ import {Website} from '../../../models/website.model.client';
 @Component({
   selector: 'app-website-list',
   templateUrl: './website-list.component.html',
-  styleUrls: ['../../../app.component.css']
+  styleUrls: ['./website-list.component.css']
 })
 export class WebsiteListComponent implements OnInit {
 
