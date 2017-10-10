@@ -21,9 +21,9 @@ export class WebsiteNewComponent implements OnInit {
   create(name: String, description: String) {
     const newWebsite: Website = {
       _id: this.websiteService.nextId(),
-      name: this.name,
+      name: name,
       developerId: this.uid,
-      description: this.description
+      description: description
     };
     this.websiteService.createWebsite(this.uid, newWebsite);
     this.router.navigate(['user', this.uid, 'website']);

@@ -2,16 +2,16 @@
 <nav class="navbar navbar-default navbar-fixed-top">
   <div class="container-fluid">
     <p class="navbar-text pull-left">
-      <a routerLink="/page-list"
+      <a routerLink="/user/{{uid}}/website/{{wid}}/page"
          class="navbar-link">
         <span class="glyphicon glyphicon-chevron-left sw-text-black"></span>
       </a>
     </p>
-    <a routerLink="/page-edit"
+    <a routerLink="/user/{{uid}}/website/{{wid}}/page/new"
        class="pull-left navbar-brand thick">
       <b>New Page</b>
     </a>
-    <a routerLink="/page-list"
+    <a (click)="create(name, title)"
        class="navbar-link navbar-text pull-right sw-icon-padding">
       <span class="glyphicon glyphicon-ok sw-text-black"></span>
     </a>
@@ -25,18 +25,22 @@
       <label for="page-name">Name</label>
       <input type="text"
              id="page-name"
+             name="page-name"
              placeholder="Blog name"
+             [(ngModel)] = "name"
              class="form-control"/>
     </div>
     <div class="form-group">
       <label for="page-title">Title</label>
       <input type="text"
              id="page-title"
+             name="page-title"
              placeholder="Blog Title"
+             [(ngModel)] = "title"
              class="form-control"/>
     </div>
     <div>
-      <a routerLink="/page-list"
+      <a routerLink="/user/{{uid}}/website/{{wid}}/page"
          class="btn btn-warning btn-block">Cancel</a>
     </div>
   </form>
@@ -45,7 +49,7 @@
 <!-- Footer -->
 <nav class="navbar navbar-default navbar-fixed-bottom">
   <div class="container-fluid navbar-text pull-right">
-    <a routerLink="/profile">
+    <a routerLink="/user/{{uid}}">
       <span class="glyphicon glyphicon-user sw-icon-padding"></span>
     </a>
   </div>
