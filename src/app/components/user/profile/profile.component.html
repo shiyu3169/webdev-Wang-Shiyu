@@ -10,7 +10,7 @@
 
     <!--tick mark-->
     <p class="navbar-text pull-right">
-      <a (click)="update(user.username, user.email, user.firstName, user.lastName)"
+      <a (click)="update(username, email, firstName, lastName)"
          class="navbar-link"
          routerLink="/user/{{user._id}}"
          href="#">
@@ -29,8 +29,7 @@
              class="form-control"
              id="username"
              name="username"
-             value= {{user.username}}
-             [(ngModel)] = "user.username"
+             [(ngModel)] = "username"
              placeholder="username">
     </div>
   </form>
@@ -42,8 +41,7 @@
              class="form-control"
              id="email"
              name="email"
-             value={{user.email}}
-             [(ngModel)] = "user.email"
+             [(ngModel)] = "email"
              placeholder="alice.wonderland@unicorn.com">
     </div>
   </form>
@@ -55,8 +53,7 @@
              class="form-control"
              id="first-name"
              name="first-name"
-             value={{user.firstName}}
-             [(ngModel)] = "user.firstName"
+             [(ngModel)] = "firstName"
              placeholder="Alice">
     </div>
   </form>
@@ -68,8 +65,7 @@
              class="form-control"
              id="last-name"
              name="last-name"
-             value={{user.lastName}}
-             [(ngModel)] = "user.lastName"
+             [(ngModel)] = "lastName"
              placeholder="Wonderland">
     </div>
   </form>

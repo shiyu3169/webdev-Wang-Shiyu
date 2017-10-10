@@ -12,7 +12,7 @@ import {RegisterComponent} from './components/user/register/register.component';
 // import {RegisterComponent} from './components/user/register/register.component';
 // import {ProfileComponent} from './components/user/profile/profile.component';
 // import {PageEditComponent} from './components/page/page-edit/page-edit.component';
-// import {PageListComponent} from './components/page/page-list/page-list.component';
+import {PageListComponent} from './components/page/page-list/page-list.component';
 // import {PageNewComponent} from './components/page/page-new/page-new.component';
 // import {WebsiteEditComponent} from './components/website/website-edit/website-edit.component';
 import {WebsiteListComponent} from './components/website/website-list/website-list.component';
@@ -31,7 +31,7 @@ const APP_ROUTES: Routes = [
   {path: 'register', component: RegisterComponent},
   {path: 'user/:uid', component: ProfileComponent},
   // {path: 'user/:uid/website/:wid/page/:pid', component: PageEditComponent},
-  // {path: 'user/:uid/website/:wid/page', component: PageListComponent},
+  {path: 'user/:uid/website/:wid/page', component: PageListComponent},
   // {path: 'user/:uid/website/:wid/page/new', component: PageNewComponent},
   // {path: 'user/:uid/website/:wid', component: WebsiteEditComponent},
   {path: 'user/:uid/website', component: WebsiteListComponent}
