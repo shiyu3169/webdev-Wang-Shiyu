@@ -4,6 +4,7 @@
     Invalid username or password!
   </div>
 
+
   <h1>Login</h1>
 
   <form (ngSubmit)="login()"
@@ -18,7 +19,8 @@
              class="form-control"
              #username="ngModel"/>
     </div>
-    <span class="help-block" *ngIf="!username.valid && username.touched">Please enter username!</span>
+    <span class="help-block"
+          *ngIf="!username.valid && username.touched">Please enter username!</span>
     <div class="form-group">
       <input type="password"
              id="password"
