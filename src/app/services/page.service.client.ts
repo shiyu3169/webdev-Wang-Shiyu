@@ -56,7 +56,7 @@ export class PageService {
   deletePage(pageId) {
     const oldPage = this.findPageById(pageId);
     const index = this.pages.indexOf(oldPage);
-    this.pages.splice(index);
+    this.pages.splice(index, 1);
   }
 
 }

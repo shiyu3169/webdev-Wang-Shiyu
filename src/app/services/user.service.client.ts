@@ -63,7 +63,7 @@ export class UserService {
   deleteUser(userId) {
     const oldUser = this.findUserById(userId);
     const index = this.users.indexOf(oldUser);
-    this.users.splice(index);
+    this.users.splice(index, 1);
   }
 
 }

@@ -65,7 +65,7 @@ export class WidgetService {
   deleteWidget(widgetId) {
     const oldPage = this.findWidgetById(widgetId);
     const index = this.widgets.indexOf(oldPage);
-    this.widgets.splice(index);
+    this.widgets.splice(index,1);
   }
 
 }
