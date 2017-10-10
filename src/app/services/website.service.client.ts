@@ -60,6 +60,6 @@ export class WebsiteService {
   deleteWebsite(websiteId) {
     const oldWeb = this.findWebsiteById(websiteId);
     const index = this.websites.indexOf(oldWeb);
-    this.websites.splice(index);
+    this.websites.splice(index, 1);
   }
 }

@@ -42,13 +42,13 @@ export class ProfileComponent implements OnInit {
   ngOnInit() {
     this.router.params.subscribe(params => {
       this.uid = params['uid'];
+      this.user = this.userService.findUserById(this.uid);
+      this.username = this.user.username;
+      this.email = this.user.email;
+      this.firstName = this.user.firstName;
+      this.lastName = this.user.lastName;
+      this.prevUsername = this.username;
     });
-    this.user = this.userService.findUserById(this.uid);
-    this.username = this.user.username;
-    this.email = this.user.email;
-    this.firstName = this.user.firstName;
-    this.lastName = this.user.lastName;
-    this.prevUsername = this.username;
   }
 
 }
