@@ -25,10 +25,12 @@
            class="pull-left navbar-brand thick">
           <b class="sw-text-white">New Website</b>
         </a>
-        <a (click)="create(name, description)"
-           class="navbar-link navbar-text pull-right sw-icon-padding">
+        <button (click)="create()"
+                [disabled]="!f.valid"
+                form="webForm"
+                class="btn btn-xs navbar-link navbar-text pull-right sw-icon-padding sw-button-transparent">
           <span class="glyphicon glyphicon-ok sw-text-white"></span>
-        </a>
+        </button>
       </div>
     </div>
   </div>
@@ -52,23 +54,30 @@
 
     <!--right editor-->
     <div class="col-sm-8 col-xs-12">
-      <form>
+      <form (ngSubmit)="create()"
+            #f ="ngForm"
+            id="webForm">
         <div class="form-group">
-          <label for="website-name">Name</label>
+          <label for="name">Name</label>
           <input type="text"
-                 id="website-name"
+                 id="name"
                  placeholder="Name"
-                 name="website-name"
-                 [(ngModel)] = "name"
+                 name="name"
+                 required
+                 ngModel
+                 #name="ngModel"
                  class="form-control"/>
         </div>
+        <span class="help-block"
+              *ngIf="!name.valid && name.touched">Name can't be empty!</span>
         <div class="form-group">
-          <label for="website-description">Website Desciption</label>
-          <textarea id="website-description"
+          <label for="description">Website Desciption</label>
+          <textarea id="description"
                     rows="5"
-                    name="website-description"
+                    name="description"
                     placeholder="Description"
-                    [(ngModel)] = "description"
+                    ngModel
+                    #description="ngModel"
                     class="form-control"></textarea>
         </div>
         <div>

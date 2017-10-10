@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute} from '@angular/router';
 import { WebsiteService} from '../../../services/website.service.client';
 import {Website} from '../../../models/website.model.client';
+import {NgForm} from '@angular/forms';
 
 @Component({
   selector: 'app-website-new',
@@ -9,6 +10,8 @@ import {Website} from '../../../models/website.model.client';
   styleUrls: ['./website-new.component.css']
 })
 export class WebsiteNewComponent implements OnInit {
+
+  @ViewChild('f') webForm: NgForm;
 
   uid: String;
   websites: Website[];
@@ -18,12 +21,15 @@ export class WebsiteNewComponent implements OnInit {
   constructor(private websiteService: WebsiteService,
               private activatedRoute: ActivatedRoute, private router: Router) { }
 
-  create(name: String, description: String) {
+  create() {
+    this.name = this.webForm.value.name;
+    this.description = this.webForm.value.description;
+
     const newWebsite: Website = {
       _id: this.websiteService.nextId(),
-      name: name,
+      name: this.name,
       developerId: this.uid,
-      description: description
+      description: this.description
     };
     this.websiteService.createWebsite(this.uid, newWebsite);
     this.router.navigate(['user', this.uid, 'website']);

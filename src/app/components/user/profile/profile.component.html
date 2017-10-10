@@ -14,7 +14,7 @@
       <button type="submit"
               [disabled]="!f.valid"
               form="profileForm"
-              class="navbar-link sw-button-transparent"
+              class="btn btn-xs navbar-link sw-button-transparent"
               routerLink="/user/{{uid}}">
         <span class="glyphicon glyphicon-ok sw-text-white"></span>
       </button>
@@ -26,6 +26,10 @@
   <div *ngIf="usernameTaken"
        class="alert alert-danger" >
     Username was taken!
+  </div>
+  <div *ngIf="submitSuccess"
+       class="alert alert-success" >
+    Submit successfully!
   </div>
   <form (ngSubmit)="update()"
         #f ="ngForm"
@@ -42,7 +46,7 @@
              placeholder="username">
     </div>
     <span class="help-block"
-          *ngIf="!username.valid && username.touched">Please enter username!</span>
+          *ngIf="!username.valid && username.touched">Username can't be empty!</span>
 
     <div class="form-group">
       <label for="email">Email address</label>
