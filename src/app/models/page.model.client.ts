@@ -1,4 +1,4 @@
-export class Pages {
+export class Page {
   _id: String;
   name: String;
   websiteId: String;
