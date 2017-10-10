@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute} from '@angular/router';
+import { Router, ActivatedRoute} from '@angular/router';
 import { WebsiteService} from '../../../services/website.service.client';
 import {Website} from '../../../models/website.model.client';
 
@@ -15,7 +15,8 @@ export class WebsiteNewComponent implements OnInit {
   name: String;
   description: String;
 
-  constructor(private websiteService: WebsiteService, private router: ActivatedRoute) { }
+  constructor(private websiteService: WebsiteService,
+              private activatedRoute: ActivatedRoute, private router: Router) { }
 
   create(name: String, description: String) {
     const newWebsite: Website = {
@@ -25,9 +26,10 @@ export class WebsiteNewComponent implements OnInit {
       description: this.description
     };
     this.websiteService.createWebsite(this.uid, newWebsite);
+    this.router.navigate(['user', this.uid, 'website']);
   }
   ngOnInit() {
-    this.router.params.subscribe(params => {
+    this.activatedRoute.params.subscribe(params => {
       this.uid = params['uid'];
       this.websites = this.websiteService.findWebsitesByUser(this.uid);
     });

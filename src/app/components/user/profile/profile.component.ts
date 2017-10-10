@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute} from '@angular/router';
 import { UserService} from '../../../services/user.service.client';
-import {User} from '../../../models/user.model.client';
+import { User } from '../../../models/user.model.client';
 
 
 @Component({
@@ -27,7 +27,7 @@ export class ProfileComponent implements OnInit {
       alert('username is taken, please try another one');
     } else {
       const updatedUser: User = {
-        _id: this.uid,
+        _id: this.userService.nextId(),
         username: username,
         password: this.user.password,
         firstName: firstName,
@@ -42,13 +42,13 @@ export class ProfileComponent implements OnInit {
   ngOnInit() {
     this.router.params.subscribe(params => {
       this.uid = params['uid'];
-      this.user = this.userService.findUserById(this.uid);
-      this.username = this.user.username;
-      this.email = this.user.email;
-      this.firstName = this.user.firstName;
-      this.lastName = this.user.lastName;
-      this.prevUsername = this.username;
     });
+    this.user = this.userService.findUserById(this.uid);
+    this.username = this.user.username;
+    this.email = this.user.email;
+    this.firstName = this.user.firstName;
+    this.lastName = this.user.lastName;
+    this.prevUsername = this.username;
   }
 
 }

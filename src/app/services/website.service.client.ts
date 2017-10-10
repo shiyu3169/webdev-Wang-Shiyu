@@ -16,7 +16,7 @@ export class WebsiteService {
 
   // generates next id for new website
   nextId() {
-    return (Number(this.websites[this.websites.length - 1]._id) + 1).toString();
+    return (Number(this.websites[this.websites.length - 1]._id) + 10).toString();
   }
 
   // adds the website parameter instance to the local websites array. The new website's developerId is set to the userId parameter

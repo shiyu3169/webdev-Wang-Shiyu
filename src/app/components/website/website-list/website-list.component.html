@@ -26,7 +26,7 @@
         *ngFor="let website of websites">
       <a class="sw-link"
          routerLink="/user/{{uid}}/website/{{website._id}}/page">{{website.name}}</a>
-      <a routerLink="/website-edit">
+      <a routerLink="/user/{{uid}}/website/{{website._id}}">
         <span class="glyphicon glyphicon-cog pull-right"></span>
       </a>
     </li>

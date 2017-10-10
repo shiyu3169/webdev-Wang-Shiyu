@@ -26,7 +26,6 @@
           <b class="sw-text-white">New Website</b>
         </a>
         <a (click)="create(name, description)"
-           routerLink="/user/{{uid}}/website"
            class="navbar-link navbar-text pull-right sw-icon-padding">
           <span class="glyphicon glyphicon-ok sw-text-white"></span>
         </a>
@@ -44,7 +43,7 @@
             *ngFor="let website of websites">
           <a class="sw-link"
              routerLink="/user/{{uid}}/website/{{website._id}}/page">{{website.name}}</a>
-          <a routerLink="/website-edit">
+          <a routerLink="/user/{{uid}}/website/{{website._id}}">
             <span class="glyphicon glyphicon-cog pull-right"></span>
           </a>
         </li>
@@ -59,7 +58,7 @@
           <input type="text"
                  id="website-name"
                  placeholder="Name"
-                 name="name"
+                 name="website-name"
                  [(ngModel)] = "name"
                  class="form-control"/>
         </div>
@@ -84,7 +83,7 @@
 <!-- Footer -->
 <nav class="navbar navbar-default navbar-fixed-bottom sw-nav-blue">
   <div class="container-fluid">
-    <a href="../user/profile.html" class="navbar-text pull-right">
+    <a routerLink="/user/{{uid}}" class="navbar-text pull-right">
       <span class="glyphicon glyphicon-user sw-icon-padding sw-text-white"></span>
     </a>
   </div>
