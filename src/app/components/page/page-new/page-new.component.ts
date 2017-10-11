@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute} from '@angular/router';
 import { PageService} from '../../../services/page.service.client';
 import { Page } from '../../../models/page.model.client';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-page-new',
@@ -10,17 +11,22 @@ import { Page } from '../../../models/page.model.client';
 })
 export class PageNewComponent implements OnInit {
 
+  @ViewChild('f') pageForm: NgForm;
+
   uid: String;
   wid: String;
   name: String;
   title: String;
 
-  create(name: String, title: String) {
+  create() {
+    this.name = this.pageForm.value.name;
+    this.title = this.pageForm.value.title;
+
     const newPage: Page = {
       _id: this.pageService.nextId(),
-      name: name,
+      name: this.name,
       websiteId: this.wid,
-      description: title
+      description: this.title
     };
     this.pageService.createPage(this.wid, newPage);
     this.router.navigate(['user', this.uid, 'website', this.wid, 'page']);
