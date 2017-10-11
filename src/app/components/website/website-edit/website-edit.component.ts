@@ -1,8 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router} from '@angular/router';
 import { WebsiteService} from '../../../services/website.service.client';
-import {Website} from '../../../models/website.model.client';
-import {NgForm} from '@angular/forms';
+import { Website } from '../../../models/website.model.client';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-website-edit',
@@ -37,7 +37,7 @@ export class WebsiteEditComponent implements OnInit {
     this.router.navigate(['user', this.uid, 'website']);
   }
 
-  delete() {
+  remove() {
     this.websiteService.deleteWebsite(this.wid);
     this.router.navigate(['user', this.uid, 'website']);
   }
