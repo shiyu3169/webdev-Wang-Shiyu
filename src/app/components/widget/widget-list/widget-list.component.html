@@ -48,9 +48,8 @@
     </div>
     <div *ngSwitchCase="'IMAGE'">
       <div>
-        <img
-             [src]="widget.url"
-             [width]="widget.width"/>
+        <img width="100%"
+             [src]="widget.url"/>
       </div>
     </div>
     <div *ngSwitchCase="'YOUTUBE'">

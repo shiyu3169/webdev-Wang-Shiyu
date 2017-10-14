@@ -56,6 +56,7 @@ export class WidgetService {
     const oldWidget = this.findWidgetById(widgetId);
     const index = this.widgets.indexOf(oldWidget);
     this.widgets[index].size = widget.size;
+    this.widgets[index].name = widget.name;
     this.widgets[index].text = widget.text;
     this.widgets[index].width = widget.width;
     this.widgets[index].url = widget.url;

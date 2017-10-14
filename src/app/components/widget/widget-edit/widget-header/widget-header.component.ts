@@ -11,10 +11,50 @@ import { NgForm } from '@angular/forms';
 })
 export class WidgetHeaderComponent implements OnInit {
 
+  @ViewChild('f') widgetForm: NgForm;
+
+  uid: String;
+  wid: String;
+  pid: String;
+  wgid: String;
+  widget: Widget;
+  name: String;
+  text: String;
+  size: number;
+
   constructor(private widgetService: WidgetService,
               private activatedRoute: ActivatedRoute, private router: Router) { }
 
+  update() {
+    this.name = this.widgetForm.value.name;
+    this.text = this.widgetForm.value.text;
+    this.size = this.widgetForm.value.size;
+
+    const updatedWidget: Widget = {
+      _id: this.widget._id,
+      name: this.name,
+      widgetType: this.widget.widgetType,
+      pageId: this.widget.pageId,
+      size: this.size,
+      text: this.text
+    };
+    this.widgetService.updateWidget(this.wgid, updatedWidget);
+    this.router.navigate(['user', this.uid, 'website', this.wid, 'page', this.pid, 'widget']);
+  }
+
+  remove() {
+    this.widgetService.deleteWidget(this.wgid);
+    this.router.navigate(['user', this.uid, 'website', this.wid, 'page', this.pid, 'widget']);
+  }
+
   ngOnInit() {
+    this.activatedRoute.params.subscribe(params => {
+      this.uid = params['uid'];
+      this.wid = params['wid'];
+      this.pid = params['pid'];
+      this.wgid = params['wgid'];
+      this.widget = this.widgetService.findWidgetById(this.wgid);
+    });
   }
 
 }

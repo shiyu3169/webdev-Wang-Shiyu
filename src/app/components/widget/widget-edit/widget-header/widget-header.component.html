@@ -2,55 +2,73 @@
 <nav class="navbar navbar-default navbar-fixed-top">
   <div class="container-fluid">
     <p class="navbar-text pull-left">
-      <a routerLink="/widget-list"
+      <a routerLink="/user/{{uid}}/website/{{wid}}/page/{{pid}}/widget"
          class="navbar-link">
         <span class="glyphicon glyphicon-chevron-left sw-text-black"></span>
       </a>
     </p>
-    <a routerLink="/widget-chooser"
+    <a routerLink="/user/{{uid}}/website/{{wid}}/page/{{pid}}/widget/{{wid}}"
        class="pull-left navbar-brand thick">
       <b>Widget edit</b>
     </a>
-    <a routerLink="/widget-list"
-       class="navbar-link navbar-text pull-right sw-icon-padding">
+    <button type="submit"
+            [disabled]="!f.valid"
+            form="widgetForm"
+            class="btn btn-xs sw-button-transparent navbar-link navbar-text pull-right sw-icon-padding">
       <span class="glyphicon glyphicon-ok sw-text-black"></span>
-    </a>
+    </button>
   </div>
 </nav>
 
 <!--form-->
 <div class="container-fluid">
-  <form>
+  <form (ngSubmit)="update()"
+        id="widgetForm"
+        #f ="ngForm">
     <div class="form-group">
-      <label for="heading-name">Name</label>
-      <input type="text"
-             id="heading-name"
+      <label for="name">Name</label>
+      <input type="name"
+             id="name"
+             name="name"
              placeholder="Name of the heading"
+             ngModel="{{widget.name}}"
+             #name="ngModel"
              class="form-control"/>
     </div>
     <div class="form-group">
-      <label for="heading-text">Text</label>
+      <label for="text">Text</label>
       <input type="text"
-             id="heading-text"
+             id="text"
+             name="text"
              placeholder="Text of the heading"
-             value="Countryside Ragdolls"
+             ngModel="{{widget.text}}"
+             required
+             #text="ngModel"
              class="form-control"/>
     </div>
+    <span class="help-block"
+          *ngIf="!text.valid && text.touched">Text can't be empty!</span>
+    <select type="number"
+            id="size"
+            name="size"
+            [(ngModel)]="widget.size"
+            #size="ngModel"
+            class="form-control">
+      <option value=1>1</option>
+      <option value=2>2</option>
+      <option value=3>3</option>
+      <option value=4>4</option>
+    </select>
     <div class="form-group">
-      <label for="heading-size">Size</label>
-      <input type="number"
-             id="heading-size"
-             placeholder="Size of the heading"
-             value="3"
-             class="form-control"/>
+      <label for="size">Size</label>
     </div>
     <div class="row">
       <div class="col-xs-6">
-        <a routerLink="/widget-list"
+        <a routerLink="/user/{{uid}}/website/{{wid}}/page/{{pid}}/widget"
            class="btn btn-warning btn-block">Cancel</a>
       </div>
       <div class="col-xs-6">
-        <a routerLink="/widget-list"
+        <a (click)="remove()"
            class="btn btn-danger btn-block">Delete</a>
       </div>
     </div>
@@ -60,7 +78,7 @@
 <!-- Footer -->
 <nav class="navbar navbar-default navbar-fixed-bottom">
   <div class="container-fluid navbar-text">
-    <a routerLink="/profile">
+    <a routerLink="/user/{{uid}}">
       <span class="glyphicon glyphicon-user sw-icon-padding pull-right"></span>
     </a>
   </div>

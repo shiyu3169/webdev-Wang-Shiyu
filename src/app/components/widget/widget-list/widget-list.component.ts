@@ -17,7 +17,9 @@ export class WidgetListComponent implements OnInit {
   widgets: Widget[];
   constructor(private widgetService: WidgetService, private router: ActivatedRoute, private sanitizer: DomSanitizer) { }
 
-
+  toInt(str: string) {
+    return parseInt(str, 10);
+  }
   getYoutubeEmbedUrl(link: String) {
     let embedUrl = 'https://www.youtube.com/embed/'
     const parsedLink = link.split('/');
