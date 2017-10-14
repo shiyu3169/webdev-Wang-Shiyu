@@ -42,7 +42,18 @@ export class WidgetImageComponent implements OnInit {
     this.router.navigate(['user', this.uid, 'website', this.wid, 'page', this.pid, 'widget']);
   }
 
-  ngOnInit() {
+  remove() {
+    this.widgetService.deleteWidget(this.wgid);
+    this.router.navigate(['user', this.uid, 'website', this.wid, 'page', this.pid, 'widget']);
   }
 
+  ngOnInit() {
+    this.activatedRoute.params.subscribe(params => {
+      this.uid = params['uid'];
+      this.wid = params['wid'];
+      this.pid = params['pid'];
+      this.wgid = params['wgid'];
+      this.widget = this.widgetService.findWidgetById(this.wgid);
+    });
+  }
 }

@@ -1490,7 +1490,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/widget/widget-edit/widget-image/widget-image.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "!-- top navbar-->\n<nav class=\"navbar navbar-default navbar-fixed-top\">\n  <div class=\"container-fluid\">\n    <p class=\"navbar-text pull-left\">\n      <a routerLink=\"/widget-list\"\n         class=\"navbar-link\">\n        <span class=\"glyphicon glyphicon-chevron-left sw-text-black\"></span>\n      </a>\n    </p>\n    <a routerLink=\"/widget-chooser\"\n       class=\"pull-left navbar-brand thick\">\n      <b>Widget edit</b>\n    </a>\n    <a routerLink=\"/widget-list\"\n       class=\"navbar-link navbar-text pull-right sw-icon-padding\">\n      <span class=\"glyphicon glyphicon-ok sw-text-black\"></span>\n    </a>\n  </div>\n</nav>\n\n<!--form-->\n<div class=\"container-fluid\">\n  <form>\n    <div class=\"form-group\">\n      <label for=\"image-name\">Name</label>\n      <input type=\"text\"\n             id=\"image-name\"\n             placeholder=\"Name of the image\"\n             class=\"form-control\"/>\n    </div>\n    <div class=\"form-group\">\n      <label for=\"image-text\">Text</label>\n      <input type=\"text\"\n             id=\"image-text\"\n             placeholder=\"Text of the image\"\n             class=\"form-control\"/>\n    </div>\n    <div class=\"form-group\">\n      <label for=\"image-url\">URL</label>\n      <input type=\"text\"\n             id=\"image-url\"\n             placeholder=\"url of the image\"\n             value=\"http://www.countrysideragdolls.com/wp-content/uploads/2017/01/011.jpg\"\n             class=\"form-control\"/>\n    </div>\n    <div class=\"form-group\">\n      <label for=\"image-width\">Width</label>\n      <input type=\"text\"\n             id=\"image-width\"\n             placeholder=\"100%\"\n             value=\"100%\"\n             class=\"form-control\"/>\n    </div>\n    <div class=\"form-group\">\n      <label for=\"image-file\">Upload</label>\n      <input type=\"file\" id=\"image-file\" class=\"form-control\">\n      <a href=\"#\" class=\"btn btn-primary btn-block\">Upload Image</a>\n    </div>\n    <div class=\"row\">\n      <div class=\"col-xs-6\">\n        <a routerLink=\"/widget-list\"\n           class=\"btn btn-warning btn-block\">Cancel</a>\n      </div>\n      <div class=\"col-xs-6\">\n        <a routerLink=\"/widget-list\"\n           class=\"btn btn-danger btn-block\">Delete</a>\n      </div>\n    </div>\n  </form>\n</div>\n\n<!-- Footer -->\n<nav class=\"navbar navbar-default navbar-fixed-bottom\">\n  <div class=\"container-fluid navbar-text\">\n    <a routerLink=\"/profile\">\n      <span class=\"glyphicon glyphicon-user sw-icon-padding pull-right\"></span>\n    </a>\n  </div>\n</nav>\n"
+module.exports = "<!-- top navbar-->\n<nav class=\"navbar navbar-default navbar-fixed-top\">\n  <div class=\"container-fluid\">\n    <p class=\"navbar-text pull-left\">\n      <a routerLink=\"/user/{{uid}}/website/{{wid}}/page/{{pid}}/widget\"\n         class=\"navbar-link\">\n        <span class=\"glyphicon glyphicon-chevron-left sw-text-black\"></span>\n      </a>\n    </p>\n    <a routerLink=\"/user/{{uid}}/website/{{wid}}/page/{{pid}}/widget/{{wid}}\"\n       class=\"pull-left navbar-brand thick\">\n      <b>Widget edit</b>\n    </a>\n    <button type=\"submit\"\n            [disabled]=\"!f.valid\"\n            form=\"widgetForm\"\n            class=\"btn btn-xs sw-button-transparent navbar-link navbar-text pull-right sw-icon-padding\">\n      <span class=\"glyphicon glyphicon-ok sw-text-black\"></span>\n    </button>\n  </div>\n</nav>\n\n<!--form-->\n<div class=\"container-fluid\">\n  <form (ngSubmit)=\"update()\"\n        id=\"widgetForm\"\n        #f =\"ngForm\">\n    <div class=\"form-group\">\n      <label for=\"name\">Name</label>\n      <input type=\"name\"\n             id=\"name\"\n             name=\"name\"\n             placeholder=\"Name of the image\"\n             ngModel=\"{{widget.name}}\"\n             #name=\"ngModel\"\n             class=\"form-control\"/>\n    </div>\n    <div class=\"form-group\">\n      <label for=\"text\">Text</label>\n      <input type=\"text\"\n             id=\"text\"\n             name=\"text\"\n             placeholder=\"Text of the image\"\n             ngModel=\"{{widget.text}}\"\n             required\n             #text=\"ngModel\"\n             class=\"form-control\"/>\n    </div>\n    <div class=\"form-group\">\n      <label for=\"url\">URL</label>\n      <input type=\"text\"\n             id=\"url\"\n             name=\"url\"\n             placeholder=\"url of the image\"\n             ngModel=\"{{widget.url}}\"\n             required\n             #url=\"ngModel\"\n             class=\"form-control\"/>\n    </div>\n    <span class=\"help-block\"\n          *ngIf=\"!url.valid && url.touched\">URL can't be empty!</span>\n    <div class=\"form-group\">\n      <label for=\"width\">Width</label>\n      <input type=\"text\"\n             id=\"width\"\n             name=\"width\"\n             placeholder=\"width of the image\"\n             ngModel=\"{{widget.width}}\"\n             required\n             #width=\"ngModel\"\n             class=\"form-control\"/>\n    </div>\n    <span class=\"help-block\"\n          *ngIf=\"!width.valid && width.touched\">Width can't be empty!</span>\n    <!--<div class=\"form-group\">-->\n      <!--<label for=\"image-file\">Upload</label>-->\n      <!--<input type=\"file\" id=\"image-file\" class=\"form-control\">-->\n      <!--<a href=\"#\" class=\"btn btn-primary btn-block\">Upload Image</a>-->\n    <!--</div>-->\n    <div class=\"row\">\n      <div class=\"col-xs-6\">\n        <a routerLink=\"/user/{{uid}}/website/{{wid}}/page/{{pid}}/widget\"\n           class=\"btn btn-warning btn-block\">Cancel</a>\n      </div>\n      <div class=\"col-xs-6\">\n        <a (click)=\"remove()\"\n           class=\"btn btn-danger btn-block\">Delete</a>\n      </div>\n    </div>\n  </form>\n</div>\n\n<!-- Footer -->\n<nav class=\"navbar navbar-default navbar-fixed-bottom\">\n  <div class=\"container-fluid navbar-text\">\n    <a routerLink=\"/user/{{uid}}\">\n      <span class=\"glyphicon glyphicon-user sw-icon-padding pull-right\"></span>\n    </a>\n  </div>\n</nav>\n\n"
 
 /***/ }),
 
@@ -1537,7 +1537,19 @@ var WidgetImageComponent = (function () {
         this.widgetService.updateWidget(this.wgid, updatedWidget);
         this.router.navigate(['user', this.uid, 'website', this.wid, 'page', this.pid, 'widget']);
     };
+    WidgetImageComponent.prototype.remove = function () {
+        this.widgetService.deleteWidget(this.wgid);
+        this.router.navigate(['user', this.uid, 'website', this.wid, 'page', this.pid, 'widget']);
+    };
     WidgetImageComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.activatedRoute.params.subscribe(function (params) {
+            _this.uid = params['uid'];
+            _this.wid = params['wid'];
+            _this.pid = params['pid'];
+            _this.wgid = params['wgid'];
+            _this.widget = _this.widgetService.findWidgetById(_this.wgid);
+        });
     };
     return WidgetImageComponent;
 }());
@@ -1580,7 +1592,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/widget/widget-edit/widget-youtube/widget-youtube.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<!-- top navbar-->\n<nav class=\"navbar navbar-default navbar-fixed-top\">\n  <div class=\"container-fluid\">\n    <p class=\"navbar-text pull-left\">\n      <a routerLink=\"/widget-list\"\n         class=\"navbar-link\">\n        <span class=\"glyphicon glyphicon-chevron-left sw-text-black\"></span>\n      </a>\n    </p>\n    <a routerLink=\"/widget-chooser\"\n       class=\"pull-left navbar-brand thick\">\n      <b>Widget edit</b>\n    </a>\n    <a routerLink=\"/widget-list\"\n       class=\"navbar-link navbar-text pull-right sw-icon-padding\">\n      <span class=\"glyphicon glyphicon-ok sw-text-black\"></span>\n    </a>\n  </div>\n</nav>\n\n<!--form-->\n<div class=\"container-fluid\">\n  <form>\n    <div class=\"form-group\">\n      <label for=\"video-name\">Name</label>\n      <input type=\"text\"\n             id=\"video-name\"\n             placeholder=\"Name of the video\"\n             class=\"form-control\"/>\n    </div>\n    <div class=\"form-group\">\n      <label for=\"image-text\">Text</label>\n      <input type=\"text\"\n             id=\"image-text\"\n             placeholder=\"Text of the video\"\n             class=\"form-control\"/>\n    </div>\n    <div class=\"form-group\">\n      <label for=\"image-url\">URL</label>\n      <input type=\"text\"\n             id=\"image-url\"\n             placeholder=\"url of the image\"\n             value=\"https://youtu.be/OdNyue6iBQY\"\n             class=\"form-control\"/>\n    </div>\n    <div class=\"form-group\">\n      <label for=\"image-width\">Width</label>\n      <input type=\"text\"\n             id=\"image-width\"\n             placeholder=\"100%\"\n             class=\"form-control\"/>\n    </div>\n    <div class=\"row\">\n      <div class=\"col-xs-6\">\n        <a routerLink=\"/widget-list\"\n           class=\"btn btn-warning btn-block\">Cancel</a>\n      </div>\n      <div class=\"col-xs-6\">\n        <a routerLink=\"/widget-list\"\n           class=\"btn btn-danger btn-block\">Delete</a>\n      </div>\n    </div>\n  </form>\n</div>\n\n<!-- Footer -->\n<nav class=\"navbar navbar-default navbar-fixed-bottom\">\n  <div class=\"container-fluid navbar-text\">\n    <a routerLink=\"/profile\">\n      <span class=\"glyphicon glyphicon-user sw-icon-padding pull-right\"></span>\n    </a>\n  </div>\n</nav>\n"
+module.exports = "<!-- top navbar-->\n<nav class=\"navbar navbar-default navbar-fixed-top\">\n  <div class=\"container-fluid\">\n    <p class=\"navbar-text pull-left\">\n      <a routerLink=\"/user/{{uid}}/website/{{wid}}/page/{{pid}}/widget\"\n         class=\"navbar-link\">\n        <span class=\"glyphicon glyphicon-chevron-left sw-text-black\"></span>\n      </a>\n    </p>\n    <a routerLink=\"/user/{{uid}}/website/{{wid}}/page/{{pid}}/widget/{{wid}}\"\n       class=\"pull-left navbar-brand thick\">\n      <b>Widget edit</b>\n    </a>\n    <button type=\"submit\"\n            [disabled]=\"!f.valid\"\n            form=\"widgetForm\"\n            class=\"btn btn-xs sw-button-transparent navbar-link navbar-text pull-right sw-icon-padding\">\n      <span class=\"glyphicon glyphicon-ok sw-text-black\"></span>\n    </button>\n  </div>\n</nav>\n\n<div class=\"container-fluid\">\n  <form (ngSubmit)=\"update()\"\n        id=\"widgetForm\"\n        #f =\"ngForm\">\n    <div class=\"form-group\">\n      <label for=\"name\">Name</label>\n      <input type=\"name\"\n             id=\"name\"\n             name=\"name\"\n             placeholder=\"Name of the video\"\n             ngModel=\"{{widget.name}}\"\n             #name=\"ngModel\"\n             class=\"form-control\"/>\n    </div>\n    <div class=\"form-group\">\n      <label for=\"text\">Text</label>\n      <input type=\"text\"\n             id=\"text\"\n             name=\"text\"\n             placeholder=\"Text of the video\"\n             ngModel=\"{{widget.text}}\"\n             required\n             #text=\"ngModel\"\n             class=\"form-control\"/>\n    </div>\n    <div class=\"form-group\">\n      <label for=\"url\">URL</label>\n      <input type=\"text\"\n             id=\"url\"\n             name=\"url\"\n             placeholder=\"url of the video\"\n             ngModel=\"{{widget.url}}\"\n             required\n             #url=\"ngModel\"\n             class=\"form-control\"/>\n    </div>\n    <span class=\"help-block\"\n          *ngIf=\"!url.valid && url.touched\">URL can't be empty!</span>\n    <div class=\"form-group\">\n      <label for=\"width\">Width</label>\n      <input type=\"text\"\n             id=\"width\"\n             name=\"width\"\n             placeholder=\"width of the video\"\n             ngModel=\"{{widget.width}}\"\n             required\n             #width=\"ngModel\"\n             class=\"form-control\"/>\n    </div>\n    <span class=\"help-block\"\n          *ngIf=\"!width.valid && width.touched\">Width can't be empty!</span>\n    <div class=\"row\">\n      <div class=\"col-xs-6\">\n        <a routerLink=\"/user/{{uid}}/website/{{wid}}/page/{{pid}}/widget\"\n           class=\"btn btn-warning btn-block\">Cancel</a>\n      </div>\n      <div class=\"col-xs-6\">\n        <a (click)=\"remove()\"\n           class=\"btn btn-danger btn-block\">Delete</a>\n      </div>\n    </div>\n  </form>\n</div>\n\n<!-- Footer -->\n<nav class=\"navbar navbar-default navbar-fixed-bottom\">\n  <div class=\"container-fluid navbar-text\">\n    <a routerLink=\"/user/{{uid}}\">\n      <span class=\"glyphicon glyphicon-user sw-icon-padding pull-right\"></span>\n    </a>\n  </div>\n</nav>\n\n"
 
 /***/ }),
 
@@ -1590,6 +1602,9 @@ module.exports = "<!-- top navbar-->\n<nav class=\"navbar navbar-default navbar-
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return WidgetYoutubeComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_widget_service_client__ = __webpack_require__("../../../../../src/app/services/widget.service.client.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_forms__ = __webpack_require__("../../../forms/@angular/forms.es5.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1600,22 +1615,60 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
+
+
+
 var WidgetYoutubeComponent = (function () {
-    function WidgetYoutubeComponent() {
+    function WidgetYoutubeComponent(widgetService, activatedRoute, router) {
+        this.widgetService = widgetService;
+        this.activatedRoute = activatedRoute;
+        this.router = router;
     }
+    WidgetYoutubeComponent.prototype.update = function () {
+        this.name = this.widgetForm.value.name;
+        this.width = this.widgetForm.value.width;
+        this.url = this.widgetForm.value.url;
+        var updatedWidget = {
+            _id: this.widget._id,
+            name: this.name,
+            widgetType: this.widget.widgetType,
+            pageId: this.widget.pageId,
+            width: this.width,
+            url: this.url
+        };
+        this.widgetService.updateWidget(this.wgid, updatedWidget);
+        this.router.navigate(['user', this.uid, 'website', this.wid, 'page', this.pid, 'widget']);
+    };
+    WidgetYoutubeComponent.prototype.remove = function () {
+        this.widgetService.deleteWidget(this.wgid);
+        this.router.navigate(['user', this.uid, 'website', this.wid, 'page', this.pid, 'widget']);
+    };
     WidgetYoutubeComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.activatedRoute.params.subscribe(function (params) {
+            _this.uid = params['uid'];
+            _this.wid = params['wid'];
+            _this.pid = params['pid'];
+            _this.wgid = params['wgid'];
+            _this.widget = _this.widgetService.findWidgetById(_this.wgid);
+        });
     };
     return WidgetYoutubeComponent;
 }());
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_16" /* ViewChild */])('f'),
+    __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_3__angular_forms__["b" /* NgForm */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__angular_forms__["b" /* NgForm */]) === "function" && _a || Object)
+], WidgetYoutubeComponent.prototype, "widgetForm", void 0);
 WidgetYoutubeComponent = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Component */])({
         selector: 'app-widget-youtube',
         template: __webpack_require__("../../../../../src/app/components/widget/widget-edit/widget-youtube/widget-youtube.component.html"),
         styles: [__webpack_require__("../../../../../src/app/components/widget/widget-edit/widget-youtube/widget-youtube.component.css")]
     }),
-    __metadata("design:paramtypes", [])
+    __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__services_widget_service_client__["a" /* WidgetService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_widget_service_client__["a" /* WidgetService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */]) === "function" && _d || Object])
 ], WidgetYoutubeComponent);
 
+var _a, _b, _c, _d;
 //# sourceMappingURL=widget-youtube.component.js.map
 
 /***/ }),
@@ -1641,7 +1694,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/widget/widget-list/widget-list.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-default navbar-fixed-top\">\n  <div class=\"container-fluid\">\n    <p class=\"navbar-text pull-left\">\n      <a routerLink=\"/user/{{uid}}/website/{{wid}}/page\"\n         class=\"navbar-link\">\n        <span class=\"glyphicon glyphicon-chevron-left sw-text-black\"></span>\n      </a>\n    </p>\n    <a routerLink=\"/user/{{uid}}/website/{{wid}}/page/{{pid}}/widget\"\n       class=\"pull-left navbar-brand thick\">\n      <b>Widgets</b>\n    </a>\n    <a routerLink=\"/user/{{uid}}/website/{{wid}}/page/{{pid}}/widget/new\"\n       class=\"navbar-link navbar-text pull-right sw-icon-padding\">\n      <span class=\"glyphicon glyphicon-plus sw-text-black\"></span>\n    </a>\n  </div>\n</nav>\n\n<!--widget list-->\n<div *ngFor=\"let widget of widgets\" class=\"container-fluid\">\n  <div>\n    <div class=\"sw-icon-right\">\n      <a routerLink=\"/user/{{uid}}/website/{{wid}}/page/{{pid}}/widget/{{widget._id}}\">\n        <span class=\"glyphicon glyphicon-cog\"></span>\n      </a>\n      <a href=\"#\">\n        <span class=\"glyphicon glyphicon-menu-hamburger sw-text-black\"></span>\n      </a>\n    </div>\n  </div>\n  <div [ngSwitch]=\"widget.widgetType\">\n    <div *ngSwitchCase=\"'HEADING'\">\n      <div [ngSwitch]=\"widget.size\">\n        <div *ngSwitchCase=\"1\">\n          <h1>{{widget.text}}</h1>\n        </div>\n        <div *ngSwitchCase=\"2\">\n          <h2>{{widget.text}}</h2>\n        </div>\n        <div *ngSwitchCase=\"3\">\n          <h3>{{widget.text}}</h3>\n        </div>\n        <div *ngSwitchCase=\"4\">\n          <h4>{{widget.text}}</h4>\n        </div>\n      </div>\n    </div>\n    <div *ngSwitchCase=\"'IMAGE'\">\n      <div>\n        <img width=\"100%\"\n             [src]=\"widget.url\"/>\n      </div>\n    </div>\n    <div *ngSwitchCase=\"'YOUTUBE'\">\n      <div class=\"embed-responsive embed-responsive-16by9 sw-video-behind\">\n        <iframe width=\"560\"\n                height=\"315\"\n                [src]=\"this.getYoutubeEmbedUrl(widget.url)\"\n                frameborder=\"0\"\n                allowfullscreen></iframe>\n      </div>\n    </div>\n    <div *ngSwitchCase=\"'HTML'\" [innerHTML]=\"widget.text\">\n    </div>\n  </div>\n</div>\n\n<!-- Footer -->\n<nav class=\"navbar navbar-default navbar-fixed-bottom\">\n  <div class=\"container-fluid navbar-text\">\n    <a routerLink=\"/user/{{uid}}\">\n      <span class=\"glyphicon glyphicon-user sw-icon-padding pull-right\"></span>\n    </a>\n  </div>\n</nav>\n"
+module.exports = "<nav class=\"navbar navbar-default navbar-fixed-top\">\n  <div class=\"container-fluid\">\n    <p class=\"navbar-text pull-left\">\n      <a routerLink=\"/user/{{uid}}/website/{{wid}}/page\"\n         class=\"navbar-link\">\n        <span class=\"glyphicon glyphicon-chevron-left sw-text-black\"></span>\n      </a>\n    </p>\n    <a routerLink=\"/user/{{uid}}/website/{{wid}}/page/{{pid}}/widget\"\n       class=\"pull-left navbar-brand thick\">\n      <b>Widgets</b>\n    </a>\n    <a routerLink=\"/user/{{uid}}/website/{{wid}}/page/{{pid}}/widget/new\"\n       class=\"navbar-link navbar-text pull-right sw-icon-padding\">\n      <span class=\"glyphicon glyphicon-plus sw-text-black\"></span>\n    </a>\n  </div>\n</nav>\n\n<!--widget list-->\n<div *ngFor=\"let widget of widgets\" class=\"container-fluid\">\n  <div>\n    <div class=\"sw-icon-right\">\n      <a routerLink=\"/user/{{uid}}/website/{{wid}}/page/{{pid}}/widget/{{widget._id}}\">\n        <span class=\"glyphicon glyphicon-cog\"></span>\n      </a>\n      <a href=\"#\">\n        <span class=\"glyphicon glyphicon-menu-hamburger sw-text-black\"></span>\n      </a>\n    </div>\n  </div>\n  <div [ngSwitch]=\"widget.widgetType\">\n    <div *ngSwitchCase=\"'HEADING'\">\n      <div [ngSwitch]=\"widget.size\">\n        <div *ngSwitchCase=\"1\">\n          <h1>{{widget.text}}</h1>\n        </div>\n        <div *ngSwitchCase=\"2\">\n          <h2>{{widget.text}}</h2>\n        </div>\n        <div *ngSwitchCase=\"3\">\n          <h3>{{widget.text}}</h3>\n        </div>\n        <div *ngSwitchCase=\"4\">\n          <h4>{{widget.text}}</h4>\n        </div>\n      </div>\n    </div>\n    <div *ngSwitchCase=\"'IMAGE'\">\n      <div>\n        <img width=\"100%\"\n             [src]=\"widget.url\"/>\n      </div>\n    </div>\n    <div *ngSwitchCase=\"'YOUTUBE'\">\n      <div class=\"embed-responsive embed-responsive-16by9 sw-video-behind\">\n        <iframe [width]=\"widget.width\"\n                height=\"315\"\n                [src]=\"this.getYoutubeEmbedUrl(widget.url)\"\n                frameborder=\"0\"\n                allowfullscreen></iframe>\n      </div>\n    </div>\n    <div *ngSwitchCase=\"'HTML'\" [innerHTML]=\"widget.text\">\n    </div>\n  </div>\n</div>\n\n<!-- Footer -->\n<nav class=\"navbar navbar-default navbar-fixed-bottom\">\n  <div class=\"container-fluid navbar-text\">\n    <a routerLink=\"/user/{{uid}}\">\n      <span class=\"glyphicon glyphicon-user sw-icon-padding pull-right\"></span>\n    </a>\n  </div>\n</nav>\n"
 
 /***/ }),
 
@@ -1673,9 +1726,6 @@ var WidgetListComponent = (function () {
         this.router = router;
         this.sanitizer = sanitizer;
     }
-    WidgetListComponent.prototype.toInt = function (str) {
-        return parseInt(str, 10);
-    };
     WidgetListComponent.prototype.getYoutubeEmbedUrl = function (link) {
         var embedUrl = 'https://www.youtube.com/embed/';
         var parsedLink = link.split('/');

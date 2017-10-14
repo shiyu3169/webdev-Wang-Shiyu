@@ -54,7 +54,7 @@
     </div>
     <div *ngSwitchCase="'YOUTUBE'">
       <div class="embed-responsive embed-responsive-16by9 sw-video-behind">
-        <iframe width="560"
+        <iframe [width]="widget.width"
                 height="315"
                 [src]="this.getYoutubeEmbedUrl(widget.url)"
                 frameborder="0"
