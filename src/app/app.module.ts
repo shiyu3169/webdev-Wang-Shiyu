@@ -29,6 +29,7 @@ import {WebsiteService} from './services/website.service.client';
 import {PageService} from './services/page.service.client';
 import {WidgetService} from './services/widget.service.client';
 
+
 @NgModule({
   // Declare components here
   declarations: [
@@ -46,10 +47,10 @@ import {WidgetService} from './services/widget.service.client';
     PageListComponent,
     WidgetChooserComponent,
     WidgetEditComponent,
-    WidgetListComponent
-    // WidgetHeaderComponent,
-    // WidgetImageComponent,
-    // WidgetYoutubeComponent
+    WidgetListComponent,
+    WidgetHeaderComponent,
+    WidgetImageComponent,
+    WidgetYoutubeComponent
   ],
   imports: [
     BrowserModule,

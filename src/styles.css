@@ -49,3 +49,7 @@ body {
 .sw-button-transparent {
   background-color: transparent;
 }
+
+.sw-video-behind {
+  z-index: -1;
+}

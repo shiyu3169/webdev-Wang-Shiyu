@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { Router, ActivatedRoute} from '@angular/router';
+import { WidgetService} from '../../../../services/widget.service.client';
+import { Widget } from '../../../../models/widget.model.client';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-widget-header',
@@ -7,7 +11,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class WidgetHeaderComponent implements OnInit {
 
-  constructor() { }
+  constructor(private widgetService: WidgetService,
+              private activatedRoute: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
   }

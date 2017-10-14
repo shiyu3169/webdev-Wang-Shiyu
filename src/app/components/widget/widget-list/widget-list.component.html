@@ -1,16 +1,16 @@
 <nav class="navbar navbar-default navbar-fixed-top">
   <div class="container-fluid">
     <p class="navbar-text pull-left">
-      <a routerLink="/page-list"
+      <a routerLink="/user/{{uid}}/website/{{wid}}/page"
          class="navbar-link">
         <span class="glyphicon glyphicon-chevron-left sw-text-black"></span>
       </a>
     </p>
-    <a routerLink="/widget-list"
+    <a routerLink="/user/{{uid}}/website/{{wid}}/page/{{pid}}/widget"
        class="pull-left navbar-brand thick">
       <b>Widgets</b>
     </a>
-    <a routerLink="/widget-chooser"
+    <a routerLink="/user/{{uid}}/website/{{wid}}/page/{{pid}}/widget/new"
        class="navbar-link navbar-text pull-right sw-icon-padding">
       <span class="glyphicon glyphicon-plus sw-text-black"></span>
     </a>
@@ -18,105 +18,59 @@
 </nav>
 
 <!--widget list-->
-<div class="container-fluid">
-  <!--header-->
+<div *ngFor="let widget of widgets" class="container-fluid">
   <div>
     <div class="sw-icon-right">
-      <a routerLink="/widget-header">
+      <a routerLink="/user/{{uid}}/website/{{wid}}/page/{{pid}}/widget/{{widget._id}}">
         <span class="glyphicon glyphicon-cog"></span>
       </a>
       <a href="#">
         <span class="glyphicon glyphicon-menu-hamburger sw-text-black"></span>
       </a>
     </div>
-    <h3>Countryside Ragdolls</h3>
   </div>
-  <!--header-->
-  <div>
-    <div class="sw-icon-right">
-      <a routerLink="/widget-header">
-        <span class="glyphicon glyphicon-cog"></span>
-      </a>
-      <a href="#">
-        <span class="glyphicon glyphicon-menu-hamburger sw-text-black"></span>
-      </a>
-    </div>
-    <h4>Welcome to Countryside Ragdolls! Countryside Ragdolls is an indoor only, early alter cattery with a no declaw policy.</h4>
-  </div>
-  <!--img-->
-  <div>
-    <div class="sw-icon-right">
-      <a routerLink="/widget-image">
-        <span class="glyphicon glyphicon-cog"></span>
-      </a>
-      <a href="#">
-        <span class="glyphicon glyphicon-menu-hamburger sw-text-black"></span>
-      </a>
-    </div>
-    <img class="img-responsive"
-         src="http://www.countrysideragdolls.com/wp-content/uploads/2017/01/011.jpg"/>
-  </div>
-  <!--link?-->
-  <div>
-    <div class="sw-icon-right">
-      <a routerLink="/widget-header">
-        <span class="glyphicon glyphicon-cog"></span>
-      </a>
-      <a href="#">
-        <span class="glyphicon glyphicon-menu-hamburger sw-text-black"></span>
-      </a>
-    </div>
-    <p>We are a TICA registered cattery located in Caldwell, Idaho within driving distance of Washington, Oregon, Nevada, Utah, Wyoming, and Montana offering <a class="sw-link" href="https://en.wikipedia.org/wiki/Ragdoll">Ragdoll</a> kittens in the colors of Seal and Blue. Both with Lynx(tabby striping) and without in the Colorpoint, Mitted and Bicolor patterns. Countryside Ragdolls is an indoor only, early alter cattery with a no declaw policy.All our cats are negative for hcm/fiv/and felv. We are a small cattery raising our Ragdolls lovingly underfoot in our home with our children ranging in age from 4-14. </p>
-  </div>
-  <!--header-->
-  <div>
-    <div class="sw-icon-right">
-      <a routerLink="/widget-header">
-        <span class="glyphicon glyphicon-cog"></span>
-      </a>
-      <a href="#">
-        <span class="glyphicon glyphicon-menu-hamburger sw-text-black"></span>
-      </a>
-    </div>
-    <h4>Why They're Called Ragdolls</h4>
-  </div>
-  <!--video-->
-  <div>
-    <div class="embed-responsive embed-responsive-16by9">
-      <iframe width="560"
-              height="315"
-              src="https://www.youtube.com/embed/OdNyue6iBQY"
-              frameborder="0"
-              allowfullscreen></iframe>
-      <div class="sw-video-icon-right">
-        <a routerLink="/widget-youtube">
-          <span class="glyphicon glyphicon-cog"></span>
-        </a>
-        <a href="#">
-          <span class="glyphicon glyphicon-menu-hamburger sw-text-black"></span>
-        </a>
+  <div [ngSwitch]="widget.widgetType">
+    <div *ngSwitchCase="'HEADING'">
+      <div [ngSwitch]="widget.size">
+        <div *ngSwitchCase="1">
+          <h1>{{widget.text}}</h1>
+        </div>
+        <div *ngSwitchCase="2">
+          <h2>{{widget.text}}</h2>
+        </div>
+        <div *ngSwitchCase="3">
+          <h3>{{widget.text}}</h3>
+        </div>
+        <div *ngSwitchCase="4">
+          <h4>{{widget.text}}</h4>
+        </div>
       </div>
     </div>
-  </div>
-  <!--link?-->
-  <div>
-    <div class="sw-icon-right">
-      <a routerLink="/widget-header">
-        <span class="glyphicon glyphicon-cog"></span>
-      </a>
-      <a href="#">
-        <span class="glyphicon glyphicon-menu-hamburger sw-text-black"></span>
-      </a>
+    <div *ngSwitchCase="'IMAGE'">
+      <div>
+        <img
+             [src]="widget.url"
+             [width]="widget.width"/>
+      </div>
     </div>
-    <p>This little girl is simply loving life, relaxed and limp as ever! This is one of the things that makes the Ragdoll cat breed so unique, some become "floppy" like a ragdoll toy when you pick them up. They are very affectionate cats that love human attention and follow you around the house. The black & white kitten in the video is Madison, a solid Ragdoll.</p>
+    <div *ngSwitchCase="'YOUTUBE'">
+      <div class="embed-responsive embed-responsive-16by9 sw-video-behind">
+        <iframe width="560"
+                height="315"
+                [src]="this.getYoutubeEmbedUrl(widget.url)"
+                frameborder="0"
+                allowfullscreen></iframe>
+      </div>
+    </div>
+    <div *ngSwitchCase="'HTML'" [innerHTML]="widget.text">
+    </div>
   </div>
 </div>
-
 
 <!-- Footer -->
 <nav class="navbar navbar-default navbar-fixed-bottom">
   <div class="container-fluid navbar-text">
-    <a routerLink="/profile">
+    <a routerLink="/user/{{uid}}">
       <span class="glyphicon glyphicon-user sw-icon-padding pull-right"></span>
     </a>
   </div>
