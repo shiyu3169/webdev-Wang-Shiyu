@@ -1,13 +1,12 @@
-!-- top navbar-->
 <nav class="navbar navbar-default navbar-fixed-top">
   <div class="container-fluid">
     <p class="navbar-text pull-left">
-      <a routerLink="/widget-list"
+      <a routerLink="user/{{uid}}/website/{{wid}}/page/{{pid}}/widget"
          class="navbar-link">
         <span class="glyphicon glyphicon-chevron-left sw-text-black"></span>
       </a>
     </p>
-    <a routerLink="/widget-chooser"
+    <a routerLink="user/{{uid}}/website/{{wid}}/page/{{pid}}/widget/new"
        class="pull-left navbar-brand thick">
       <b>Choose Widget</b>
     </a>
@@ -18,34 +17,57 @@
 <div class="container-fluid">
   <ul class="list-group">
     <li class="list-group-item sw-borderless">
-      <a class="sw-link" routerLink="/widget-header">Header</a>
+      <a class="sw-link"
+         (click)="createHead()">
+        <button class="btn sw-button-transparent">Header</button>
+      </a>
     </li>
     <li class="list-group-item sw-borderless">
-      <a class="sw-link" href="#">Label</a>
+      <a class="sw-link" href="#">
+        <button class="btn sw-button-transparent">Label</button>
+      </a>
     </li>
     <li class="list-group-item sw-borderless">
-      <a class="sw-link" href="#">HTML</a>
+      <a class="sw-link" href="#">
+        <button class="btn sw-button-transparent">HTML</button>
+      </a>
     </li>
     <li class="list-group-item sw-borderless">
-      <a class="sw-link" href="#">Text Input</a>
+      <a class="sw-link" href="#">
+        <button class="btn sw-button-transparent">Text Input</button>
+      </a>
     </li>
     <li class="list-group-item sw-borderless">
-      <a class="sw-link" href="#">Link</a>
+      <a class="sw-link" href="#">
+        <button class="btn sw-button-transparent">Link</button>
+      </a>
     </li>
     <li class="list-group-item sw-borderless">
-      <a class="sw-link" href="#">Button</a>
+      <a class="sw-link" href="#">
+        <button class="btn sw-button-transparent">Button</button>
+      </a>
     </li>
     <li class="list-group-item sw-borderless">
-      <a class="sw-link" routerLink="/widget-image">Image</a>
+      <a class="sw-link"
+         (click)="createImage()">
+        <button class="btn sw-button-transparent">Image</button>
+      </a>
     </li>
     <li class="list-group-item sw-borderless">
-      <a class="sw-link" routerLink="/widget-youtube">YouTube</a>
+      <a class="sw-link"
+         (click)="createYoutube()">
+        <button class="btn sw-button-transparent">Youtube</button>
+      </a>
     </li>
     <li class="list-group-item sw-borderless">
-      <a class="sw-link" href="#">Data Table</a>
+      <a class="sw-link" href="#">
+        <button class="btn sw-button-transparent">Data Table</button>
+      </a>
     </li>
     <li class="list-group-item sw-borderless">
-      <a class="sw-link" href="#">Repeater</a>
+      <a class="sw-link" href="#">
+        <button class="btn sw-button-transparent">Repeater</button>
+      </a>
     </li>
   </ul>
 </div>

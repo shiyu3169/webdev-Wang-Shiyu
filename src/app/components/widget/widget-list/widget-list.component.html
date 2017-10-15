@@ -48,14 +48,14 @@
     </div>
     <div *ngSwitchCase="'IMAGE'">
       <div>
-        <img width="100%"
+        <img [style.width]="widget.width"
              [src]="widget.url"/>
       </div>
     </div>
     <div *ngSwitchCase="'YOUTUBE'">
       <div class="embed-responsive embed-responsive-16by9 sw-video-behind">
-        <iframe [width]="widget.width"
-                height="315"
+        <iframe [style.width]="widget.width"
+                [style.height]="widget.width"
                 [src]="this.getYoutubeEmbedUrl(widget.url)"
                 frameborder="0"
                 allowfullscreen></iframe>
