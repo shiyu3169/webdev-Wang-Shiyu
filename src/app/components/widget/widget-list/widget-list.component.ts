@@ -21,7 +21,6 @@ export class WidgetListComponent implements OnInit {
     let embedUrl = 'https://www.youtube.com/embed/'
     const parsedLink = link.split('/');
     embedUrl += parsedLink[parsedLink.length - 1];
-    console.log(embedUrl);
     return this.sanitizer.bypassSecurityTrustResourceUrl(embedUrl);
   }
 

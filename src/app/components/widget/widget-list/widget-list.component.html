@@ -20,7 +20,7 @@
 <!--widget list-->
 <div *ngFor="let widget of widgets" class="container-fluid">
   <div>
-    <div class="sw-icon-right">
+    <div class="sw-icon-right sw-icon-above">
       <a routerLink="/user/{{uid}}/website/{{wid}}/page/{{pid}}/widget/{{widget._id}}">
         <span class="glyphicon glyphicon-cog"></span>
       </a>
@@ -53,7 +53,7 @@
       </div>
     </div>
     <div *ngSwitchCase="'YOUTUBE'">
-      <div class="embed-responsive embed-responsive-16by9 sw-video-behind">
+      <div class="embed-responsive embed-responsive-16by9">
         <iframe [style.width]="widget.width"
                 [style.height]="widget.width"
                 [src]="this.getYoutubeEmbedUrl(widget.url)"

@@ -50,6 +50,6 @@ body {
   background-color: transparent;
 }
 
-.sw-video-behind {
-  z-index: -1;
+.sw-icon-above {
+  z-index: 1;
 }
