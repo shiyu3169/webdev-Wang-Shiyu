@@ -40,7 +40,7 @@ export class ProfileComponent implements OnInit {
       this.usernameTaken = true;
     } else {
       const updatedUser: User = {
-        _id: this.userService.nextId(),
+        _id: this.user._id,
         username: this.username,
         password: this.user.password,
         firstName: this.firstName,

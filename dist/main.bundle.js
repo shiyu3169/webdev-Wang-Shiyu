@@ -819,7 +819,7 @@ var ProfileComponent = (function () {
         }
         else {
             var updatedUser = {
-                _id: this.userService.nextId(),
+                _id: this.user._id,
                 username: this.username,
                 password: this.user.password,
                 firstName: this.firstName,
