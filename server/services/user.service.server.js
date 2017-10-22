@@ -18,7 +18,7 @@ module.exports = function (app) {
       if (user) {
         res.json(user);
       } else {
-        res.json({});
+        res.status(404).send("error");
       }
       return;
     } else if(username) {
@@ -28,7 +28,7 @@ module.exports = function (app) {
       if (user) {
         res.json(user);
       } else {
-        res.json({});
+        res.status(404).send("error");
       }
       return;
     }

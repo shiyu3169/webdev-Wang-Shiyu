@@ -1,5 +1,8 @@
 import { Injectable } from '@angular/core';
-import {User} from '../models/user.model.client';
+import { User } from '../models/user.model.client';
+import { Http, Response } from '@angular/http';
+import 'rxjs/Rx';
+import { environment } from '../../environments/environment';
 
 @Injectable()
 export class UserService {
@@ -10,11 +13,19 @@ export class UserService {
     {_id: '456', username: 'jannunzi', password: 'jannunzi', firstName: 'Jose',   lastName: 'Annunzi', email: 'jan@hotmail.com' }
   ];
 
+  constructor(private http: Http) {}
+
+  baseUrl = environment.baseUrl;
+
   // returns the user whose username and password match the username and password parameters
   findUserByCredentials(username, password) {
-    return this.users.find(function (user) {
-      return user.username === username && user.password === password;
-    });
+    const url = this.baseUrl + '/api/user?username=' + username + '&password=' + password;
+    return this.http.get(url)
+      .map(
+        (response: Response) => {
+          const user = response.json();
+          return user;
+      });
   }
 
   // returns the user in local users array whose _id matches the userId parameter
