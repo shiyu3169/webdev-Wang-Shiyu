@@ -29,9 +29,6 @@ export class UserService {
 
   // returns the user in local users array whose _id matches the userId parameter
   findUserById(uid: String) {
-    // return this.users.find(function(user) {
-    //   return user._id === uid;
-    // });
     const url =  this.baseUrl + '/api/user/' + uid;
     return this.http.get(url)
       .map(
@@ -55,36 +52,28 @@ export class UserService {
           return response.json();
         }
       );
-    // const newUser = {
-    //   _id: this.nextId(),
-    //   username: user.username,
-    //   password: user.password,
-    //   firstName: user.firstName,
-    //   lastName: user.lastName,
-    //   email: user.email
-    // };
-    // this.users.push(newUser);
   }
 
   //  returns the user in local users array whose username matches the parameter username
-  findUserByUsername(username) {
+  findUserByUsername(username: String) {
     return this.users.find(function(user) {
       return user.username === username;
     });
   }
 
   // updates the user in local users array whose _id matches the userId parameter
-  updateUser(userId, user) {
-    // const oldUser = this.findUserById(userId);
-    // const index = this.users.indexOf(oldUser);
-    // this.users[index].username = user.username;
-    // this.users[index].firstName = user.firstName;
-    // this.users[index].lastName = user.lastName;
-    // this.users[index].email = user.email;
+  updateUser(userId: String, user: User) {
+    const url = this.baseUrl + '/api/user/' + userId;
+    return this.http.put(url, user)
+      .map(
+        (response: Response) => {
+          return response.json();
+        }
+      );
   }
 
   // removes the user whose _id matches the userId parameter
-  deleteUser(userId) {
+  deleteUser(userId: String) {
     const url = this.baseUrl + '/api/user/' + userId;
     return this.http.delete(url)
       .map(
@@ -92,9 +81,6 @@ export class UserService {
           return response.json();
         }
       );
-    // const oldUser = this.findUserById(userId);
-    // const index = this.users.indexOf(oldUser);
-    // this.users.splice(index, 1);
   }
 
 }

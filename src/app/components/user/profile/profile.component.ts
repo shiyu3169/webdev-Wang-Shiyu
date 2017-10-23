@@ -53,7 +53,12 @@ export class ProfileComponent implements OnInit {
         lastName: this.lastName,
         email: this.email
       };
-      this.userService.updateUser(this.uid, updatedUser);
+      this.userService.updateUser(this.uid, updatedUser)
+        .subscribe(
+          (newU: User) => {
+            this.user = newU;
+          }
+        );
       this.submitSuccess = true;
       this.prevUsername = this.username;
     }

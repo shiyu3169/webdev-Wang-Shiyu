@@ -815,6 +815,7 @@ var ProfileComponent = (function () {
         };
     }
     ProfileComponent.prototype.update = function () {
+        var _this = this;
         this.username = this.profileForm.value.username;
         this.email = this.profileForm.value.email;
         this.firstName = this.profileForm.value.firstName;
@@ -834,7 +835,10 @@ var ProfileComponent = (function () {
                 lastName: this.lastName,
                 email: this.email
             };
-            this.userService.updateUser(this.uid, updatedUser);
+            this.userService.updateUser(this.uid, updatedUser)
+                .subscribe(function (newU) {
+                _this.user = newU;
+            });
             this.submitSuccess = true;
             this.prevUsername = this.username;
         }
@@ -2000,9 +2004,6 @@ var UserService = (function () {
     };
     // returns the user in local users array whose _id matches the userId parameter
     UserService.prototype.findUserById = function (uid) {
-        // return this.users.find(function(user) {
-        //   return user._id === uid;
-        // });
         var url = this.baseUrl + '/api/user/' + uid;
         return this.http.get(url)
             .map(function (response) {
@@ -2020,15 +2021,6 @@ var UserService = (function () {
             .map(function (response) {
             return response.json();
         });
-        // const newUser = {
-        //   _id: this.nextId(),
-        //   username: user.username,
-        //   password: user.password,
-        //   firstName: user.firstName,
-        //   lastName: user.lastName,
-        //   email: user.email
-        // };
-        // this.users.push(newUser);
     };
     //  returns the user in local users array whose username matches the parameter username
     UserService.prototype.findUserByUsername = function (username) {
@@ -2038,12 +2030,11 @@ var UserService = (function () {
     };
     // updates the user in local users array whose _id matches the userId parameter
     UserService.prototype.updateUser = function (userId, user) {
-        // const oldUser = this.findUserById(userId);
-        // const index = this.users.indexOf(oldUser);
-        // this.users[index].username = user.username;
-        // this.users[index].firstName = user.firstName;
-        // this.users[index].lastName = user.lastName;
-        // this.users[index].email = user.email;
+        var url = this.baseUrl + '/api/user/' + userId;
+        return this.http.put(url, user)
+            .map(function (response) {
+            return response.json();
+        });
     };
     // removes the user whose _id matches the userId parameter
     UserService.prototype.deleteUser = function (userId) {
@@ -2052,9 +2043,6 @@ var UserService = (function () {
             .map(function (response) {
             return response.json();
         });
-        // const oldUser = this.findUserById(userId);
-        // const index = this.users.indexOf(oldUser);
-        // this.users.splice(index, 1);
     };
     return UserService;
 }());
