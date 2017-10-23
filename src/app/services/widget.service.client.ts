@@ -16,7 +16,6 @@ export class WidgetService {
       { '_id': '789', 'widgetType': 'HTML', 'pageId': '321', 'text': '<p>Lorem ipsum</p>'}
     ];
 
-  baseUrl = 'http://localhost:3100';
   constructor(private http: Http) {}
 
   // generates next id for new widget
