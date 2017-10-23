@@ -2,6 +2,7 @@ module.exports = function (app) {
   app.get("/api/user", findUsers);
   app.get("/api/user/:uid", findUserByID);
   app.post("/api/user", createUser);
+  app.delete("/api/user/:uid");
 
   var users = [{_id: '123', username: 'alice',    password: 'alice',    firstName: 'Alice',  lastName: 'Wonder', email: 'alice@gmail.com' },
     {_id: '234', username: 'bob',      password: 'bob',      firstName: 'Bob',    lastName: 'Marley', email: 'bob@gmail.com' },
@@ -48,11 +49,27 @@ module.exports = function (app) {
     res.json(users);
   }
 
+  function selectUserByID(uid) {
+    var user = users.find(function (user) {
+      return user.id === uid;
+    });
+    return user;
+  }
+
   function findUserByID(req, res) {
     var uid = req.params["uid"];
-    var user = users.find(function (user) {
-      return user._id === uid;
-    });
+    var user = selectUserByID(uid);
     res.json(user);
+  }
+
+  function deleteUser(req, res) {
+    var uid = req.param["uid"];
+    var user = selectUserByID(uid);
+    var index = this.users.indexOf(user);
+    users.splice(index, 1);
+    res.json(users);
+  }
+
+  function updateUser(req, res) {
   }
 };

@@ -2045,6 +2045,11 @@ var UserService = (function () {
     };
     // removes the user whose _id matches the userId parameter
     UserService.prototype.deleteUser = function (userId) {
+        var url = this.baseUrl + '/api/user/' + userId;
+        return this.http.delete(url)
+            .map(function (response) {
+            return response.json();
+        });
         // const oldUser = this.findUserById(userId);
         // const index = this.users.indexOf(oldUser);
         // this.users.splice(index, 1);

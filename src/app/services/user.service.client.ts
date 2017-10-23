@@ -83,6 +83,13 @@ export class UserService {
 
   // removes the user whose _id matches the userId parameter
   deleteUser(userId) {
+    const url = this.baseUrl + '/api/user/' + userId;
+    return this.http.delete(url)
+      .map(
+        (response: Response) => {
+          return response.json();
+        }
+      );
     // const oldUser = this.findUserById(userId);
     // const index = this.users.indexOf(oldUser);
     // this.users.splice(index, 1);
