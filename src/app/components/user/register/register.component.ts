@@ -36,15 +36,22 @@ export class RegisterComponent implements OnInit {
       const user: User = this.userService.findUserByUsername(this.username);
       if (!user) {
         const newUser: User = {
-          _id: this.userService.nextId(),
+          _id: '',
           username: this.username,
           password: this.password,
           firstName: '',
           lastName: '',
           email: ''
         };
-        this.userService.createUser(newUser);
-        this.router.navigate(['user', newUser._id]);
+        this.userService.createUser(newUser)
+          .subscribe(
+            (newU: User) => {
+              this.router.navigate(['user', newU._id]);
+            }
+          ,
+            (error: any) => {
+              this.usernameError = true;
+            });
       } else {
         this.usernameError = true;
       }

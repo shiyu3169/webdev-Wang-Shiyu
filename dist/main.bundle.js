@@ -775,7 +775,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/user/profile/profile.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "\n<nav class=\"navbar navbar-default navbar-fixed-top  sw-nav-blue\">\n  <div class=\"container-fluid\">\n\n    <!--heading on the nav bar-->\n    <a routerLink=\"/user/{{uid}}\"\n       class=\"navbar-header pull-left navbar-brand thick\">\n      <b class=\"sw-text-white\">Profile</b>\n    </a>\n\n\n    <!--tick mark-->\n    <p class=\"navbar-text pull-right\">\n      <button type=\"submit\"\n              [disabled]=\"!f.valid\"\n              form=\"profileForm\"\n              class=\"btn btn-xs navbar-link sw-button-transparent\">\n        <span class=\"glyphicon glyphicon-ok sw-text-white\"></span>\n      </button>\n    </p>\n  </div>\n</nav>\n\n<div class=\"container-fluid\">\n  <div *ngIf=\"usernameTaken\"\n       class=\"alert alert-danger\" >\n    Username was taken!\n  </div>\n  <div *ngIf=\"submitSuccess\"\n       class=\"alert alert-success\" >\n    Submit successfully!\n  </div>\n  <form (ngSubmit)=\"update()\"\n        #f =\"ngForm\"\n        id=\"profileForm\">\n    <div class=\"form-group\">\n      <label for=\"username\">Username</label>\n      <input type=\"text\"\n             class=\"form-control\"\n             id=\"username\"\n             name=\"username\"\n             required\n             ngModel=\"{{user.username}}\"\n             #username=\"ngModel\"\n             placeholder=\"username\">\n    </div>\n    <span class=\"help-block\"\n          *ngIf=\"!username.valid && username.touched\">Username can't be empty!</span>\n\n    <div class=\"form-group\">\n      <label for=\"email\">Email address</label>\n      <input type=\"email\"\n             class=\"form-control\"\n             id=\"email\"\n             name=\"email\"\n             email\n             ngModel=\"{{user.email}}\"\n             #email=\"ngModel\"\n             placeholder=\"alice.wonderland@unicorn.com\">\n    </div>\n    <span class=\"help-block\"\n          *ngIf=\"!email.valid && email.touched\">Invalid email!</span>\n    <div class=\"form-group\">\n      <label for=\"firstName\">First Name</label>\n      <input type=\"text\"\n             class=\"form-control\"\n             id=\"firstName\"\n             name=\"firstName\"\n             ngModel=\"{{user.firstName}}\"\n             #firstName=\"ngModel\"\n             placeholder=\"Alice\">\n    </div>\n    <div class=\"form-group\">\n      <label for=\"lastName\">Last Name</label>\n      <input type=\"text\"\n             class=\"form-control\"\n             id=\"lastName\"\n             name=\"lastName\"\n             ngModel=\"{{user.lastName}}\"\n             #lastName=\"ngModel\"\n             placeholder=\"Wonderland\">\n    </div>\n  </form>\n\n  <a class=\"btn btn-primary btn-block\"\n     routerLink=\"/user/{{uid}}/website\">Websites</a>\n  <a class=\"btn btn-danger btn-block \"\n     routerLink=\"/login\" >Logout</a>\n</div>\n\n<!-- Footer -->\n<nav class=\"navbar navbar-default navbar-fixed-bottom sw-nav-blue\">\n  <div class=\"container-fluid\">\n    <a routerLink=\"/user/{{uid}}\"\n       class=\"navbar-text pull-right\">\n      <span class=\"glyphicon glyphicon-user sw-text-white\"></span>\n    </a>\n  </div>\n</nav>\n"
+module.exports = "\n<nav class=\"navbar navbar-default navbar-fixed-top  sw-nav-blue\">\n  <div class=\"container-fluid\">\n\n    <!--heading on the nav bar-->\n    <a routerLink=\"/user/{{uid}}\"\n       class=\"navbar-header pull-left navbar-brand thick\">\n      <b class=\"sw-text-white\">Profile</b>\n    </a>\n\n\n    <!--tick mark-->\n    <p class=\"navbar-text pull-right\">\n      <button type=\"submit\"\n              [disabled]=\"!f.valid\"\n              form=\"profileForm\"\n              class=\"btn btn-xs navbar-link sw-button-transparent\">\n        <span class=\"glyphicon glyphicon-ok sw-text-white\"></span>\n      </button>\n    </p>\n  </div>\n</nav>\n\n<div class=\"container-fluid\">\n  <div *ngIf=\"usernameTaken\"\n       class=\"alert alert-danger\" >\n    Username was taken!\n  </div>\n  <div *ngIf=\"submitSuccess\"\n       class=\"alert alert-success\" >\n    Submit successfully!\n  </div>\n  <form (ngSubmit)=\"update()\"\n        #f =\"ngForm\"\n        id=\"profileForm\">\n    <div class=\"form-group\">\n      <label for=\"username\">Username</label>\n      <input type=\"text\"\n             class=\"form-control\"\n             id=\"username\"\n             name=\"username\"\n             required\n             #username=\"ngModel\"\n             ngModel=\"{{user.username}}\"\n             placeholder=\"username\">\n    </div>\n    <span class=\"help-block\"\n          *ngIf=\"!username.valid && username.touched\">Username can't be empty!</span>\n\n    <div class=\"form-group\">\n      <label for=\"email\">Email address</label>\n      <input type=\"email\"\n             class=\"form-control\"\n             id=\"email\"\n             name=\"email\"\n             email\n             ngModel=\"{{user.email}}\"\n             #email=\"ngModel\"\n             placeholder=\"alice.wonderland@unicorn.com\">\n    </div>\n    <span class=\"help-block\"\n          *ngIf=\"!email.valid && email.touched\">Invalid email!</span>\n    <div class=\"form-group\">\n      <label for=\"firstName\">First Name</label>\n      <input type=\"text\"\n             class=\"form-control\"\n             id=\"firstName\"\n             name=\"firstName\"\n             ngModel=\"{{user.firstName}}\"\n             #firstName=\"ngModel\"\n             placeholder=\"Alice\">\n    </div>\n    <div class=\"form-group\">\n      <label for=\"lastName\">Last Name</label>\n      <input type=\"text\"\n             class=\"form-control\"\n             id=\"lastName\"\n             name=\"lastName\"\n             ngModel=\"{{user.lastName}}\"\n             #lastName=\"ngModel\"\n             placeholder=\"Wonderland\">\n    </div>\n  </form>\n\n  <a class=\"btn btn-primary btn-block\"\n     routerLink=\"/user/{{uid}}/website\">Websites</a>\n  <a class=\"btn btn-danger btn-block \"\n     routerLink=\"/login\" >Logout</a>\n</div>\n\n<!-- Footer -->\n<nav class=\"navbar navbar-default navbar-fixed-bottom sw-nav-blue\">\n  <div class=\"container-fluid\">\n    <a routerLink=\"/user/{{uid}}\"\n       class=\"navbar-text pull-right\">\n      <span class=\"glyphicon glyphicon-user sw-text-white\"></span>\n    </a>\n  </div>\n</nav>\n"
 
 /***/ }),
 
@@ -805,6 +805,14 @@ var ProfileComponent = (function () {
     function ProfileComponent(userService, router) {
         this.userService = userService;
         this.router = router;
+        this.user = {
+            _id: this.uid,
+            username: this.username,
+            password: '',
+            email: this.email,
+            firstName: this.firstName,
+            lastName: this.lastName
+        };
     }
     ProfileComponent.prototype.update = function () {
         this.username = this.profileForm.value.username;
@@ -835,7 +843,10 @@ var ProfileComponent = (function () {
         var _this = this;
         this.router.params.subscribe(function (params) {
             _this.uid = params['uid'];
-            _this.user = _this.userService.findUserById(_this.uid);
+            _this.userService.findUserById(_this.uid)
+                .subscribe(function (user) {
+                _this.user = user;
+            });
             _this.username = _this.user.username;
             _this.email = _this.user.email;
             _this.firstName = _this.user.firstName;
@@ -916,6 +927,7 @@ var RegisterComponent = (function () {
         this.router = router;
     }
     RegisterComponent.prototype.register = function () {
+        var _this = this;
         this.username = this.registerForm.value.username;
         this.password = this.registerForm.value.password;
         this.verifyPassword = this.registerForm.value.verifyPassword;
@@ -928,15 +940,19 @@ var RegisterComponent = (function () {
             var user = this.userService.findUserByUsername(this.username);
             if (!user) {
                 var newUser = {
-                    _id: this.userService.nextId(),
+                    _id: '',
                     username: this.username,
                     password: this.password,
                     firstName: '',
                     lastName: '',
                     email: ''
                 };
-                this.userService.createUser(newUser);
-                this.router.navigate(['user', newUser._id]);
+                this.userService.createUser(newUser)
+                    .subscribe(function (newU) {
+                    _this.router.navigate(['user', newU._id]);
+                }, function (error) {
+                    _this.usernameError = true;
+                });
             }
             else {
                 this.usernameError = true;
@@ -1949,7 +1965,6 @@ var _a;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__("../../../http/@angular/http.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__ = __webpack_require__("../../../../rxjs/Rx.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__environments_environment__ = __webpack_require__("../../../../../src/environments/environment.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1962,7 +1977,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-
 var UserService = (function () {
     function UserService(http) {
         this.http = http;
@@ -1972,21 +1986,25 @@ var UserService = (function () {
             { _id: '345', username: 'charly', password: 'charly', firstName: 'Charly', lastName: 'Garcia', email: 'charly@gmail.com' },
             { _id: '456', username: 'jannunzi', password: 'jannunzi', firstName: 'Jose', lastName: 'Annunzi', email: 'jan@hotmail.com' }
         ];
-        this.baseUrl = __WEBPACK_IMPORTED_MODULE_3__environments_environment__["a" /* environment */].baseUrl;
+        this.baseUrl = 'http://localhost:3100';
     }
     // returns the user whose username and password match the username and password parameters
     UserService.prototype.findUserByCredentials = function (username, password) {
         var url = this.baseUrl + '/api/user?username=' + username + '&password=' + password;
         return this.http.get(url)
             .map(function (response) {
-            var user = response.json();
-            return user;
+            return response.json();
         });
     };
     // returns the user in local users array whose _id matches the userId parameter
     UserService.prototype.findUserById = function (uid) {
-        return this.users.find(function (user) {
-            return user._id === uid;
+        // return this.users.find(function(user) {
+        //   return user._id === uid;
+        // });
+        var url = this.baseUrl + '/api/user/' + uid;
+        return this.http.get(url)
+            .map(function (response) {
+            return response.json();
         });
     };
     // generates next id for new user
@@ -1995,15 +2013,20 @@ var UserService = (function () {
     };
     //  adds the user parameter instance to the local users array
     UserService.prototype.createUser = function (user) {
-        var newUser = {
-            _id: this.nextId(),
-            username: user.username,
-            password: user.password,
-            firstName: user.firstName,
-            lastName: user.lastName,
-            email: user.email
-        };
-        this.users.push(newUser);
+        var url = this.baseUrl + '/api/user';
+        return this.http.post(url, user)
+            .map(function (response) {
+            return response.json();
+        });
+        // const newUser = {
+        //   _id: this.nextId(),
+        //   username: user.username,
+        //   password: user.password,
+        //   firstName: user.firstName,
+        //   lastName: user.lastName,
+        //   email: user.email
+        // };
+        // this.users.push(newUser);
     };
     //  returns the user in local users array whose username matches the parameter username
     UserService.prototype.findUserByUsername = function (username) {
@@ -2013,18 +2036,18 @@ var UserService = (function () {
     };
     // updates the user in local users array whose _id matches the userId parameter
     UserService.prototype.updateUser = function (userId, user) {
-        var oldUser = this.findUserById(userId);
-        var index = this.users.indexOf(oldUser);
-        this.users[index].username = user.username;
-        this.users[index].firstName = user.firstName;
-        this.users[index].lastName = user.lastName;
-        this.users[index].email = user.email;
+        // const oldUser = this.findUserById(userId);
+        // const index = this.users.indexOf(oldUser);
+        // this.users[index].username = user.username;
+        // this.users[index].firstName = user.firstName;
+        // this.users[index].lastName = user.lastName;
+        // this.users[index].email = user.email;
     };
     // removes the user whose _id matches the userId parameter
     UserService.prototype.deleteUser = function (userId) {
-        var oldUser = this.findUserById(userId);
-        var index = this.users.indexOf(oldUser);
-        this.users.splice(index, 1);
+        // const oldUser = this.findUserById(userId);
+        // const index = this.users.indexOf(oldUser);
+        // this.users.splice(index, 1);
     };
     return UserService;
 }());
@@ -2122,15 +2145,24 @@ WebsiteService = __decorate([
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return WidgetService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__("../../../http/@angular/http.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__ = __webpack_require__("../../../../rxjs/Rx.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
 
 var WidgetService = (function () {
-    function WidgetService() {
+    function WidgetService(http) {
+        this.http = http;
         this.widgets = [
             { '_id': '123', 'widgetType': 'HEADING', 'pageId': '321', 'size': 2, 'text': 'GIZMODO' },
             { '_id': '234', 'widgetType': 'HEADING', 'pageId': '321', 'size': 4, 'text': 'Lorem ipsum' },
@@ -2140,6 +2172,7 @@ var WidgetService = (function () {
             { '_id': '678', 'widgetType': 'YOUTUBE', 'pageId': '321', 'width': '100%', 'url': 'https://youtu.be/AM2Ivdi9c4E' },
             { '_id': '789', 'widgetType': 'HTML', 'pageId': '321', 'text': '<p>Lorem ipsum</p>' }
         ];
+        this.baseUrl = 'http://localhost:3100';
     }
     // generates next id for new widget
     WidgetService.prototype.nextId = function () {
@@ -2193,9 +2226,11 @@ var WidgetService = (function () {
     return WidgetService;
 }());
 WidgetService = __decorate([
-    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["C" /* Injectable */])()
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["C" /* Injectable */])(),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Http */]) === "function" && _a || Object])
 ], WidgetService);
 
+var _a;
 //# sourceMappingURL=widget.service.client.js.map
 
 /***/ }),

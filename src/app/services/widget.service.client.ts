@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Widget } from '../models/widget.model.client';
+import { Http, Response } from '@angular/http';
+import 'rxjs/Rx';
 
 @Injectable()
 export class WidgetService {
@@ -13,6 +15,9 @@ export class WidgetService {
       { '_id': '678', 'widgetType': 'YOUTUBE', 'pageId': '321', 'width': '100%', 'url': 'https://youtu.be/AM2Ivdi9c4E' },
       { '_id': '789', 'widgetType': 'HTML', 'pageId': '321', 'text': '<p>Lorem ipsum</p>'}
     ];
+
+  baseUrl = 'http://localhost:3100';
+  constructor(private http: Http) {}
 
   // generates next id for new widget
   nextId() {
