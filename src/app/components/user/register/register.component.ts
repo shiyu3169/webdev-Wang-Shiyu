@@ -18,6 +18,7 @@ export class RegisterComponent implements OnInit {
   verifyPassword: String;
   usernameError: boolean;
   passwordError: boolean;
+  user: User;
 
   constructor(private userService: UserService, private router: Router) { }
 
@@ -33,28 +34,33 @@ export class RegisterComponent implements OnInit {
     if (this.password !== this.verifyPassword) {
       this.passwordError = true;
     } else {
-      const user: User = this.userService.findUserByUsername(this.username);
-      if (!user) {
-        const newUser: User = {
-          _id: '',
-          username: this.username,
-          password: this.password,
-          firstName: '',
-          lastName: '',
-          email: ''
-        };
-        this.userService.createUser(newUser)
-          .subscribe(
-            (newU: User) => {
-              this.router.navigate(['user', newU._id]);
-            }
-          ,
-            (error: any) => {
+      this.userService.findUserByUsername(this.username)
+        .subscribe(
+          (user: User) => {
+            this.user = user;
+            if (!this.user) {
+              const newUser: User = {
+                _id: '',
+                username: this.username,
+                password: this.password,
+                firstName: '',
+                lastName: '',
+                email: ''
+              };
+              this.userService.createUser(newUser)
+                .subscribe(
+                  (newU: User) => {
+                    this.router.navigate(['user', newU._id]);
+                  }
+                  ,
+                  (error: any) => {
+                    this.usernameError = true;
+                  });
+            } else {
               this.usernameError = true;
-            });
-      } else {
-        this.usernameError = true;
+            }
       }
+        );
     }
   }
 

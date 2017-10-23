@@ -43,7 +43,7 @@ module.exports = function (app) {
       if (user) {
         res.json(user);
       } else {
-        res.status(404).send("error");
+        res.json(null);
       }
       return;
     }

@@ -822,8 +822,12 @@ var ProfileComponent = (function () {
         this.lastName = this.profileForm.value.lastName;
         this.usernameTaken = false;
         this.submitSuccess = false;
-        var aUser = this.userService.findUserByUsername(this.username);
-        if (aUser && this.username !== this.prevUsername) {
+        this.userService.findUserByUsername(this.username)
+            .subscribe(function (user) {
+            _this.aUser = user;
+        });
+        console.log(this.aUser);
+        if (this.aUser && this.username !== this.prevUsername) {
             this.usernameTaken = true;
         }
         else {
@@ -850,12 +854,12 @@ var ProfileComponent = (function () {
             _this.userService.findUserById(_this.uid)
                 .subscribe(function (user) {
                 _this.user = user;
+                _this.username = _this.user.username;
+                _this.email = _this.user.email;
+                _this.firstName = _this.user.firstName;
+                _this.lastName = _this.user.lastName;
+                _this.prevUsername = _this.username;
             });
-            _this.username = _this.user.username;
-            _this.email = _this.user.email;
-            _this.firstName = _this.user.firstName;
-            _this.lastName = _this.user.lastName;
-            _this.prevUsername = _this.username;
         });
     };
     return ProfileComponent;
@@ -941,26 +945,29 @@ var RegisterComponent = (function () {
             this.passwordError = true;
         }
         else {
-            var user = this.userService.findUserByUsername(this.username);
-            if (!user) {
-                var newUser = {
-                    _id: '',
-                    username: this.username,
-                    password: this.password,
-                    firstName: '',
-                    lastName: '',
-                    email: ''
-                };
-                this.userService.createUser(newUser)
-                    .subscribe(function (newU) {
-                    _this.router.navigate(['user', newU._id]);
-                }, function (error) {
+            this.userService.findUserByUsername(this.username)
+                .subscribe(function (user) {
+                _this.user = user;
+                if (!_this.user) {
+                    var newUser = {
+                        _id: '',
+                        username: _this.username,
+                        password: _this.password,
+                        firstName: '',
+                        lastName: '',
+                        email: ''
+                    };
+                    _this.userService.createUser(newUser)
+                        .subscribe(function (newU) {
+                        _this.router.navigate(['user', newU._id]);
+                    }, function (error) {
+                        _this.usernameError = true;
+                    });
+                }
+                else {
                     _this.usernameError = true;
-                });
-            }
-            else {
-                this.usernameError = true;
-            }
+                }
+            });
         }
     };
     RegisterComponent.prototype.ngOnInit = function () {
@@ -1986,12 +1993,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var UserService = (function () {
     function UserService(http) {
         this.http = http;
-        this.users = [
-            { _id: '123', username: 'alice', password: 'alice', firstName: 'Alice', lastName: 'Wonder', email: 'alice@gmail.com' },
-            { _id: '234', username: 'bob', password: 'bob', firstName: 'Bob', lastName: 'Marley', email: 'bob@gmail.com' },
-            { _id: '345', username: 'charly', password: 'charly', firstName: 'Charly', lastName: 'Garcia', email: 'charly@gmail.com' },
-            { _id: '456', username: 'jannunzi', password: 'jannunzi', firstName: 'Jose', lastName: 'Annunzi', email: 'jan@hotmail.com' }
-        ];
         this.baseUrl = __WEBPACK_IMPORTED_MODULE_3__environments_environment__["a" /* environment */].baseUrl;
     }
     // returns the user whose username and password match the username and password parameters
@@ -2010,10 +2011,6 @@ var UserService = (function () {
             return response.json();
         });
     };
-    // generates next id for new user
-    UserService.prototype.nextId = function () {
-        return (Number(this.users[this.users.length - 1]._id) + 1).toString();
-    };
     //  adds the user parameter instance to the local users array
     UserService.prototype.createUser = function (user) {
         var url = this.baseUrl + '/api/user';
@@ -2024,8 +2021,10 @@ var UserService = (function () {
     };
     //  returns the user in local users array whose username matches the parameter username
     UserService.prototype.findUserByUsername = function (username) {
-        return this.users.find(function (user) {
-            return user.username === username;
+        var url = this.baseUrl + '/api/user?username=' + username;
+        return this.http.get(url)
+            .map(function (response) {
+            return response.json();
         });
     };
     // updates the user in local users array whose _id matches the userId parameter

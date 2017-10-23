@@ -29,6 +29,8 @@ export class ProfileComponent implements OnInit {
     firstName: this.firstName,
     lastName: this.lastName
   };
+  aUser: User;
+
   constructor(private userService: UserService, private router: ActivatedRoute) {
   }
 
@@ -40,9 +42,14 @@ export class ProfileComponent implements OnInit {
 
     this.usernameTaken = false;
     this.submitSuccess = false;
-
-    const aUser: User = this.userService.findUserByUsername(this.username);
-    if (aUser && this.username !== this.prevUsername) {
+    this.userService.findUserByUsername(this.username)
+      .subscribe(
+        (user: User) => {
+          this.aUser = user;
+        }
+      );
+    console.log(this.aUser);
+    if (this.aUser && this.username !== this.prevUsername) {
       this.usernameTaken = true;
     } else {
       const updatedUser: User = {
@@ -72,13 +79,13 @@ export class ProfileComponent implements OnInit {
         .subscribe(
           (user: User) => {
             this.user = user;
+            this.username = this.user.username;
+            this.email = this.user.email;
+            this.firstName = this.user.firstName;
+            this.lastName = this.user.lastName;
+            this.prevUsername = this.username;
           }
         );
-      this.username = this.user.username;
-      this.email = this.user.email;
-      this.firstName = this.user.firstName;
-      this.lastName = this.user.lastName;
-      this.prevUsername = this.username;
     });
   }
 

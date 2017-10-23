@@ -6,12 +6,6 @@ import { environment } from '../../environments/environment';
 
 @Injectable()
 export class UserService {
-  users: User[] = [
-    {_id: '123', username: 'alice',    password: 'alice',    firstName: 'Alice',  lastName: 'Wonder', email: 'alice@gmail.com' },
-    {_id: '234', username: 'bob',      password: 'bob',      firstName: 'Bob',    lastName: 'Marley', email: 'bob@gmail.com' },
-    {_id: '345', username: 'charly',   password: 'charly',   firstName: 'Charly', lastName: 'Garcia', email: 'charly@gmail.com' },
-    {_id: '456', username: 'jannunzi', password: 'jannunzi', firstName: 'Jose',   lastName: 'Annunzi', email: 'jan@hotmail.com' }
-  ];
 
   baseUrl = environment.baseUrl;
 
@@ -38,11 +32,6 @@ export class UserService {
       );
   }
 
-  // generates next id for new user
-  nextId() {
-    return (Number(this.users[this.users.length - 1]._id) + 1).toString();
-  }
-
   //  adds the user parameter instance to the local users array
   createUser(user: User) {
     const url =  this.baseUrl + '/api/user';
@@ -56,9 +45,12 @@ export class UserService {
 
   //  returns the user in local users array whose username matches the parameter username
   findUserByUsername(username: String) {
-    return this.users.find(function(user) {
-      return user.username === username;
-    });
+    const url =  this.baseUrl + '/api/user?username=' + username;
+    return this.http.get(url)
+      .map(
+        (response: Response) => {
+          return response.json();
+        });
   }
 
   // updates the user in local users array whose _id matches the userId parameter
