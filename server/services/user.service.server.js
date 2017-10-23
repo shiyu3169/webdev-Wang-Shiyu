@@ -51,7 +51,7 @@ module.exports = function (app) {
 
   function selectUserByID(uid) {
     var user = users.find(function (user) {
-      return user.id === uid;
+      return user._id === uid;
     });
     return user;
   }
@@ -71,5 +71,6 @@ module.exports = function (app) {
   }
 
   function updateUser(req, res) {
+
   }
 };

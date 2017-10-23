@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { User } from '../models/user.model.client';
 import { Http, Response } from '@angular/http';
 import 'rxjs/Rx';
+import { environment } from '../../environments/environment';
 
 @Injectable()
 export class UserService {
@@ -12,7 +13,8 @@ export class UserService {
     {_id: '456', username: 'jannunzi', password: 'jannunzi', firstName: 'Jose',   lastName: 'Annunzi', email: 'jan@hotmail.com' }
   ];
 
-  baseUrl = 'http://localhost:3100';
+  baseUrl = environment.baseUrl;
+
   constructor(private http: Http) {}
 
   // returns the user whose username and password match the username and password parameters
