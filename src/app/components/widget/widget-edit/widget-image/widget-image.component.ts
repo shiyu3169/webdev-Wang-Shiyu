@@ -17,7 +17,13 @@ export class WidgetImageComponent implements OnInit {
   wid: String;
   pid: String;
   wgid: String;
-  widget: Widget;
+  widget: Widget= {
+    _id: '',
+    widgetType: '',
+    pageId: '',
+    size: 0,
+    text: ''
+  };
   name: String;
   width: String;
   url: String;
@@ -38,13 +44,22 @@ export class WidgetImageComponent implements OnInit {
       width: this.width,
       url: this.url
     };
-    this.widgetService.updateWidget(this.wgid, updatedWidget);
-    this.router.navigate(['user', this.uid, 'website', this.wid, 'page', this.pid, 'widget']);
+    this.widgetService.updateWidget(this.wgid, updatedWidget)
+      .subscribe(
+        (widget: Widget) => {
+          this.widget = widget;
+          this.router.navigate(['user', this.uid, 'website', this.wid, 'page', this.pid, 'widget']);
+        }
+      );
   }
 
   remove() {
-    this.widgetService.deleteWidget(this.wgid);
-    this.router.navigate(['user', this.uid, 'website', this.wid, 'page', this.pid, 'widget']);
+    this.widgetService.deleteWidget(this.wgid)
+      .subscribe(
+        (widgets: Widget[]) => {
+          this.router.navigate(['user', this.uid, 'website', this.wid, 'page', this.pid, 'widget']);
+        }
+      );
   }
 
   ngOnInit() {
@@ -53,7 +68,12 @@ export class WidgetImageComponent implements OnInit {
       this.wid = params['wid'];
       this.pid = params['pid'];
       this.wgid = params['wgid'];
-      this.widget = this.widgetService.findWidgetById(this.wgid);
+      this.widgetService.findWidgetById(this.wgid)
+        .subscribe(
+          (widget: Widget) => {
+            this.widget = widget;
+          }
+        );
     });
   }
 }

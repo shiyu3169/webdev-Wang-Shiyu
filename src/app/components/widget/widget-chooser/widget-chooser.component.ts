@@ -17,36 +17,48 @@ export class WidgetChooserComponent implements OnInit {
               private activatedRoute: ActivatedRoute, private router: Router ) { }
 
   createHead() {
-    this.wgid = this.widgetService.nextId();
     const newWidget: Widget = {
-      _id: this.wgid,
+      _id: '',
       widgetType: 'HEADING',
       pageId: this.pid,
     };
-    this.widgetService.createWidget(this.pid, newWidget);
-    this.router.navigate(['user', this.uid, 'website', this.wid, 'page', this.pid, 'widget', this.wgid]);
+    this.widgetService.createWidget(this.pid, newWidget)
+      .subscribe(
+        (widget: Widget) => {
+          this.wgid = widget._id;
+          this.router.navigate(['user', this.uid, 'website', this.wid, 'page', this.pid, 'widget', this.wgid]);
+        }
+      );
   }
 
   createImage() {
-    this.wgid = this.widgetService.nextId();
     const newWidget: Widget = {
-      _id: this.wgid,
+      _id: '',
       widgetType: 'IMAGE',
       pageId: this.pid,
     };
-    this.widgetService.createWidget(this.pid, newWidget);
-    this.router.navigate(['user', this.uid, 'website', this.wid, 'page', this.pid, 'widget', this.wgid]);
+    this.widgetService.createWidget(this.pid, newWidget)
+      .subscribe(
+        (widget: Widget) => {
+          this.wgid = widget._id;
+          this.router.navigate(['user', this.uid, 'website', this.wid, 'page', this.pid, 'widget', this.wgid]);
+        }
+      );
   }
 
   createYoutube() {
-    this.wgid = this.widgetService.nextId();
     const newWidget: Widget = {
-      _id: this.wgid,
+      _id: '',
       widgetType: 'YOUTUBE',
       pageId: this.pid,
     };
-    this.widgetService.createWidget(this.pid, newWidget);
-    this.router.navigate(['user', this.uid, 'website', this.wid, 'page', this.pid, 'widget', this.wgid]);
+    this.widgetService.createWidget(this.pid, newWidget)
+      .subscribe(
+        (widget: Widget) => {
+          this.wgid = widget._id;
+          this.router.navigate(['user', this.uid, 'website', this.wid, 'page', this.pid, 'widget', this.wgid]);
+        }
+      );
   }
 
   ngOnInit() {

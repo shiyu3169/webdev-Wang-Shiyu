@@ -1,6 +1,10 @@
 
 module.exports = function (app) {
-  app.get('/api/widget', findAllWidgets);
+  app.post("/api/page/:pid/widget", createWidget);
+  app.get("/api/page/:pid/widget", findAllWidgetsForPage);
+  app.get("/api/widget/:wgid", findWidgetById);
+  app.put("/api/widget/:wgid", updateWidget);
+  app.delete("/api/widget/:wgid", deleteWidget);
 
   var widgets =
     [
@@ -13,7 +17,54 @@ module.exports = function (app) {
       { '_id': '789', 'widgetType': 'HTML', 'pageId': '321', 'text': '<p>Lorem ipsum</p>'}
     ];
 
-  function findAllWidgets(req, res) {
+  // generates next id for new user
+  function nextId() {
+    return (Number(widgets[widgets.length - 1]._id) + 1).toString();
+  }
+
+  function createWidget(req, res) {
+    var newWidget = req.body;
+    newWidget._id = nextId();
+    widgets.push(newWidget);
+    res.json(newWidget);
+  }
+  function findAllWidgetsForPage(req, res) {
+    var pid = req.params["pid"];
+    const results = [];
+    for (var x = 0; x < widgets.length; x++) {
+      if (widgets[x].pageId === pid) {
+        results.push(widgets[x]);
+      }
+    }
+    res.json(results);
+  }
+
+  function selectWidgetById(wgid) {
+    return widgets.find(function(widget) {
+      return widget._id === wgid;
+    })
+  }
+  function findWidgetById(req, res) {
+    var wgid = req.params["wgid"];
+    var widget = selectWidgetById(wgid);
+    res.json(widget);
+  }
+  function updateWidget(req, res) {
+    var wgid = req.params["wgid"];
+    var newWidget = req.body;
+    var oldWidget = selectWidgetById(wgid);
+    var index = widgets.indexOf(oldWidget);
+    widgets[index].size = newWidget.size;
+    widgets[index].text = newWidget.text;
+    widgets[index].width = newWidget.width;
+    widgets[index].url = newWidget.url;
+    res.json(newWidget);
+  }
+  function deleteWidget(req, res) {
+    var wgid = req.params["wgid"];
+    var widget = selectWidgetById(wgid);
+    var index = widgets.indexOf(widget);
+    widgets.splice(index, 1);
     res.json(widgets);
   }
-}
+};

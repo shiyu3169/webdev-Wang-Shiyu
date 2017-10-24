@@ -1361,34 +1361,43 @@ var WidgetChooserComponent = (function () {
         this.router = router;
     }
     WidgetChooserComponent.prototype.createHead = function () {
-        this.wgid = this.widgetService.nextId();
+        var _this = this;
         var newWidget = {
-            _id: this.wgid,
+            _id: '',
             widgetType: 'HEADING',
             pageId: this.pid,
         };
-        this.widgetService.createWidget(this.pid, newWidget);
-        this.router.navigate(['user', this.uid, 'website', this.wid, 'page', this.pid, 'widget', this.wgid]);
+        this.widgetService.createWidget(this.pid, newWidget)
+            .subscribe(function (widget) {
+            _this.wgid = widget._id;
+            _this.router.navigate(['user', _this.uid, 'website', _this.wid, 'page', _this.pid, 'widget', _this.wgid]);
+        });
     };
     WidgetChooserComponent.prototype.createImage = function () {
-        this.wgid = this.widgetService.nextId();
+        var _this = this;
         var newWidget = {
-            _id: this.wgid,
+            _id: '',
             widgetType: 'IMAGE',
             pageId: this.pid,
         };
-        this.widgetService.createWidget(this.pid, newWidget);
-        this.router.navigate(['user', this.uid, 'website', this.wid, 'page', this.pid, 'widget', this.wgid]);
+        this.widgetService.createWidget(this.pid, newWidget)
+            .subscribe(function (widget) {
+            _this.wgid = widget._id;
+            _this.router.navigate(['user', _this.uid, 'website', _this.wid, 'page', _this.pid, 'widget', _this.wgid]);
+        });
     };
     WidgetChooserComponent.prototype.createYoutube = function () {
-        this.wgid = this.widgetService.nextId();
+        var _this = this;
         var newWidget = {
-            _id: this.wgid,
+            _id: '',
             widgetType: 'YOUTUBE',
             pageId: this.pid,
         };
-        this.widgetService.createWidget(this.pid, newWidget);
-        this.router.navigate(['user', this.uid, 'website', this.wid, 'page', this.pid, 'widget', this.wgid]);
+        this.widgetService.createWidget(this.pid, newWidget)
+            .subscribe(function (widget) {
+            _this.wgid = widget._id;
+            _this.router.navigate(['user', _this.uid, 'website', _this.wid, 'page', _this.pid, 'widget', _this.wgid]);
+        });
     };
     WidgetChooserComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -1463,6 +1472,13 @@ var WidgetEditComponent = (function () {
     function WidgetEditComponent(widgetService, router) {
         this.widgetService = widgetService;
         this.router = router;
+        this.widget = {
+            _id: '',
+            widgetType: '',
+            pageId: '',
+            size: 0,
+            text: ''
+        };
     }
     WidgetEditComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -1471,7 +1487,10 @@ var WidgetEditComponent = (function () {
             _this.wid = params['wid'];
             _this.pid = params['pid'];
             _this.wgid = params['wgid'];
-            _this.widget = _this.widgetService.findWidgetById(_this.wgid);
+            _this.widgetService.findWidgetById(_this.wgid)
+                .subscribe(function (widget) {
+                _this.widget = widget;
+            });
         });
     };
     return WidgetEditComponent;
@@ -1542,8 +1561,16 @@ var WidgetHeaderComponent = (function () {
         this.widgetService = widgetService;
         this.activatedRoute = activatedRoute;
         this.router = router;
+        this.widget = {
+            _id: '',
+            widgetType: '',
+            pageId: '',
+            size: 0,
+            text: ''
+        };
     }
     WidgetHeaderComponent.prototype.update = function () {
+        var _this = this;
         this.name = this.widgetForm.value.name;
         this.text = this.widgetForm.value.text;
         this.size = this.widgetForm.value.size;
@@ -1555,12 +1582,18 @@ var WidgetHeaderComponent = (function () {
             size: this.size,
             text: this.text
         };
-        this.widgetService.updateWidget(this.wgid, updatedWidget);
-        this.router.navigate(['user', this.uid, 'website', this.wid, 'page', this.pid, 'widget']);
+        this.widgetService.updateWidget(this.wgid, updatedWidget)
+            .subscribe(function (widget) {
+            _this.widget = widget;
+            _this.router.navigate(['user', _this.uid, 'website', _this.wid, 'page', _this.pid, 'widget']);
+        });
     };
     WidgetHeaderComponent.prototype.remove = function () {
-        this.widgetService.deleteWidget(this.wgid);
-        this.router.navigate(['user', this.uid, 'website', this.wid, 'page', this.pid, 'widget']);
+        var _this = this;
+        this.widgetService.deleteWidget(this.wgid)
+            .subscribe(function (widgets) {
+            _this.router.navigate(['user', _this.uid, 'website', _this.wid, 'page', _this.pid, 'widget']);
+        });
     };
     WidgetHeaderComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -1569,7 +1602,10 @@ var WidgetHeaderComponent = (function () {
             _this.wid = params['wid'];
             _this.pid = params['pid'];
             _this.wgid = params['wgid'];
-            _this.widget = _this.widgetService.findWidgetById(_this.wgid);
+            _this.widgetService.findWidgetById(_this.wgid)
+                .subscribe(function (widget) {
+                _this.widget = widget;
+            });
         });
     };
     return WidgetHeaderComponent;
@@ -1644,8 +1680,16 @@ var WidgetImageComponent = (function () {
         this.widgetService = widgetService;
         this.activatedRoute = activatedRoute;
         this.router = router;
+        this.widget = {
+            _id: '',
+            widgetType: '',
+            pageId: '',
+            size: 0,
+            text: ''
+        };
     }
     WidgetImageComponent.prototype.update = function () {
+        var _this = this;
         this.name = this.widgetForm.value.name;
         this.width = this.widgetForm.value.width;
         this.url = this.widgetForm.value.url;
@@ -1657,12 +1701,18 @@ var WidgetImageComponent = (function () {
             width: this.width,
             url: this.url
         };
-        this.widgetService.updateWidget(this.wgid, updatedWidget);
-        this.router.navigate(['user', this.uid, 'website', this.wid, 'page', this.pid, 'widget']);
+        this.widgetService.updateWidget(this.wgid, updatedWidget)
+            .subscribe(function (widget) {
+            _this.widget = widget;
+            _this.router.navigate(['user', _this.uid, 'website', _this.wid, 'page', _this.pid, 'widget']);
+        });
     };
     WidgetImageComponent.prototype.remove = function () {
-        this.widgetService.deleteWidget(this.wgid);
-        this.router.navigate(['user', this.uid, 'website', this.wid, 'page', this.pid, 'widget']);
+        var _this = this;
+        this.widgetService.deleteWidget(this.wgid)
+            .subscribe(function (widgets) {
+            _this.router.navigate(['user', _this.uid, 'website', _this.wid, 'page', _this.pid, 'widget']);
+        });
     };
     WidgetImageComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -1671,7 +1721,10 @@ var WidgetImageComponent = (function () {
             _this.wid = params['wid'];
             _this.pid = params['pid'];
             _this.wgid = params['wgid'];
-            _this.widget = _this.widgetService.findWidgetById(_this.wgid);
+            _this.widgetService.findWidgetById(_this.wgid)
+                .subscribe(function (widget) {
+                _this.widget = widget;
+            });
         });
     };
     return WidgetImageComponent;
@@ -1746,8 +1799,16 @@ var WidgetYoutubeComponent = (function () {
         this.widgetService = widgetService;
         this.activatedRoute = activatedRoute;
         this.router = router;
+        this.widget = {
+            _id: '',
+            widgetType: '',
+            pageId: '',
+            size: 0,
+            text: ''
+        };
     }
     WidgetYoutubeComponent.prototype.update = function () {
+        var _this = this;
         this.name = this.widgetForm.value.name;
         this.width = this.widgetForm.value.width;
         this.url = this.widgetForm.value.url;
@@ -1759,12 +1820,18 @@ var WidgetYoutubeComponent = (function () {
             width: this.width,
             url: this.url
         };
-        this.widgetService.updateWidget(this.wgid, updatedWidget);
-        this.router.navigate(['user', this.uid, 'website', this.wid, 'page', this.pid, 'widget']);
+        this.widgetService.updateWidget(this.wgid, updatedWidget)
+            .subscribe(function (widget) {
+            _this.widget = widget;
+            _this.router.navigate(['user', _this.uid, 'website', _this.wid, 'page', _this.pid, 'widget']);
+        });
     };
     WidgetYoutubeComponent.prototype.remove = function () {
-        this.widgetService.deleteWidget(this.wgid);
-        this.router.navigate(['user', this.uid, 'website', this.wid, 'page', this.pid, 'widget']);
+        var _this = this;
+        this.widgetService.deleteWidget(this.wgid)
+            .subscribe(function (widgets) {
+            _this.router.navigate(['user', _this.uid, 'website', _this.wid, 'page', _this.pid, 'widget']);
+        });
     };
     WidgetYoutubeComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -1773,7 +1840,10 @@ var WidgetYoutubeComponent = (function () {
             _this.wid = params['wid'];
             _this.pid = params['pid'];
             _this.wgid = params['wgid'];
-            _this.widget = _this.widgetService.findWidgetById(_this.wgid);
+            _this.widgetService.findWidgetById(_this.wgid)
+                .subscribe(function (widget) {
+                _this.widget = widget;
+            });
         });
     };
     return WidgetYoutubeComponent;
@@ -1861,7 +1931,10 @@ var WidgetListComponent = (function () {
             _this.uid = params['uid'];
             _this.wid = params['wid'];
             _this.pid = params['pid'];
-            _this.widgets = _this.widgetService.findWidgetsByPageId(_this.pid);
+            _this.widgetService.findWidgetsByPageId(_this.pid)
+                .subscribe(function (widgets) {
+                _this.widgets = widgets;
+            });
         });
     };
     return WidgetListComponent;
@@ -2202,6 +2275,7 @@ var _a;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__("../../../http/@angular/http.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__ = __webpack_require__("../../../../rxjs/Rx.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__environments_environment__ = __webpack_require__("../../../../../src/environments/environment.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2214,67 +2288,51 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var WidgetService = (function () {
     function WidgetService(http) {
         this.http = http;
-        this.widgets = [
-            { '_id': '123', 'widgetType': 'HEADING', 'pageId': '321', 'size': 2, 'text': 'GIZMODO' },
-            { '_id': '234', 'widgetType': 'HEADING', 'pageId': '321', 'size': 4, 'text': 'Lorem ipsum' },
-            { '_id': '345', 'widgetType': 'IMAGE', 'pageId': '321', 'width': '100%', 'url': 'http://lorempixel.com/400/200/' },
-            { '_id': '456', 'widgetType': 'HTML', 'pageId': '321', 'text': '<p>Lorem ipsum</p>' },
-            { '_id': '567', 'widgetType': 'HEADING', 'pageId': '321', 'size': 4, 'text': 'Lorem ipsum' },
-            { '_id': '678', 'widgetType': 'YOUTUBE', 'pageId': '321', 'width': '100%', 'url': 'https://youtu.be/AM2Ivdi9c4E' },
-            { '_id': '789', 'widgetType': 'HTML', 'pageId': '321', 'text': '<p>Lorem ipsum</p>' }
-        ];
+        this.baseUrl = __WEBPACK_IMPORTED_MODULE_3__environments_environment__["a" /* environment */].baseUrl;
     }
-    // generates next id for new widget
-    WidgetService.prototype.nextId = function () {
-        return (Number(this.widgets[this.widgets.length - 1]._id) + 1).toString();
-    };
     // adds the widget parameter instance to the local widgets array. The new widget's pageId is set to the pageId parameter
     WidgetService.prototype.createWidget = function (pageId, widget) {
-        var newWidget = {
-            _id: this.nextId(),
-            name: widget.name,
-            widgetType: widget.widgetType,
-            pageId: pageId,
-            size: widget.size,
-            text: widget.text,
-            width: widget.width,
-            url: widget.url
-        };
-        this.widgets.push(widget);
+        var url = this.baseUrl + '/api/page/' + pageId + '/widget';
+        return this.http.post(url, widget)
+            .map(function (response) {
+            return response.json();
+        });
     };
     // retrieves the widgets in local widgets array whose pageId matches the parameter pageId
     WidgetService.prototype.findWidgetsByPageId = function (pageId) {
-        var results = [];
-        for (var x = 0; x < this.widgets.length; x++) {
-            if (this.widgets[x].pageId === pageId) {
-                results.push(this.widgets[x]);
-            }
-        }
-        return results;
+        var url = this.baseUrl + '/api/page/' + pageId + '/widget';
+        return this.http.get(url)
+            .map(function (response) {
+            return response.json();
+        });
     };
     // retrieves the widget in local widgets array whose _id matches the widgetId parameter
     WidgetService.prototype.findWidgetById = function (widgetId) {
-        return this.widgets.find(function (widget) {
-            return widget._id === widgetId;
+        var url = this.baseUrl + '/api/widget/' + widgetId;
+        return this.http.get(url)
+            .map(function (response) {
+            return response.json();
         });
     };
     // updates the widget in local widgets array whose _id matches the widgetId parameter
     WidgetService.prototype.updateWidget = function (widgetId, widget) {
-        var oldWidget = this.findWidgetById(widgetId);
-        var index = this.widgets.indexOf(oldWidget);
-        this.widgets[index].size = widget.size;
-        this.widgets[index].text = widget.text;
-        this.widgets[index].width = widget.width;
-        this.widgets[index].url = widget.url;
+        var url = this.baseUrl + '/api/widget/' + widgetId;
+        return this.http.put(url, widget)
+            .map(function (response) {
+            return response.json();
+        });
     };
     // removes the widget from local widgets array whose _id matches the widgetId parameter
     WidgetService.prototype.deleteWidget = function (widgetId) {
-        var oldPage = this.findWidgetById(widgetId);
-        var index = this.widgets.indexOf(oldPage);
-        this.widgets.splice(index, 1);
+        var url = this.baseUrl + '/api/widget/' + widgetId;
+        return this.http.delete(url)
+            .map(function (response) {
+            return response.json();
+        });
     };
     return WidgetService;
 }());
