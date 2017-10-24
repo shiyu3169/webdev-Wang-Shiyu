@@ -13,7 +13,7 @@ export class WebsiteService {
   constructor(private http: Http) {}
 
   // adds the website parameter instance to the local websites array. The new website's developerId is set to the userId parameter
-  createWebsite(userId, website) {
+  createWebsite(userId: String, website: Website) {
     const url = this.baseUrl + '/api/user/' + userId + '/website';
     return this.http.post(url, website)
       .map(
@@ -24,7 +24,7 @@ export class WebsiteService {
   }
 
   // retrieves the websites in local websites array whose developerId matches the parameter userId
-  findWebsitesByUser(userId) {
+  findWebsitesByUser(userId: String) {
     const url = this.baseUrl + '/api/user/' + userId + '/website';
     return this.http.get(url)
       .map(
@@ -35,7 +35,7 @@ export class WebsiteService {
   }
 
   // retrieves the website in local websites array whose _id matches the websiteId parameter
-  findWebsiteById(websiteId) {
+  findWebsiteById(websiteId: String) {
     const url = this.baseUrl + '/api/website/' + websiteId;
     return this.http.get(url)
       .map(
@@ -46,7 +46,7 @@ export class WebsiteService {
   }
 
   // updates the website in local websites array whose _id matches the websiteId parameter
-  updateWebsite(websiteId, website) {
+  updateWebsite(websiteId: String, website: Website) {
     const url = this.baseUrl + '/api/website/' + websiteId;
     return this.http.put(url, website)
       .map(
@@ -57,7 +57,7 @@ export class WebsiteService {
   }
 
   // removes the website from local websites array whose _id matches the websiteId parameter
-  deleteWebsite(websiteId) {
+  deleteWebsite(websiteId: String) {
     const url = this.baseUrl + '/api/website/' + websiteId;
     return this.http.delete(url)
       .map(

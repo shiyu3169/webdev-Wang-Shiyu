@@ -52,10 +52,9 @@ module.exports = function (app) {
   }
 
   function selectUserByID(uid) {
-    var user = users.find(function (user) {
+    return users.find(function (user) {
       return user._id === uid;
     });
-    return user;
   }
 
   function findUserByID(req, res) {

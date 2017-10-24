@@ -39,10 +39,9 @@ module.exports = function (app) {
   }
 
   function selectWebsiteById(wid) {
-    var web = websites.find(function (website) {
+    return websites.find(function(website) {
       return website._id === wid;
     });
-    return web;
   }
 
   function findWebsiteById(req, res) {

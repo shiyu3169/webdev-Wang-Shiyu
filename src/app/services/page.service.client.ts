@@ -1,8 +1,16 @@
 import { Injectable } from '@angular/core';
 import {Page} from '../models/page.model.client';
+import { Http, Response } from '@angular/http';
+import 'rxjs/Rx';
+import { environment } from '../../environments/environment';
 
 @Injectable()
 export class PageService {
+
+  baseUrl = environment.baseUrl;
+
+  constructor(private http: Http) {}
+
   pages: Page[ ] =
     [
       { '_id': '321', 'name': 'Post 1', 'websiteId': '456', 'description': 'Lorem' },
@@ -16,47 +24,58 @@ export class PageService {
   }
 
   // adds the page parameter instance to the local pages array. The new page's websiteId is set to the websiteId parameter
-  createPage(websiteId, page) {
-    const newPage = {
-      _id: this.nextId(),
-      name: page.name,
-      websiteId: websiteId,
-      description: page.description
-    };
-    this.pages.push(newPage);
+  createPage(websiteId: String, page: Page) {
+    const url = this.baseUrl + '/api/website/' + websiteId + '/page';
+    return this.http.post(url, page)
+      .map(
+        (response: Response) => {
+          return response.json();
+        }
+      );
   }
 
   // retrieves the pages in local pages array whose websiteId matches the parameter websiteId
-  findPageByWebsiteId(websiteId) {
-    const results = [];
-    for (let x = 0; x < this.pages.length; x++) {
-      if (this.pages[x].websiteId === websiteId) {
-        results.push(this.pages[x]);
-      }
-    }
-    return results;
+  findPageByWebsiteId(websiteId: String) {
+    const url = this.baseUrl + '/api/website/' + websiteId + '/page';
+    return this.http.get(url)
+      .map(
+        (response: Response) => {
+          return response.json();
+        }
+      );
   }
 
   // retrieves the page in local pages array whose _id matches the pageId parameter
-  findPageById(pageId) {
-    return this.pages.find(function(page) {
-      return page._id === pageId;
-    });
+  findPageById(pageId: String) {
+    const url = this.baseUrl + '/api/page/' + pageId;
+    return this.http.get(url)
+      .map(
+        (response: Response) => {
+          return response.json();
+        }
+      );
   }
 
   // updates the page in local pages array whose _id matches the pageId parameter
-  updatePage(pageId, page) {
-    const oldPage = this.findPageById(pageId);
-    const index = this.pages.indexOf(oldPage);
-    this.pages[index].name = page.name;
-    this.pages[index].description = page.description;
+  updatePage(pageId: String, page: Page) {
+    const url = this.baseUrl + '/api/page/' + pageId;
+    return this.http.put(url, page)
+      .map(
+        (response: Response) => {
+          return response.json();
+        }
+      );
   }
 
   // removes the page from local pages array whose _id matches the pageId parameter
-  deletePage(pageId) {
-    const oldPage = this.findPageById(pageId);
-    const index = this.pages.indexOf(oldPage);
-    this.pages.splice(index, 1);
+  deletePage(pageId: String) {
+    const url = this.baseUrl + '/api/page/' + pageId;
+    return this.http.delete(url)
+      .map(
+        (response: Response) => {
+          return response.json();
+        }
+      );
   }
 
 }
