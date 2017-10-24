@@ -49,12 +49,8 @@ serverSide(app);
 //   res.sendFile(path.join(__dirname, 'dist/index.html'));
 // });
 
-// app.get("/api/hello", function(req, res) {
-//   res.send({message: "Hello from handler"})
-// });
-
-// server.listen( port , () => console.log('Running'));
 
 require("./server/app")(app);
 
 server.listen(port);
+// server.listen( port , () => console.log('Running'));

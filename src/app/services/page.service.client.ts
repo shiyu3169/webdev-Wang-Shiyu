@@ -11,18 +11,6 @@ export class PageService {
 
   constructor(private http: Http) {}
 
-  pages: Page[ ] =
-    [
-      { '_id': '321', 'name': 'Post 1', 'websiteId': '456', 'description': 'Lorem' },
-      { '_id': '432', 'name': 'Post 2', 'websiteId': '456', 'description': 'Lorem' },
-      { '_id': '543', 'name': 'Post 3', 'websiteId': '456', 'description': 'Lorem' }
-    ];
-
-  // generates next id for new page
-  nextId() {
-    return (Number(this.pages[this.pages.length - 1]._id) + 1).toString();
-  }
-
   // adds the page parameter instance to the local pages array. The new page's websiteId is set to the websiteId parameter
   createPage(websiteId: String, page: Page) {
     const url = this.baseUrl + '/api/website/' + websiteId + '/page';

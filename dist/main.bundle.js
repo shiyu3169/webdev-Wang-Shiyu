@@ -373,7 +373,7 @@ var PageEditComponent = (function () {
         this.name = this.pageForm.value.name;
         this.title = this.pageForm.value.title;
         var updatedPage = {
-            _id: this.pageService.nextId(),
+            _id: this.page._id,
             name: this.name,
             websiteId: this.wid,
             description: this.title
@@ -1907,16 +1907,7 @@ var PageService = (function () {
     function PageService(http) {
         this.http = http;
         this.baseUrl = __WEBPACK_IMPORTED_MODULE_3__environments_environment__["a" /* environment */].baseUrl;
-        this.pages = [
-            { '_id': '321', 'name': 'Post 1', 'websiteId': '456', 'description': 'Lorem' },
-            { '_id': '432', 'name': 'Post 2', 'websiteId': '456', 'description': 'Lorem' },
-            { '_id': '543', 'name': 'Post 3', 'websiteId': '456', 'description': 'Lorem' }
-        ];
     }
-    // generates next id for new page
-    PageService.prototype.nextId = function () {
-        return (Number(this.pages[this.pages.length - 1]._id) + 1).toString();
-    };
     // adds the page parameter instance to the local pages array. The new page's websiteId is set to the websiteId parameter
     PageService.prototype.createPage = function (websiteId, page) {
         var url = this.baseUrl + '/api/website/' + websiteId + '/page';
