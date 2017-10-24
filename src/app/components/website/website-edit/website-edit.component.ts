@@ -18,7 +18,12 @@ export class WebsiteEditComponent implements OnInit {
   websites: Website[];
   name: String;
   description: String;
-  website: Website;
+  website: Website = {
+    _id: '',
+    name: '',
+    developerId: '',
+    description: ''
+  };
 
   constructor(private websiteService: WebsiteService,
               private activeRouter: ActivatedRoute, private router: Router) { }
@@ -28,28 +33,48 @@ export class WebsiteEditComponent implements OnInit {
     this.description = this.webForm.value.description;
 
     const updatedWeb: Website = {
-      _id: this.websiteService.nextId(),
+      _id: this.website._id,
       name: this.name,
       developerId: this.uid,
       description: this.description
     };
-    this.websiteService.updateWebsite(this.wid, updatedWeb);
-    this.router.navigate(['user', this.uid, 'website']);
+    this.websiteService.updateWebsite(this.wid, updatedWeb)
+      .subscribe(
+        (website: Website) => {
+          this.website = website;
+          this.router.navigate(['user', this.uid, 'website']);
+        }
+      );
   }
 
   remove() {
-    this.websiteService.deleteWebsite(this.wid);
-    this.router.navigate(['user', this.uid, 'website']);
+    this.websiteService.deleteWebsite(this.wid)
+      .subscribe(
+        (websites: Website[]) => {
+          this.websites = websites;
+          this.router.navigate(['user', this.uid, 'website']);
+    }
+      );
   }
 
   ngOnInit() {
     this.activeRouter.params.subscribe(params => {
       this.uid = params['uid'];
       this.wid = params['wid'];
-      this.websites = this.websiteService.findWebsitesByUser(this.uid);
-      this.website = this.websiteService.findWebsiteById(this.wid);
-      this.name = this.website.name;
-      this.description = this.website.description;
+      this.websiteService.findWebsitesByUser(this.uid)
+        .subscribe(
+          (websites: Website[]) => {
+            this.websites = websites;
+            this.websiteService.findWebsiteById(this.wid)
+              .subscribe(
+                (website: Website) => {
+                  this.website = website;
+                  this.name = this.website.name;
+                  this.description = this.website.description;
+                }
+              );
+          }
+        );
     });
   }
 

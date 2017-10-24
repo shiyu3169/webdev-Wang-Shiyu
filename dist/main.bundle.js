@@ -1044,32 +1044,52 @@ var WebsiteEditComponent = (function () {
         this.websiteService = websiteService;
         this.activeRouter = activeRouter;
         this.router = router;
+        this.website = {
+            _id: '',
+            name: '',
+            developerId: '',
+            description: ''
+        };
     }
     WebsiteEditComponent.prototype.update = function () {
+        var _this = this;
         this.name = this.webForm.value.name;
         this.description = this.webForm.value.description;
         var updatedWeb = {
-            _id: this.websiteService.nextId(),
+            _id: this.website._id,
             name: this.name,
             developerId: this.uid,
             description: this.description
         };
-        this.websiteService.updateWebsite(this.wid, updatedWeb);
-        this.router.navigate(['user', this.uid, 'website']);
+        this.websiteService.updateWebsite(this.wid, updatedWeb)
+            .subscribe(function (website) {
+            _this.website = website;
+            _this.router.navigate(['user', _this.uid, 'website']);
+        });
     };
     WebsiteEditComponent.prototype.remove = function () {
-        this.websiteService.deleteWebsite(this.wid);
-        this.router.navigate(['user', this.uid, 'website']);
+        var _this = this;
+        this.websiteService.deleteWebsite(this.wid)
+            .subscribe(function (websites) {
+            _this.websites = websites;
+            _this.router.navigate(['user', _this.uid, 'website']);
+        });
     };
     WebsiteEditComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.activeRouter.params.subscribe(function (params) {
             _this.uid = params['uid'];
             _this.wid = params['wid'];
-            _this.websites = _this.websiteService.findWebsitesByUser(_this.uid);
-            _this.website = _this.websiteService.findWebsiteById(_this.wid);
-            _this.name = _this.website.name;
-            _this.description = _this.website.description;
+            _this.websiteService.findWebsitesByUser(_this.uid)
+                .subscribe(function (websites) {
+                _this.websites = websites;
+                _this.websiteService.findWebsiteById(_this.wid)
+                    .subscribe(function (website) {
+                    _this.website = website;
+                    _this.name = _this.website.name;
+                    _this.description = _this.website.description;
+                });
+            });
         });
     };
     return WebsiteEditComponent;
@@ -1146,7 +1166,10 @@ var WebsiteListComponent = (function () {
         var _this = this;
         this.router.params.subscribe(function (params) {
             _this.uid = params['uid'];
-            _this.websites = _this.websiteService.findWebsitesByUser(_this.uid);
+            _this.websiteService.findWebsitesByUser(_this.uid)
+                .subscribe(function (websites) {
+                _this.websites = websites;
+            });
         });
     };
     return WebsiteListComponent;
@@ -1219,22 +1242,29 @@ var WebsiteNewComponent = (function () {
         this.router = router;
     }
     WebsiteNewComponent.prototype.create = function () {
+        var _this = this;
         this.name = this.webForm.value.name;
         this.description = this.webForm.value.description;
         var newWebsite = {
-            _id: this.websiteService.nextId(),
+            _id: '',
             name: this.name,
             developerId: this.uid,
             description: this.description
         };
-        this.websiteService.createWebsite(this.uid, newWebsite);
-        this.router.navigate(['user', this.uid, 'website']);
+        this.websiteService.createWebsite(this.uid, newWebsite)
+            .subscribe(function (websites) {
+            _this.websites = websites;
+            _this.router.navigate(['user', _this.uid, 'website']);
+        });
     };
     WebsiteNewComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.activatedRoute.params.subscribe(function (params) {
             _this.uid = params['uid'];
-            _this.websites = _this.websiteService.findWebsitesByUser(_this.uid);
+            _this.websiteService.findWebsitesByUser(_this.uid)
+                .subscribe(function (websites) {
+                _this.websites = websites;
+            });
         });
     };
     return WebsiteNewComponent;
@@ -2061,74 +2091,76 @@ var _a;
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return WebsiteService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__("../../../http/@angular/http.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__ = __webpack_require__("../../../../rxjs/Rx.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__environments_environment__ = __webpack_require__("../../../../../src/environments/environment.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
 
 var WebsiteService = (function () {
-    function WebsiteService() {
-        this.websites = [
-            { '_id': '123', 'name': 'Facebook', 'developerId': '456', 'description': 'Lorem' },
-            { '_id': '234', 'name': 'Tweeter', 'developerId': '456', 'description': 'Lorem' },
-            { '_id': '456', 'name': 'Gizmodo', 'developerId': '456', 'description': 'Lorem' },
-            { '_id': '890', 'name': 'Go', 'developerId': '123', 'description': 'Lorem' },
-            { '_id': '567', 'name': 'Tic Tac Toe', 'developerId': '123', 'description': 'Lorem' },
-            { '_id': '678', 'name': 'Checkers', 'developerId': '123', 'description': 'Lorem' },
-            { '_id': '789', 'name': 'Chess', 'developerId': '234', 'description': 'Lorem' }
-        ];
+    function WebsiteService(http) {
+        this.http = http;
+        this.baseUrl = __WEBPACK_IMPORTED_MODULE_3__environments_environment__["a" /* environment */].baseUrl;
     }
-    // generates next id for new website
-    WebsiteService.prototype.nextId = function () {
-        return (Number(this.websites[this.websites.length - 1]._id) + 10).toString();
-    };
     // adds the website parameter instance to the local websites array. The new website's developerId is set to the userId parameter
     WebsiteService.prototype.createWebsite = function (userId, website) {
-        var newWeb = {
-            _id: this.nextId(),
-            name: website.name,
-            developerId: userId,
-            description: website.description
-        };
-        this.websites.push(newWeb);
+        var url = this.baseUrl + '/api/user/' + userId + '/website';
+        return this.http.post(url, website)
+            .map(function (response) {
+            return response.json();
+        });
     };
     // retrieves the websites in local websites array whose developerId matches the parameter userId
     WebsiteService.prototype.findWebsitesByUser = function (userId) {
-        var results = [];
-        for (var x = 0; x < this.websites.length; x++) {
-            if (this.websites[x].developerId === userId) {
-                results.push(this.websites[x]);
-            }
-        }
-        return results;
+        var url = this.baseUrl + '/api/user/' + userId + '/website';
+        return this.http.get(url)
+            .map(function (response) {
+            return response.json();
+        });
     };
     // retrieves the website in local websites array whose _id matches the websiteId parameter
     WebsiteService.prototype.findWebsiteById = function (websiteId) {
-        return this.websites.find(function (website) {
-            return website._id === websiteId;
+        var url = this.baseUrl + '/api/website/' + websiteId;
+        return this.http.get(url)
+            .map(function (response) {
+            return response.json();
         });
     };
     // updates the website in local websites array whose _id matches the websiteId parameter
     WebsiteService.prototype.updateWebsite = function (websiteId, website) {
-        var oldWeb = this.findWebsiteById(websiteId);
-        var index = this.websites.indexOf(oldWeb);
-        this.websites[index].name = website.name;
-        this.websites[index].description = website.description;
+        var url = this.baseUrl + '/api/website/' + websiteId;
+        return this.http.put(url, website)
+            .map(function (response) {
+            return response.json();
+        });
     };
     // removes the website from local websites array whose _id matches the websiteId parameter
     WebsiteService.prototype.deleteWebsite = function (websiteId) {
-        var oldWeb = this.findWebsiteById(websiteId);
-        var index = this.websites.indexOf(oldWeb);
-        this.websites.splice(index, 1);
+        var url = this.baseUrl + '/api/website/' + websiteId;
+        return this.http.delete(url)
+            .map(function (response) {
+            return response.json();
+        });
     };
     return WebsiteService;
 }());
 WebsiteService = __decorate([
-    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["C" /* Injectable */])()
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["C" /* Injectable */])(),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Http */]) === "function" && _a || Object])
 ], WebsiteService);
 
+var _a;
 //# sourceMappingURL=website.service.client.js.map
 
 /***/ }),
