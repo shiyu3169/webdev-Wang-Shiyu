@@ -52,5 +52,5 @@ serverSide(app);
 
 require("./server/app")(app);
 
-server.listen(port);
-// server.listen( port , () => console.log('Running'));
+// server.listen(port);
+server.listen( port , function() {console.log('Running on ' + app.get('port'));});
