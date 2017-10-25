@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { ActivatedRoute} from '@angular/router';
 import { WidgetService } from '../../../services/widget.service.client';
 import { Widget } from '../../../models/widget.model.client';
-import {DomSanitizer} from '@angular/platform-browser';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-widget-list',
@@ -18,7 +18,7 @@ export class WidgetListComponent implements OnInit {
   constructor(private widgetService: WidgetService, private router: ActivatedRoute, private sanitizer: DomSanitizer) { }
 
   getYoutubeEmbedUrl(link: String) {
-    let embedUrl = 'https://www.youtube.com/embed/'
+    let embedUrl = 'https://www.youtube.com/embed/';
     const parsedLink = link.split('/');
     embedUrl += parsedLink[parsedLink.length - 1];
     return this.sanitizer.bypassSecurityTrustResourceUrl(embedUrl);

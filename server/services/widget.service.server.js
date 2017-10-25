@@ -9,7 +9,7 @@ module.exports = function (app) {
   app.get("/api/widget/:wgid", findWidgetById);
   app.put("/api/widget/:wgid", updateWidget);
   app.delete("/api/widget/:wgid", deleteWidget);
-  app.put("/api/");
+  app.put("/api/page/:pageId/widget?initial=index1&final=index2");
   var widgets =
     [
       { '_id': '123', 'widgetType': 'HEADING', 'pageId': '321', 'size': 2, 'text': 'GIZMODO'},
