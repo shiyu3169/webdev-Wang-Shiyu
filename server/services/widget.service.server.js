@@ -4,14 +4,12 @@ module.exports = function (app) {
   var upload = multer({ dest: __dirname+'/../../src/public/uploads' });
 
   app.post ("/api/upload", upload.single('myFile'), uploadImage);
-
-
   app.post("/api/page/:pid/widget", createWidget);
   app.get("/api/page/:pid/widget", findAllWidgetsForPage);
   app.get("/api/widget/:wgid", findWidgetById);
   app.put("/api/widget/:wgid", updateWidget);
   app.delete("/api/widget/:wgid", deleteWidget);
-
+  app.put("/api/");
   var widgets =
     [
       { '_id': '123', 'widgetType': 'HEADING', 'pageId': '321', 'size': 2, 'text': 'GIZMODO'},
@@ -43,7 +41,7 @@ module.exports = function (app) {
     widget = selectWidgetById(widgetId);
     widget.url = '/uploads/'+filename;
 
-    var callbackUrl   = "http://localhost:4200" + "/user/" + userId + "/website/" + websiteId + "/page/" + pageId + "/widget/" + widgetId;
+    var callbackUrl   = req.headers.origin + "/user/" + userId + "/website/" + websiteId + "/page/" + pageId + "/widget/" + widgetId;
 
     res.redirect(callbackUrl);
   }
