@@ -1,5 +1,11 @@
 
 module.exports = function (app) {
+  var multer = require('multer'); // npm install multer --save
+  var upload = multer({ dest: __dirname+'/../../src/public/uploads' });
+
+  app.post ("/api/upload", upload.single('myFile'), uploadImage);
+
+
   app.post("/api/page/:pid/widget", createWidget);
   app.get("/api/page/:pid/widget", findAllWidgetsForPage);
   app.get("/api/widget/:wgid", findWidgetById);
@@ -16,6 +22,32 @@ module.exports = function (app) {
       { '_id': '678', 'widgetType': 'YOUTUBE', 'pageId': '321', 'width': '100%', 'url': 'https://youtu.be/AM2Ivdi9c4E' },
       { '_id': '789', 'widgetType': 'HTML', 'pageId': '321', 'text': '<p>Lorem ipsum</p>'}
     ];
+
+  function uploadImage(req, res) {
+
+    var widgetId = req.body.widgetId;
+    var width = req.body.width;
+    var myFile = req.file;
+
+    var userId = req.body.userId;
+    var websiteId = req.body.websiteId;
+    var pageId = req.body.pageId;
+
+    var originalname = myFile.originalname; // file name on user's computer
+    var filename = myFile.filename;     // new file name in upload folder
+    var path = myFile.path;         // full path of uploaded file
+    var destination = myFile.destination;  // folder where file is saved to
+    var size = myFile.size;
+    var mimetype = myFile.mimetype;
+
+    widget = selectWidgetById(widgetId);
+    widget.url = '/uploads/'+filename;
+
+    var callbackUrl   = "http://localhost:4200" + "/user/" + userId + "/website/" + websiteId + "/page/" + pageId + "/widget/" + widgetId;
+
+    res.redirect(callbackUrl);
+  }
+
 
   // generates next id for new user
   function nextId() {

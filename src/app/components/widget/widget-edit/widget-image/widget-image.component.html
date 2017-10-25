@@ -71,11 +71,15 @@
     </div>
     <span class="help-block"
           *ngIf="!width.valid && width.touched">Width can't be empty!</span>
-    <!--<div class="form-group">-->
-      <!--<label for="image-file">Upload</label>-->
-      <!--<input type="file" id="image-file" class="form-control">-->
-      <!--<a href="#" class="btn btn-primary btn-block">Upload Image</a>-->
-    <!--</div>-->
+    <form ngNoForm action="{{baseUrl}}/api/upload" method="post" enctype="multipart/form-data">
+      <input  name="myFile"   type="file" class="form-control"/>
+      <input  name="widgetId" value="{{wgid}}"   style="display: none"/>
+      <input  name="websiteId" value="{{wid}}"   style="display: none"/>
+      <input  name="pageId" value="{{pid}}"   style="display: none"/>
+      <input  name="userId" value="{{uid}}"   style="display: none"/>
+      <button type="submit" class="btn btn-block btn-primary">Upload Image</button>
+      <br/>
+    </form>
     <div class="row">
       <div class="col-xs-6">
         <a routerLink="/user/{{uid}}/website/{{wid}}/page/{{pid}}/widget"
