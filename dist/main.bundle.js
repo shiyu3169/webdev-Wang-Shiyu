@@ -748,8 +748,13 @@ var LoginComponent = (function () {
         this.password = this.loginForm.value.password;
         this.userService.findUserByCredentials(this.username, this.password)
             .subscribe(function (user) {
-            _this.errorFlag = false;
-            _this.router.navigate(['/user/', user._id]);
+            if (user === null) {
+                _this.errorFlag = true;
+            }
+            else {
+                _this.errorFlag = false;
+                _this.router.navigate(['/user/', user._id]);
+            }
         }, function (error) {
             _this.errorFlag = true;
         });
