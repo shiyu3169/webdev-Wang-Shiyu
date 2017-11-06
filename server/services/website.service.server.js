@@ -22,20 +22,17 @@ module.exports = function (app) {
     var userId = req.params["uid"];
     var newWeb = req.body;
     websiteModel.createWebsiteForUser(userId, newWeb)
-      .then(function (website) {
-        res.json(website);
+      .then(function () {
+        res.json(null);
       });
   }
 
   function findAllWebsitesForUser(req, res) {
     var uid = req.params["uid"];
-    const results = [];
-    for (var x = 0; x < websites.length; x++) {
-      if (websites[x].developerId === uid) {
-        results.push(websites[x]);
-      }
-    }
-    res.json(results);
+    websiteModel.findAllWebsitesForUser(uid)
+      .then(function(websites) {
+        res.json(websites);
+      });
   }
 
   function selectWebsiteById(wid) {

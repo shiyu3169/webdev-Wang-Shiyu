@@ -7,14 +7,14 @@ var UserSchema = require('../user/user.schema.server');
 var UserModel = mongoose.model('UserModel', UserSchema);
 
 WebsiteModel.createWebsiteForUser = createWebsiteForUser;
-// WebsiteModel.findAllWebsitesForUser = findAllWebsitesForUser;
+WebsiteModel.findAllWebsitesForUser = findAllWebsitesForUser;
 // WebsiteModel.findWebsiteById = findWebsiteById;
 // WebsiteModel.updateWebsite = updateWebsite;
 // WebsiteModel.deleteWebsite = deleteWebsite;
 
 module.exports = WebsiteModel;
 
-function createWebsiteForUser(userId, website){
+function createWebsiteForUser(userId, website) {
   return WebsiteModel.create(website)
     .then(function (website) {
       var web = website;
@@ -24,4 +24,8 @@ function createWebsiteForUser(userId, website){
           return user.save();
         });
     });
+}
+
+function findAllWebsitesForUser(userId) {
+  return WebsiteModel.find({developerId: userId});
 }
