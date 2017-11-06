@@ -11,11 +11,9 @@ UserModel.deleteUser = deleteUser;
 
 module.exports = UserModel;
 
+
 function createUser(user) {
-  UserModel.create(user, function(err, doc) {
-    console.log(err);
-    console.log(doc);
-  });
+  return UserModel.create(user);
 }
 
 function findUserById(uid) {

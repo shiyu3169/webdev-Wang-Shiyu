@@ -22,9 +22,11 @@ module.exports = function (app) {
 
   function createUser(req, res) {
     var newUser = req.body;
-    newUser._id = nextId();
-    users.push(newUser);
-    res.json(newUser);
+    // newUser._id = nextId();
+    userModel.createUser(newUser)
+      .then(function(user) {
+        res.json(user);
+      })
   }
 
   function findUsers(req, res) {
@@ -37,14 +39,6 @@ module.exports = function (app) {
         });
       return;
     } else if(username) {
-      // var user = users.find(function (user) {
-      //   return user.username === username;
-      // });
-      // if (user) {
-      //   res.json(user);
-      // } else {
-      //   res.json(null);
-      // }
       userModel.findUserByUsername(username)
         .then(function(user){
           res.json(user);

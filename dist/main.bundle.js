@@ -748,7 +748,7 @@ var LoginComponent = (function () {
         this.password = this.loginForm.value.password;
         this.userService.findUserByCredentials(this.username, this.password)
             .subscribe(function (user) {
-            if (user === null) {
+            if (!user) {
                 _this.errorFlag = true;
             }
             else {
@@ -977,7 +977,6 @@ var RegisterComponent = (function () {
                 _this.user = user;
                 if (!_this.user) {
                     var newUser = {
-                        _id: '',
                         username: _this.username,
                         password: _this.password,
                         firstName: '',

@@ -28,7 +28,7 @@ export class LoginComponent implements OnInit {
     this.userService.findUserByCredentials(this.username, this.password)
       .subscribe(
         (user: User) => {
-          if (user === null) {
+          if (!user) {
             this.errorFlag = true;
           } else {
           this.errorFlag = false;
