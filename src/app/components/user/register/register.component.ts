@@ -39,7 +39,7 @@ export class RegisterComponent implements OnInit {
           (user: User) => {
             this.user = user;
             if (!this.user) {
-              const newUser = {
+              const newUser: User = {
                 username: this.username,
                 password: this.password,
                 firstName: '',

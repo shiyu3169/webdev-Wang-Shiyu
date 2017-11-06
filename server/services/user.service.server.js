@@ -48,17 +48,8 @@ module.exports = function (app) {
     res.json(users);
   }
 
-  // function selectUserByID(uid) {
-  //   userModel.findUserById(uid)
-  //     .then(function(user) {
-  //       return user;
-  //     });
-  // }
-
   function findUserByID(req, res) {
     var uid = req.params["uid"];
-    // var user = selectUserByID(uid);
-    // res.json(user);
     userModel.findUserById(uid)
       .then(function(user) {
         res.json(user);
@@ -76,12 +67,9 @@ module.exports = function (app) {
   function updateUser(req, res) {
     var uid = req.params["uid"];
     var newUser = req.body;
-    var oldUser = selectUserByID(uid);
-    var index = users.indexOf(oldUser);
-    users[index].username = newUser.username;
-    users[index].firstName = newUser.firstName;
-    users[index].lastName = newUser.lastName;
-    users[index].email = newUser.email;
-    res.json(newUser);
+    userModel.updateUser(uid, newUser)
+      .then(function(user) {
+        res.json(user);
+      })
   }
 };

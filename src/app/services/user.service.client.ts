@@ -33,7 +33,7 @@ export class UserService {
   }
 
   //  adds the user parameter instance to the local users array
-  createUser(user) {
+  createUser(user: User) {
     const url =  this.baseUrl + '/api/user';
     return this.http.post(url, user)
       .map(

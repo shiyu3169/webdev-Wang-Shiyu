@@ -829,9 +829,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 var ProfileComponent = (function () {
-    function ProfileComponent(userService, router) {
+    function ProfileComponent(userService, router, route) {
         this.userService = userService;
         this.router = router;
+        this.route = route;
         this.user = {
             _id: this.uid,
             username: this.username,
@@ -852,27 +853,25 @@ var ProfileComponent = (function () {
         this.userService.findUserByUsername(this.username)
             .subscribe(function (user) {
             _this.aUser = user;
+            if (_this.aUser !== null && _this.username !== _this.prevUsername) {
+                _this.usernameTaken = true;
+            }
+            else {
+                var updatedUser = {
+                    username: _this.username,
+                    password: _this.user.password,
+                    firstName: _this.firstName,
+                    lastName: _this.lastName,
+                    email: _this.email
+                };
+                _this.userService.updateUser(_this.uid, updatedUser)
+                    .subscribe(function (newU) {
+                    _this.route.navigate(['/user/', _this.uid]);
+                });
+                _this.submitSuccess = true;
+                _this.prevUsername = _this.username;
+            }
         });
-        console.log(this.aUser);
-        if (this.aUser && this.username !== this.prevUsername) {
-            this.usernameTaken = true;
-        }
-        else {
-            var updatedUser = {
-                _id: this.user._id,
-                username: this.username,
-                password: this.user.password,
-                firstName: this.firstName,
-                lastName: this.lastName,
-                email: this.email
-            };
-            this.userService.updateUser(this.uid, updatedUser)
-                .subscribe(function (newU) {
-                _this.user = newU;
-            });
-            this.submitSuccess = true;
-            this.prevUsername = this.username;
-        }
     };
     ProfileComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -901,10 +900,10 @@ ProfileComponent = __decorate([
         template: __webpack_require__("../../../../../src/app/components/user/profile/profile.component.html"),
         styles: [__webpack_require__("../../../../../src/app/components/user/profile/profile.component.css")]
     }),
-    __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__services_user_service_client__["a" /* UserService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_user_service_client__["a" /* UserService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */]) === "function" && _c || Object])
+    __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__services_user_service_client__["a" /* UserService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_user_service_client__["a" /* UserService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */]) === "function" && _d || Object])
 ], ProfileComponent);
 
-var _a, _b, _c;
+var _a, _b, _c, _d;
 //# sourceMappingURL=profile.component.js.map
 
 /***/ }),

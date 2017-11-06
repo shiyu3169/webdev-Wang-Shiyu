@@ -1,5 +1,5 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {UserService} from '../../../services/user.service.client';
 import {User} from '../../../models/user.model.client';
 import {NgForm} from '@angular/forms';
@@ -31,7 +31,7 @@ export class ProfileComponent implements OnInit {
   };
   aUser: User;
 
-  constructor(private userService: UserService, private router: ActivatedRoute) {
+  constructor(private userService: UserService, private router: ActivatedRoute, private route: Router) {
   }
 
   update() {
@@ -46,29 +46,27 @@ export class ProfileComponent implements OnInit {
       .subscribe(
         (user: User) => {
           this.aUser = user;
+          if (this.aUser !== null && this.username !== this.prevUsername) {
+            this.usernameTaken = true;
+          } else {
+            const updatedUser: User = {
+              username: this.username,
+              password: this.user.password,
+              firstName: this.firstName,
+              lastName: this.lastName,
+              email: this.email
+            };
+            this.userService.updateUser(this.uid, updatedUser)
+              .subscribe(
+                (newU: User) => {
+                  this.route.navigate(['/user/', this.uid]);
+                }
+              );
+            this.submitSuccess = true;
+            this.prevUsername = this.username;
+          }
         }
       );
-    console.log(this.aUser);
-    if (this.aUser && this.username !== this.prevUsername) {
-      this.usernameTaken = true;
-    } else {
-      const updatedUser: User = {
-        _id: this.user._id,
-        username: this.username,
-        password: this.user.password,
-        firstName: this.firstName,
-        lastName: this.lastName,
-        email: this.email
-      };
-      this.userService.updateUser(this.uid, updatedUser)
-        .subscribe(
-          (newU: User) => {
-            this.user = newU;
-          }
-        );
-      this.submitSuccess = true;
-      this.prevUsername = this.username;
-    }
   }
 
 
