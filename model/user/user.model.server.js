@@ -33,8 +33,5 @@ function updateUser(userId, user) {
 }
 
 function deleteUser(userId) {
-  UserModel.find(username, function(err, doc) {
-    console.log(err);
-    console.log(doc);
-  });
+  return UserModel.remove({_id:userId});
 }

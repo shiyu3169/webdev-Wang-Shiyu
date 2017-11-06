@@ -8,13 +8,6 @@ module.exports = function (app) {
   app.put("/api/user/:uid", updateUser);
   app.delete("/api/user/:uid", deleteUser);
 
-  var users = [
-    {_id: '123', username: 'alice',    password: 'alice',    firstName: 'Alice',  lastName: 'Wonder', email: 'alice@gmail.com' },
-    {_id: '234', username: 'bob',      password: 'bob',      firstName: 'Bob',    lastName: 'Marley', email: 'bob@gmail.com' },
-    {_id: '345', username: 'charly',   password: 'charly',   firstName: 'Charly', lastName: 'Garcia', email: 'charly@gmail.com' },
-    {_id: '456', username: 'jannunzi', password: 'jannunzi', firstName: 'Jose',   lastName: 'Annunzi', email: 'jan@hotmail.com' }
-  ];
-
   // generates next id for new user
   function nextId() {
     return (Number(users[users.length - 1]._id) + 1).toString();
@@ -45,7 +38,7 @@ module.exports = function (app) {
         });
       return;
     }
-    res.json(users);
+    res.json(null);
   }
 
   function findUserByID(req, res) {
@@ -58,10 +51,14 @@ module.exports = function (app) {
 
   function deleteUser(req, res) {
     var uid = req.params["uid"];
-    var user = selectUserByID(uid);
-    var index = users.indexOf(user);
-    users.splice(index, 1);
-    res.json(users);
+    userModel.deleteUser(uid)
+      .then(function(user) {
+        res.json(user);
+      });
+    // var user = selectUserByID(uid);
+    // var index = users.indexOf(user);
+    // users.splice(index, 1);
+    // res.json(users);
   }
 
   function updateUser(req, res) {
