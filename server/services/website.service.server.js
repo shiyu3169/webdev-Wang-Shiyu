@@ -1,4 +1,7 @@
 module.exports = function (app) {
+
+  var websiteModel = require('../../model/website/website.model.server');
+
   app.post("/api/user/:uid/website", createWebsite);
   app.get("/api/user/:uid/website", findAllWebsitesForUser);
   app.get("/api/website/:wid", findWebsiteById);
@@ -15,16 +18,13 @@ module.exports = function (app) {
     { '_id': '789', 'name': 'Chess',       'developerId': '234', 'description': 'Lorem' }
   ];
 
-  // generates next id for new user
-  function nextId() {
-    return (Number(websites[websites.length - 1]._id) + 1).toString();
-  }
-
   function createWebsite(req, res) {
+    var userId = req.params["uid"];
     var newWeb = req.body;
-    newWeb._id = nextId();
-    websites.push(newWeb);
-    res.json(websites);
+    websiteModel.createWebsiteForUser(userId, newWeb)
+      .then(function (website) {
+        res.json(website);
+      });
   }
 
   function findAllWebsitesForUser(req, res) {

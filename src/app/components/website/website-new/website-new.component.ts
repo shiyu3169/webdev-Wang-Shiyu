@@ -26,7 +26,6 @@ export class WebsiteNewComponent implements OnInit {
     this.description = this.webForm.value.description;
 
     const newWebsite: Website = {
-      _id: '',
       name: this.name,
       developerId: this.uid,
       description: this.description
@@ -34,7 +33,6 @@ export class WebsiteNewComponent implements OnInit {
     this.websiteService.createWebsite(this.uid, newWebsite)
       .subscribe(
         (websites: Website[]) => {
-          this.websites = websites;
           this.router.navigate(['user', this.uid, 'website']);
         }
       );

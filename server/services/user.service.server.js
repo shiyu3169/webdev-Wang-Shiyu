@@ -8,14 +8,8 @@ module.exports = function (app) {
   app.put("/api/user/:uid", updateUser);
   app.delete("/api/user/:uid", deleteUser);
 
-  // generates next id for new user
-  function nextId() {
-    return (Number(users[users.length - 1]._id) + 1).toString();
-  }
-
   function createUser(req, res) {
     var newUser = req.body;
-    // newUser._id = nextId();
     userModel.createUser(newUser)
       .then(function(user) {
         res.json(user);
@@ -55,10 +49,6 @@ module.exports = function (app) {
       .then(function(user) {
         res.json(user);
       });
-    // var user = selectUserByID(uid);
-    // var index = users.indexOf(user);
-    // users.splice(index, 1);
-    // res.json(users);
   }
 
   function updateUser(req, res) {

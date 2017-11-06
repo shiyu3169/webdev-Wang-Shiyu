@@ -1,5 +1,5 @@
 export class Website {
-  _id: String;
+  _id?: String;
   name: String;
   developerId: String;
   description: String;

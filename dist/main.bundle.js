@@ -1271,14 +1271,12 @@ var WebsiteNewComponent = (function () {
         this.name = this.webForm.value.name;
         this.description = this.webForm.value.description;
         var newWebsite = {
-            _id: '',
             name: this.name,
             developerId: this.uid,
             description: this.description
         };
         this.websiteService.createWebsite(this.uid, newWebsite)
             .subscribe(function (websites) {
-            _this.websites = websites;
             _this.router.navigate(['user', _this.uid, 'website']);
         });
     };
