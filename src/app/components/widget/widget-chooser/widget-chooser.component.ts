@@ -18,7 +18,6 @@ export class WidgetChooserComponent implements OnInit {
 
   createHead() {
     const newWidget: Widget = {
-      _id: '',
       widgetType: 'HEADING',
       pageId: this.pid,
     };
@@ -33,7 +32,6 @@ export class WidgetChooserComponent implements OnInit {
 
   createImage() {
     const newWidget: Widget = {
-      _id: '',
       widgetType: 'IMAGE',
       pageId: this.pid,
     };
@@ -48,7 +46,6 @@ export class WidgetChooserComponent implements OnInit {
 
   createYoutube() {
     const newWidget: Widget = {
-      _id: '',
       widgetType: 'YOUTUBE',
       pageId: this.pid,
     };

@@ -37,7 +37,6 @@ export class WidgetYoutubeComponent implements OnInit {
     this.url = this.widgetForm.value.url;
 
     const updatedWidget: Widget = {
-      _id: this.widget._id,
       name: this.name,
       widgetType: this.widget.widgetType,
       pageId: this.widget.pageId,

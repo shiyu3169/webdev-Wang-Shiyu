@@ -37,7 +37,6 @@ export class WidgetHeaderComponent implements OnInit {
     this.size = this.widgetForm.value.size;
 
     const updatedWidget: Widget = {
-      _id: this.widget._id,
       name: this.name,
       widgetType: this.widget.widgetType,
       pageId: this.widget.pageId,

@@ -39,7 +39,7 @@ module.exports = function (app) {
     pageModel.updatePage(pid, newPage)
       .then(function() {
         res.json(null);
-      })
+      });
   }
 
   function deletePage(req, res) {

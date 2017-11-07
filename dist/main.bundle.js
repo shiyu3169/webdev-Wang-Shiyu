@@ -1326,7 +1326,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/widget/widget-chooser/widget-chooser.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-default navbar-fixed-top\">\n  <div class=\"container-fluid\">\n    <p class=\"navbar-text pull-left\">\n      <a routerLink=\"user/{{uid}}/website/{{wid}}/page/{{pid}}/widget\"\n         class=\"navbar-link\">\n        <span class=\"glyphicon glyphicon-chevron-left sw-text-black\"></span>\n      </a>\n    </p>\n    <a routerLink=\"user/{{uid}}/website/{{wid}}/page/{{pid}}/widget/new\"\n       class=\"pull-left navbar-brand thick\">\n      <b>Choose Widget</b>\n    </a>\n  </div>\n</nav>\n\n<!--widget chooser-->\n<div class=\"container-fluid\">\n  <ul class=\"list-group\">\n    <li class=\"list-group-item sw-borderless\">\n      <a class=\"sw-link\"\n         (click)=\"createHead()\">\n        <button class=\"btn sw-button-transparent\">Header</button>\n      </a>\n    </li>\n    <li class=\"list-group-item sw-borderless\">\n      <a class=\"sw-link\" href=\"#\">\n        <button class=\"btn sw-button-transparent\">Label</button>\n      </a>\n    </li>\n    <li class=\"list-group-item sw-borderless\">\n      <a class=\"sw-link\" href=\"#\">\n        <button class=\"btn sw-button-transparent\">HTML</button>\n      </a>\n    </li>\n    <li class=\"list-group-item sw-borderless\">\n      <a class=\"sw-link\" href=\"#\">\n        <button class=\"btn sw-button-transparent\">Text Input</button>\n      </a>\n    </li>\n    <li class=\"list-group-item sw-borderless\">\n      <a class=\"sw-link\" href=\"#\">\n        <button class=\"btn sw-button-transparent\">Link</button>\n      </a>\n    </li>\n    <li class=\"list-group-item sw-borderless\">\n      <a class=\"sw-link\" href=\"#\">\n        <button class=\"btn sw-button-transparent\">Button</button>\n      </a>\n    </li>\n    <li class=\"list-group-item sw-borderless\">\n      <a class=\"sw-link\"\n         (click)=\"createImage()\">\n        <button class=\"btn sw-button-transparent\">Image</button>\n      </a>\n    </li>\n    <li class=\"list-group-item sw-borderless\">\n      <a class=\"sw-link\"\n         (click)=\"createYoutube()\">\n        <button class=\"btn sw-button-transparent\">Youtube</button>\n      </a>\n    </li>\n    <li class=\"list-group-item sw-borderless\">\n      <a class=\"sw-link\" href=\"#\">\n        <button class=\"btn sw-button-transparent\">Data Table</button>\n      </a>\n    </li>\n    <li class=\"list-group-item sw-borderless\">\n      <a class=\"sw-link\" href=\"#\">\n        <button class=\"btn sw-button-transparent\">Repeater</button>\n      </a>\n    </li>\n  </ul>\n</div>\n\n<!-- Footer -->\n<nav class=\"navbar navbar-default navbar-fixed-bottom\">\n  <div class=\"container-fluid navbar-text\">\n    <a routerLink=\"/profile\">\n      <span class=\"glyphicon glyphicon-user sw-icon-padding pull-right\"></span>\n    </a>\n  </div>\n</nav>\n"
+module.exports = "<nav class=\"navbar navbar-default navbar-fixed-top\">\n  <div class=\"container-fluid\">\n    <p class=\"navbar-text pull-left\">\n      <a routerLink=\"/user/{{uid}}/website/{{wid}}/page/{{pid}}/widget\"\n         class=\"navbar-link\">\n        <span class=\"glyphicon glyphicon-chevron-left sw-text-black\"></span>\n      </a>\n    </p>\n    <a routerLink=\"/user/{{uid}}/website/{{wid}}/page/{{pid}}/widget/new\"\n       class=\"pull-left navbar-brand thick\">\n      <b>Choose Widget</b>\n    </a>\n  </div>\n</nav>\n\n<!--widget chooser-->\n<div class=\"container-fluid\">\n  <ul class=\"list-group\">\n    <li class=\"list-group-item sw-borderless\">\n      <a class=\"sw-link\"\n         (click)=\"createHead()\">\n        <button class=\"btn sw-button-transparent\">Header</button>\n      </a>\n    </li>\n    <li class=\"list-group-item sw-borderless\">\n      <a class=\"sw-link\" href=\"#\">\n        <button class=\"btn sw-button-transparent\">Label</button>\n      </a>\n    </li>\n    <li class=\"list-group-item sw-borderless\">\n      <a class=\"sw-link\" href=\"#\">\n        <button class=\"btn sw-button-transparent\">HTML</button>\n      </a>\n    </li>\n    <li class=\"list-group-item sw-borderless\">\n      <a class=\"sw-link\" href=\"#\">\n        <button class=\"btn sw-button-transparent\">Text Input</button>\n      </a>\n    </li>\n    <li class=\"list-group-item sw-borderless\">\n      <a class=\"sw-link\" href=\"#\">\n        <button class=\"btn sw-button-transparent\">Link</button>\n      </a>\n    </li>\n    <li class=\"list-group-item sw-borderless\">\n      <a class=\"sw-link\" href=\"#\">\n        <button class=\"btn sw-button-transparent\">Button</button>\n      </a>\n    </li>\n    <li class=\"list-group-item sw-borderless\">\n      <a class=\"sw-link\"\n         (click)=\"createImage()\">\n        <button class=\"btn sw-button-transparent\">Image</button>\n      </a>\n    </li>\n    <li class=\"list-group-item sw-borderless\">\n      <a class=\"sw-link\"\n         (click)=\"createYoutube()\">\n        <button class=\"btn sw-button-transparent\">Youtube</button>\n      </a>\n    </li>\n    <li class=\"list-group-item sw-borderless\">\n      <a class=\"sw-link\" href=\"#\">\n        <button class=\"btn sw-button-transparent\">Data Table</button>\n      </a>\n    </li>\n    <li class=\"list-group-item sw-borderless\">\n      <a class=\"sw-link\" href=\"#\">\n        <button class=\"btn sw-button-transparent\">Repeater</button>\n      </a>\n    </li>\n  </ul>\n</div>\n\n<!-- Footer -->\n<nav class=\"navbar navbar-default navbar-fixed-bottom\">\n  <div class=\"container-fluid navbar-text\">\n    <a routerLink=\"/profile\">\n      <span class=\"glyphicon glyphicon-user sw-icon-padding pull-right\"></span>\n    </a>\n  </div>\n</nav>\n"
 
 /***/ }),
 
@@ -1359,7 +1359,6 @@ var WidgetChooserComponent = (function () {
     WidgetChooserComponent.prototype.createHead = function () {
         var _this = this;
         var newWidget = {
-            _id: '',
             widgetType: 'HEADING',
             pageId: this.pid,
         };
@@ -1372,7 +1371,6 @@ var WidgetChooserComponent = (function () {
     WidgetChooserComponent.prototype.createImage = function () {
         var _this = this;
         var newWidget = {
-            _id: '',
             widgetType: 'IMAGE',
             pageId: this.pid,
         };
@@ -1385,7 +1383,6 @@ var WidgetChooserComponent = (function () {
     WidgetChooserComponent.prototype.createYoutube = function () {
         var _this = this;
         var newWidget = {
-            _id: '',
             widgetType: 'YOUTUBE',
             pageId: this.pid,
         };
@@ -1571,7 +1568,6 @@ var WidgetHeaderComponent = (function () {
         this.text = this.widgetForm.value.text;
         this.size = this.widgetForm.value.size;
         var updatedWidget = {
-            _id: this.widget._id,
             name: this.name,
             widgetType: this.widget.widgetType,
             pageId: this.widget.pageId,
@@ -1692,7 +1688,6 @@ var WidgetImageComponent = (function () {
         this.width = this.widgetForm.value.width;
         this.url = this.widgetForm.value.url;
         var updatedWidget = {
-            _id: this.widget._id,
             name: this.name,
             widgetType: this.widget.widgetType,
             pageId: this.widget.pageId,
@@ -1812,7 +1807,6 @@ var WidgetYoutubeComponent = (function () {
         this.width = this.widgetForm.value.width;
         this.url = this.widgetForm.value.url;
         var updatedWidget = {
-            _id: this.widget._id,
             name: this.name,
             widgetType: this.widget.widgetType,
             pageId: this.widget.pageId,
