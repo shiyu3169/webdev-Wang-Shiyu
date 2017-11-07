@@ -10,7 +10,7 @@ WebsiteModel.createWebsiteForUser = createWebsiteForUser;
 WebsiteModel.findAllWebsitesForUser = findAllWebsitesForUser;
 WebsiteModel.findWebsiteById = findWebsiteById;
 WebsiteModel.updateWebsite = updateWebsite;
-// WebsiteModel.deleteWebsite = deleteWebsite;
+WebsiteModel.deleteWebsite = deleteWebsite;
 
 module.exports = WebsiteModel;
 
@@ -36,4 +36,14 @@ function findWebsiteById(websiteId) {
 
 function updateWebsite(websiteId, website) {
   return WebsiteModel.update({_id: websiteId}, website);
+}
+
+function deleteWebsite(websiteId) {
+  var id = websiteId;
+  return WebsiteModel.remove({_id: websiteId})
+    .then(function() {
+      UserModel.update(
+        {},
+        { "$pull": {"websites": id}});
+    });
 }

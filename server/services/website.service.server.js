@@ -60,9 +60,10 @@ module.exports = function (app) {
 
   function deleteWebsite(req, res) {
     var wid = req.params["wid"];
-    var website = selectWebsiteById(wid);
-    var index = websites.indexOf(website);
-    websites.splice(index, 1);
-    res.json(websites);
+    var uid = req.params["uid"];
+    websiteModel.deleteWebsite(wid)
+      .then(function() {
+      res.json(null);
+    });
   }
 };
