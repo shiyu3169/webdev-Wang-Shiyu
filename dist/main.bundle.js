@@ -373,7 +373,6 @@ var PageEditComponent = (function () {
         this.name = this.pageForm.value.name;
         this.title = this.pageForm.value.title;
         var updatedPage = {
-            _id: this.page._id,
             name: this.name,
             websiteId: this.wid,
             description: this.title
@@ -560,7 +559,6 @@ var PageNewComponent = (function () {
         this.name = this.pageForm.value.name;
         this.title = this.pageForm.value.title;
         var newPage = {
-            _id: '',
             name: this.name,
             websiteId: this.wid,
             description: this.title
@@ -1094,7 +1092,6 @@ var WebsiteEditComponent = (function () {
         var _this = this;
         this.websiteService.deleteWebsite(this.wid)
             .subscribe(function (websites) {
-            _this.websites = websites;
             _this.router.navigate(['user', _this.uid, 'website']);
         });
     };

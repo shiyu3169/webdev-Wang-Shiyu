@@ -23,7 +23,6 @@ export class PageNewComponent implements OnInit {
     this.title = this.pageForm.value.title;
 
     const newPage: Page = {
-      _id: '',
       name: this.name,
       websiteId: this.wid,
       description: this.title

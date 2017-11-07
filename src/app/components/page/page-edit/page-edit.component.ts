@@ -33,7 +33,6 @@ export class PageEditComponent implements OnInit {
     this.title = this.pageForm.value.title;
 
     const updatedPage: Page = {
-      _id: this.page._id,
       name: this.name,
       websiteId: this.wid,
       description: this.title

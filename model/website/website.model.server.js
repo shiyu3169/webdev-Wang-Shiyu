@@ -39,11 +39,10 @@ function updateWebsite(websiteId, website) {
 }
 
 function deleteWebsite(websiteId) {
-  var id = websiteId;
   return WebsiteModel.remove({_id: websiteId})
     .then(function() {
       UserModel.update(
         {},
-        { "$pull": {"websites": id}});
+        {$pull: {websites: websiteId}});
     });
 }
