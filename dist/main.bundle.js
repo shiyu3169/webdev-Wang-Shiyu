@@ -1081,14 +1081,12 @@ var WebsiteEditComponent = (function () {
         this.name = this.webForm.value.name;
         this.description = this.webForm.value.description;
         var updatedWeb = {
-            _id: this.website._id,
             name: this.name,
             developerId: this.uid,
             description: this.description
         };
         this.websiteService.updateWebsite(this.wid, updatedWeb)
             .subscribe(function (website) {
-            _this.website = website;
             _this.router.navigate(['user', _this.uid, 'website']);
         });
     };

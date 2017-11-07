@@ -52,11 +52,10 @@ module.exports = function (app) {
   function updateWebsite(req, res) {
     var wid = req.params["wid"];
     var newWeb = req.body;
-    var oldWeb = selectWebsiteById(wid);
-    var index = websites.indexOf(oldWeb);
-    websites[index].name = newWeb.name;
-    websites[index].description = newWeb.description;
-    res.json(newWeb);
+    websiteModel.updateWebsite(wid, newWeb)
+      .then(function() {
+        res.json(null);
+      })
   }
 
   function deleteWebsite(req, res) {

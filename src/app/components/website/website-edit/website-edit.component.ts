@@ -33,7 +33,6 @@ export class WebsiteEditComponent implements OnInit {
     this.description = this.webForm.value.description;
 
     const updatedWeb: Website = {
-      _id: this.website._id,
       name: this.name,
       developerId: this.uid,
       description: this.description
@@ -41,7 +40,6 @@ export class WebsiteEditComponent implements OnInit {
     this.websiteService.updateWebsite(this.wid, updatedWeb)
       .subscribe(
         (website: Website) => {
-          this.website = website;
           this.router.navigate(['user', this.uid, 'website']);
         }
       );

@@ -55,8 +55,8 @@ module.exports = function (app) {
     var uid = req.params["uid"];
     var newUser = req.body;
     userModel.updateUser(uid, newUser)
-      .then(function(user) {
-        res.json(user);
+      .then(function() {
+        res.json(null);
       })
   }
 };
