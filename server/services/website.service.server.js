@@ -43,8 +43,10 @@ module.exports = function (app) {
 
   function findWebsiteById(req, res) {
     var wid = req.params["wid"];
-    var website = selectWebsiteById(wid);
-    res.json(website);
+    websiteModel.findWebsiteById(wid)
+      .then(function(website) {
+        res.json(website);
+      });
   }
 
   function updateWebsite(req, res) {

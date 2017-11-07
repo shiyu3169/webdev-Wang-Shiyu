@@ -8,7 +8,7 @@ var UserModel = mongoose.model('UserModel', UserSchema);
 
 WebsiteModel.createWebsiteForUser = createWebsiteForUser;
 WebsiteModel.findAllWebsitesForUser = findAllWebsitesForUser;
-// WebsiteModel.findWebsiteById = findWebsiteById;
+WebsiteModel.findWebsiteById = findWebsiteById;
 // WebsiteModel.updateWebsite = updateWebsite;
 // WebsiteModel.deleteWebsite = deleteWebsite;
 
@@ -28,4 +28,8 @@ function createWebsiteForUser(userId, website) {
 
 function findAllWebsitesForUser(userId) {
   return WebsiteModel.find({developerId: userId});
+}
+
+function findWebsiteById(websiteId) {
+  return WebsiteModel.findById(websiteId);
 }
