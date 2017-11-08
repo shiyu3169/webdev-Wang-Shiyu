@@ -58,6 +58,20 @@ export class WidgetChooserComponent implements OnInit {
       );
   }
 
+  createHtml() {
+    const newWidget: Widget = {
+      widgetType: 'HTML',
+      pageId: this.pid,
+    };
+    this.widgetService.createWidget(this.pid, newWidget)
+      .subscribe(
+        (widget: Widget) => {
+          this.wgid = widget._id;
+          this.router.navigate(['user', this.uid, 'website', this.wid, 'page', this.pid, 'widget', this.wgid]);
+        }
+      );
+  }
+
   ngOnInit() {
     this.activatedRoute.params.subscribe(params => {
       this.uid = params['uid'];
