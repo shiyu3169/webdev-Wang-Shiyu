@@ -4,7 +4,7 @@ module.exports = function (app) {
   var widgetModel = require('../../model/widget/widget.model.server');
 
   var multer = require('multer'); // npm install multer --save
-  var upload = multer({ dest: __dirname+'/../../src/public/uploads' });
+  var upload = multer({ dest: __dirname+'/../../src/assets/uploads' });
 
   app.post ("/api/upload", upload.single('myFile'), uploadImage);
   app.post("/api/page/:pid/widget", createWidget);
@@ -31,8 +31,12 @@ module.exports = function (app) {
     var size = myFile.size;
     var mimetype = myFile.mimetype;
 
-    widget = selectWidgetById(widgetId);
-    widget.url = '/uploads/'+filename;
+    widget = widgetModel.findWidgetById(widgetId);
+    widget.url = '/assets/uploads/'+filename;
+    widgetModel.updateWidget(widgetId, widget)
+      .then(function () {
+        res.json(null);
+      });
 
     var callbackUrl   = req.headers.origin + "/user/" + userId + "/website/" + websiteId + "/page/" + pageId + "/widget/" + widgetId;
 

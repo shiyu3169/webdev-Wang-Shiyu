@@ -26,6 +26,7 @@ export class WidgetImageComponent implements OnInit {
     text: ''
   };
   name: String;
+  text: String;
   width: String;
   url: String;
   baseUrl: String;
@@ -34,6 +35,7 @@ export class WidgetImageComponent implements OnInit {
 
   update() {
     this.name = this.widgetForm.value.name;
+    this.text = this.widgetForm.value.text;
     this.width = this.widgetForm.value.width;
     this.url = this.widgetForm.value.url;
 
@@ -42,7 +44,8 @@ export class WidgetImageComponent implements OnInit {
       widgetType: this.widget.widgetType,
       pageId: this.widget.pageId,
       width: this.width,
-      url: this.url
+      url: this.url,
+      text: this.text
     };
     this.widgetService.updateWidget(this.wgid, updatedWidget)
       .subscribe(

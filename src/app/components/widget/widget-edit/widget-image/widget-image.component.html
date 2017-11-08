@@ -72,7 +72,7 @@
     <span class="help-block"
           *ngIf="!width.valid && width.touched">Width can't be empty!</span>
     <form ngNoForm action="{{baseUrl}}/api/upload" method="post" enctype="multipart/form-data">
-      <input  name="myFile"   type="file" class="form-control"/>
+      <input  name="myFile" type="file" class="form-control" required/>
       <input  name="widgetId" value="{{wgid}}"   style="display: none"/>
       <input  name="websiteId" value="{{wid}}"   style="display: none"/>
       <input  name="pageId" value="{{pid}}"   style="display: none"/>

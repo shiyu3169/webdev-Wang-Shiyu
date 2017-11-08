@@ -3,12 +3,13 @@
   "project": {
     "name": "angular-four-mean-seed"
   },
+
   "apps": [
     {
       "root": "src",
       "outDir": "dist",
       "assets": [
-        "public",
+        "assets",
         "favicon.ico"
       ],
       "index": "index.html",
