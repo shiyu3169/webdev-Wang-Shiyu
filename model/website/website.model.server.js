@@ -42,7 +42,7 @@ function deleteWebsite(websiteId) {
   return WebsiteModel.remove({_id: websiteId})
     .then(function() {
       UserModel.update(
-        {},
+        {_id: },
         {$pull: {websites: websiteId}});
     });
 }

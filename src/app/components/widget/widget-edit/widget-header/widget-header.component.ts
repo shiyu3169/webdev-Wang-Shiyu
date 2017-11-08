@@ -21,6 +21,7 @@ export class WidgetHeaderComponent implements OnInit {
     _id: '',
     widgetType: '',
     pageId: '',
+    name: '',
     size: 0,
     text: ''
   };

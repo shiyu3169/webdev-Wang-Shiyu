@@ -61,9 +61,16 @@
                 allowfullscreen></iframe>
       </div>
     </div>
-    <div *ngSwitchCase="'HTML'" [innerHTML]="widget.text">
+    <div *ngSwitchCase="'HTML'">
+      <div [innerHTML]="widget.text">
+      </div>
     </div>
-  </div>
+    <div *ngSwitchCase="'Text'">
+      <div *ngIf="widget.formatted">
+        <quill-editor [(ngModel)]="widget.text" name="text"></quill-editor>
+      </div>
+
+    </div>
 </div>
 
 <!-- Footer -->
