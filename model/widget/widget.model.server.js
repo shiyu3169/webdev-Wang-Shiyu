@@ -43,14 +43,19 @@ function updateWidget(widgetId, widget) {
   return WidgetModel.update({_id: widgetId}, widget);
 }
 function deleteWidget(widgetId) {
-  return WidgetModel.remove({_id: widgetId})
-    .then(function () {
-      PageModel.update(
-        {},
-        {$pull: {widgets: widgetId}}
-      );
+  var pageId = null;
+  return WidgetModel.findWidgetById(widgetId)
+    .then(function(widget) {
+      pageId = widget.pageId;
+      return  WidgetModel.remove({_id: widget._id})
+        .then(function() {
+          return PageModel.update(
+            {_id: pageId},
+            {$pull: {widgets: widgetId}});
+        });
     });
 }
+
 function reorderWidget(pageId, start, end) {
   return;
 }

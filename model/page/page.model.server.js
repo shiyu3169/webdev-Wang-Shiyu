@@ -19,7 +19,7 @@ function createPage(websiteId, page) {
   return PageModel.create(page)
     .then(function (page) {
     var newPage = page;
-    WebsiteModel.findWebsiteById(websiteId)
+    return WebsiteModel.findWebsiteById(websiteId)
       .then(function (website) {
         website.pages.push(newPage._id);
         return website.save();
@@ -40,11 +40,16 @@ function updatePage(pageId, page) {
 }
 
 function deletePage(pageId) {
-  return PageModel.remove({_id: pageId})
-    .then(function() {
-      WebsiteModel.update(
-        {},
-        {$pull: {pages: pageId}}
-      );
+  var websiteId = null;
+  return PageModel.findPageById(pageId)
+    .then(function(page) {
+      websiteId = page.websiteId;
+      return  PageModel.remove({_id: page._id})
+        .then(function() {
+          return WebsiteModel.update(
+            {_id: websiteId},
+            {$pull: {pages: pageId}});
+        });
     });
 }
+

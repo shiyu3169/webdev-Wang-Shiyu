@@ -18,7 +18,7 @@ function createWebsiteForUser(userId, website) {
   return WebsiteModel.create(website)
     .then(function (website) {
       var web = website;
-      UserModel.findUserById(userId)
+      return UserModel.findUserById(userId)
         .then(function (user) {
           user.websites.push(web._id);
           return user.save();
@@ -39,10 +39,15 @@ function updateWebsite(websiteId, website) {
 }
 
 function deleteWebsite(websiteId) {
-  return WebsiteModel.remove({_id: websiteId})
-    .then(function() {
-      UserModel.update(
-        {_id: },
-        {$pull: {websites: websiteId}});
+  var developerId = null;
+  return WebsiteModel.findWebsiteById(websiteId)
+    .then(function(website) {
+      developerId = website.developerId;
+      return  WebsiteModel.remove({_id: website._id})
+        .then(function() {
+          return UserModel.update(
+            {_id: developerId},
+            {$pull: {websites: websiteId}});
+        });
     });
 }

@@ -44,7 +44,6 @@ module.exports = function (app) {
     var newWidget = req.body;
     widgetModel.createWidget(pid, newWidget)
       .then(function(widget) {
-        console.log(widget);
         res.json(widget);
       });
   }
