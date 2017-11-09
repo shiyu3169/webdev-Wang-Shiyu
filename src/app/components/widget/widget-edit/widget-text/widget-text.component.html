@@ -76,12 +76,11 @@
                value="Formatted"
                class="form-control"/>
         <span class="input-group-addon">
-            <input ngModel="widget.formatted"
-                   id="formatted"
-                   name="formatted"
-                   #formatted="ngModel"
-                   type="checkbox"/>
-          </span>
+        <input [(ngModel)]="widget.formatted"
+               id="formatted"
+               name="formatted"
+               type="checkbox"/>
+    </span>
       </div>
     </div>
     <span class="help-block"

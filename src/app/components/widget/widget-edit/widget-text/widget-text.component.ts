@@ -31,7 +31,7 @@ export class WidgetTextComponent implements OnInit {
   text: String;
   rows: number;
   placeholder: String;
-  formatted: Boolean;
+  formatted: boolean;
 
   constructor(private widgetService: WidgetService,
               private activatedRoute: ActivatedRoute, private router: Router) { }
