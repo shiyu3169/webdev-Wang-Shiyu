@@ -24,13 +24,16 @@ import { WidgetListComponent } from './components/widget/widget-list/widget-list
 import { WidgetHeaderComponent } from './components/widget/widget-edit/widget-header/widget-header.component';
 import { WidgetImageComponent } from './components/widget/widget-edit/widget-image/widget-image.component';
 import { WidgetYoutubeComponent } from './components/widget/widget-edit/widget-youtube/widget-youtube.component';
+import { WidgetHtmlComponent } from './components/widget/widget-edit/widget-html/widget-html.component';
+import { WidgetTextComponent } from './components/widget/widget-edit/widget-text/widget-text.component';
+import { FlickrImageSearchComponent } from './components/widget/widget-edit/widget-image/flickr-image-search/flickr-image-search.component';
+
 import { UserService } from './services/user.service.client';
 import { WebsiteService } from './services/website.service.client';
 import { PageService } from './services/page.service.client';
 import { WidgetService } from './services/widget.service.client';
-import { WidgetHtmlComponent } from './components/widget/widget-edit/widget-html/widget-html.component';
-import { WidgetTextComponent } from './components/widget/widget-edit/widget-text/widget-text.component';
-import { FlickrImageSearchComponent } from './components/widget/widget-edit/widget-image/flickr-image-search/flickr-image-search.component';
+import {FlickrService} from './services/flickr.service.client';
+
 
 @NgModule({
   // Declare components here
@@ -70,7 +73,8 @@ import { FlickrImageSearchComponent } from './components/widget/widget-edit/widg
     UserService,
     WebsiteService,
     PageService,
-    WidgetService
+    WidgetService,
+    FlickrService
   ],
   bootstrap: [AppComponent]
 })
