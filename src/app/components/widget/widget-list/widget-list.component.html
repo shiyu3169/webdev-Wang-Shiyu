@@ -18,64 +18,64 @@
 </nav>
 
 <!--widget list-->
-<div *ngFor="let widget of widgets" class="container-fluid">
-  <div>
-    <div class="sw-icon-right sw-icon-above">
-      <a routerLink="/user/{{uid}}/website/{{wid}}/page/{{pid}}/widget/{{widget._id}}">
-        <span class="glyphicon glyphicon-cog"></span>
-      </a>
-      <a href="#">
+<div class="container-fluid"  appSortable (newIndexes)="reorderWidgets($event)">
+  <div *ngFor="let widget of widgets">
+    <div>
+      <div class="sw-icon-right sw-icon-above">
+        <a routerLink="/user/{{uid}}/website/{{wid}}/page/{{pid}}/widget/{{widget._id}}">
+          <span class="glyphicon glyphicon-cog"></span>
+        </a>
         <span class="glyphicon glyphicon-menu-hamburger sw-text-black"></span>
-      </a>
+      </div>
     </div>
-  </div>
-  <div [ngSwitch]="widget.widgetType">
-    <div *ngSwitchCase="'HEADING'">
-      <div [ngSwitch]="widget.size">
-        <div *ngSwitchCase="1">
-          <h1>{{widget.text}}</h1>
+    <div [ngSwitch]="widget.widgetType">
+      <div *ngSwitchCase="'HEADING'">
+        <div [ngSwitch]="widget.size">
+          <div *ngSwitchCase="1">
+            <h1>{{widget.text}}</h1>
+          </div>
+          <div *ngSwitchCase="2">
+            <h2>{{widget.text}}</h2>
+          </div>
+          <div *ngSwitchCase="3">
+            <h3>{{widget.text}}</h3>
+          </div>
+          <div *ngSwitchCase="4">
+            <h4>{{widget.text}}</h4>
+          </div>
         </div>
-        <div *ngSwitchCase="2">
-          <h2>{{widget.text}}</h2>
-        </div>
-        <div *ngSwitchCase="3">
-          <h3>{{widget.text}}</h3>
-        </div>
-        <div *ngSwitchCase="4">
-          <h4>{{widget.text}}</h4>
+      </div>
+      <div *ngSwitchCase="'IMAGE'">
+        <div>
+          <img [style.width]="widget.width"
+               [src]="widget.url"/>
         </div>
       </div>
-    </div>
-    <div *ngSwitchCase="'IMAGE'">
-      <div>
-        <img [style.width]="widget.width"
-             [src]="widget.url"/>
+      <div *ngSwitchCase="'YOUTUBE'">
+        <div class="embed-responsive embed-responsive-16by9 youtube-widget">
+          <iframe [style.width]="widget.width"
+                  [style.height]="widget.width"
+                  [src]="this.getYoutubeEmbedUrl(widget.url)"
+                  frameborder="0"
+                  allowfullscreen></iframe>
+        </div>
       </div>
-    </div>
-    <div *ngSwitchCase="'YOUTUBE'">
-      <div class="embed-responsive embed-responsive-16by9 youtube-widget">
-        <iframe [style.width]="widget.width"
-                [style.height]="widget.width"
-                [src]="this.getYoutubeEmbedUrl(widget.url)"
-                frameborder="0"
-                allowfullscreen></iframe>
+      <div *ngSwitchCase="'HTML'">
+        <div [innerHTML]="widget.text">
+        </div>
       </div>
-    </div>
-    <div *ngSwitchCase="'HTML'">
-      <div [innerHTML]="widget.text">
-      </div>
-    </div>
-    <div *ngSwitchCase="'Text'">
-      <div *ngIf="widget.formatted">
-        <quill-editor [(ngModel)]="widget.text" name="text"></quill-editor>
-      </div>
+      <div *ngSwitchCase="'Text'">
+        <div *ngIf="widget.formatted">
+          <quill-editor [(ngModel)]="widget.text" name="text"></quill-editor>
+        </div>
 
-      <input *ngIf="!widget.formatted && (!widget.rows || widget.rows===1)"
-             placeholder="{{widget.placeholder}}" class="form-control"/>
+        <input *ngIf="!widget.formatted && (!widget.rows || widget.rows===1)"
+               placeholder="{{widget.placeholder}}" class="form-control"/>
 
-      <textarea *ngIf="!widget.formatted && (widget.rows > 1)"
-                rows="{{widget.rows}}" placeholder="{{widget.placeholder}}"
-                class="form-control">{{widget.text}}</textarea>
+        <textarea *ngIf="!widget.formatted && (widget.rows > 1)"
+                  rows="{{widget.rows}}" placeholder="{{widget.placeholder}}"
+                  class="form-control">{{widget.text}}</textarea>
+      </div>
     </div>
   </div>
 </div>

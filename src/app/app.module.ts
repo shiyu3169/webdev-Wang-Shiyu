@@ -32,8 +32,9 @@ import { UserService } from './services/user.service.client';
 import { WebsiteService } from './services/website.service.client';
 import { PageService } from './services/page.service.client';
 import { WidgetService } from './services/widget.service.client';
-import {FlickrService} from './services/flickr.service.client';
+import { FlickrService } from './services/flickr.service.client';
 
+import { SortableDirective } from './directives/sortable.directive';
 
 @NgModule({
   // Declare components here
@@ -58,7 +59,8 @@ import {FlickrService} from './services/flickr.service.client';
     WidgetYoutubeComponent,
     WidgetHtmlComponent,
     WidgetTextComponent,
-    FlickrImageSearchComponent
+    FlickrImageSearchComponent,
+    SortableDirective
   ],
   imports: [
     BrowserModule,

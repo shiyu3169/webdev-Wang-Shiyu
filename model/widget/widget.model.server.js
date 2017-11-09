@@ -57,7 +57,30 @@ function deleteWidget(widgetId) {
 }
 
 function reorderWidget(pageId, start, end) {
-  return;
+  return WidgetModel.find({_page:pageId})
+    .then(function(widgets) {
+      widgets.forEach(function(widget) {
+        if (start < end) {
+          if(widget.position === start) {
+            widget.position = end;
+            widget.save();
+          } else if (widget.position > start
+            && widget.position <= end) {
+            widget.position--;
+            widget.save();
+          } else {
+            if (widget.position === start) {
+              widget.position = end;
+              widget.save();
+            } else if (widget.position < start
+              && widget.position >= end) {
+              widget.position++;
+              widget.save();
+            }
+          }
+        }
+      })
+    });
 }
 
 

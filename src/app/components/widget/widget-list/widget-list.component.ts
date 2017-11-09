@@ -24,6 +24,15 @@ export class WidgetListComponent implements OnInit {
     return this.sanitizer.bypassSecurityTrustResourceUrl(embedUrl);
   }
 
+  reorderWidgets(indexes) {
+    this.widgetService.reorderWidgets(this.pid, indexes.startIndex, indexes.endIndex)
+      .subscribe(
+        (widgets: any) => {
+          this.widgets = widgets;
+        }
+      );
+  }
+
   ngOnInit() {
     this.router.params.subscribe(params => {
       this.uid = params['uid'];

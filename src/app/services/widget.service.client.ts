@@ -66,4 +66,14 @@ export class WidgetService {
       );
   }
 
+  reorderWidgets(pageId, start, end) {
+    const url = this.baseUrl + '/api/page/' + pageId + '/widget?start=' + start + '&end=' + end;
+    return this.http.put(url, '')
+      .map(
+        (response: Response) => {
+          return response.json();
+        }
+      );
+  }
+
 }

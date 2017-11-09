@@ -12,7 +12,7 @@ module.exports = function (app) {
   app.get("/api/widget/:wgid", findWidgetById);
   app.put("/api/widget/:wgid", updateWidget);
   app.delete("/api/widget/:wgid", deleteWidget);
-  app.put("/api/page/:pageId/widget?initial=index1&final=index2");
+  app.put("/api/page/:pid/widget", reorderWidgets);
 
   function uploadImage(req, res) {
 
@@ -79,6 +79,16 @@ module.exports = function (app) {
     var wgid = req.params["wgid"];
     widgetModel.deleteWidget(wgid)
       .then(function () {
+        res.json(null);
+      });
+  }
+
+  function reorderWidgets(req, res) {
+    var pid = req.params["pid"];
+    var start = req.query["start"];
+    var end = req.query["end"];
+    widgetModel.reorderWidget(pid, start, end)
+      .then(function() {
         res.json(null);
       });
   }
