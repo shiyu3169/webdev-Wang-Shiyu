@@ -35,7 +35,6 @@ import { WidgetService } from './services/widget.service.client';
 import { FlickrService } from './services/flickr.service.client';
 
 import { SortableDirective } from './directives/sortable.directive';
-
 @NgModule({
   // Declare components here
   declarations: [

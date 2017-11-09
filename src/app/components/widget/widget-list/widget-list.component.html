@@ -18,7 +18,8 @@
 </nav>
 
 <!--widget list-->
-<div class="container-fluid"  appSortable (newIndexes)="reorderWidgets($event)">
+<div class="container-fluid"
+     appSortable>
   <div *ngFor="let widget of widgets">
     <div>
       <div class="sw-icon-right sw-icon-above">
