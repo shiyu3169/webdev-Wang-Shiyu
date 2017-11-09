@@ -7,7 +7,7 @@
         <span class="glyphicon glyphicon-chevron-left sw-text-black"></span>
       </a>
     </p>
-    <a routerLink="/user/{{uid}}/website/{{wid}}/page/{{pid}}/widget/{{wid}}"
+    <a routerLink="/user/{{uid}}/website/{{wid}}/page/{{pid}}/widget/{{wgid}}"
        class="pull-left navbar-brand thick">
       <b>Widget edit</b>
     </a>
@@ -71,15 +71,21 @@
     </div>
     <span class="help-block"
           *ngIf="!width.valid && width.touched">Width can't be empty!</span>
-    <form ngNoForm action="{{baseUrl}}/api/upload" method="post" enctype="multipart/form-data">
-      <input  name="myFile" type="file" class="form-control" required/>
-      <input  name="widgetId" value="{{wgid}}"   style="display: none"/>
-      <input  name="websiteId" value="{{wid}}"   style="display: none"/>
-      <input  name="pageId" value="{{pid}}"   style="display: none"/>
-      <input  name="userId" value="{{uid}}"   style="display: none"/>
-      <button type="submit" class="btn btn-block btn-primary">Upload Image</button>
+    <div>
+      <a class="btn btn-primary btn-block "
+         routerLink="/user/{{uid}}/website/{{wid}}/page/{{pid}}/widget/{{wgid}}/flickr" >Choose From Flickr</a>
       <br/>
-    </form>
+      <form ngNoForm action="{{baseUrl}}/api/upload" method="post" enctype="multipart/form-data">
+        <input  name="myFile" type="file" class="form-control" required/>
+        <input  name="widgetId" value="{{wgid}}"   style="display: none"/>
+        <input  name="websiteId" value="{{wid}}"   style="display: none"/>
+        <input  name="pageId" value="{{pid}}"   style="display: none"/>
+        <input  name="userId" value="{{uid}}"   style="display: none"/>
+        <button type="submit" class="btn btn-block btn-primary">Upload Image</button>
+      </form>
+    </div>
+    <br/>
+
     <div class="row">
       <div class="col-xs-6">
         <a routerLink="/user/{{uid}}/website/{{wid}}/page/{{pid}}/widget"
@@ -95,7 +101,7 @@
 
 <!-- Footer -->
 <nav class="navbar navbar-default navbar-fixed-bottom">
-  <div class="container-fluid navbar-text">
+  <div class="container-fluid navbar-text pull-right">
     <a routerLink="/user/{{uid}}">
       <span class="glyphicon glyphicon-user sw-icon-padding pull-right"></span>
     </a>
