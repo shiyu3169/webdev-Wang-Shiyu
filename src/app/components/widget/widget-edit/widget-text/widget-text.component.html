@@ -30,7 +30,7 @@
       <input type="name"
              id="name"
              name="name"
-             placeholder="Name of the heading"
+             placeholder="Name of the widget"
              ngModel="{{widget.name}}"
              #name="ngModel"
              class="form-control"/>
@@ -40,11 +40,49 @@
       <input type="text"
              id="text"
              name="text"
-             placeholder="Text of the heading"
+             placeholder="Text of the widget"
              ngModel="{{widget.text}}"
              required
              #text="ngModel"
              class="form-control"/>
+    </div>
+    <div class="form-group">
+      <label for="rows">Rows</label>
+      <input type="number"
+             id="rows"
+             name="rows"
+             placeholder="number of Rows"
+             ngModel="{{widget.rows}}"
+             required
+             #rows="ngModel"
+             class="form-control"/>
+    </div>
+    <div class="form-group">
+      <label for="placeholder">Placeholder</label>
+      <input type="text"
+             id="placeholder"
+             name="placeholder"
+             placeholder="placeholder"
+             ngModel="{{widget.placeholder}}"
+             required
+             #placeholder="ngModel"
+             class="form-control"/>
+    </div>
+
+    <div class="form-group">
+      <div class="input-group">
+        <input type="text"
+               readonly
+               value="Formatted"
+               class="form-control"/>
+        <span class="input-group-addon">
+            <input ngModel="widget.formatted"
+                   id="formatted"
+                   name="formatted"
+                   #formatted="ngModel"
+                   type="checkbox"/>
+          </span>
+      </div>
     </div>
     <span class="help-block"
           *ngIf="!text.valid && text.touched">Text can't be empty!</span>
@@ -57,42 +95,6 @@
         <a (click)="remove()"
            class="btn btn-danger btn-block">Delete</a>
       </div>
-      <div class="form-group">
-        <label for="row">Rows</label>
-        <input type="number"
-               id="row"
-               name="row"
-               placeholder="number of Rows"
-               ngModel="{{widget.rows}}"
-               required
-               #text="ngModel"
-               class="form-control"/>
-      </div>
-      <div class="form-group">
-        <label for="placeholder">Placeholder</label>
-        <input type="text"
-               id="placeholder"
-               name="placeholder"
-               placeholder="placeholder"
-               ngModel="{{widget.placeholder}}"
-               required
-               #text="ngModel"
-               class="form-control"/>
-      </div>
-
-      <div class="form-group">
-        <div class="input-group">
-          <input type="text"
-                 readonly
-                 value="Formatted"
-                 class="form-control"/>
-          <span class="input-group-addon">
-            <input [(ngModel)]="widget.formatted"
-                   type="checkbox"/>
-          </span>
-        </div>
-      </div>
-
     </div>
   </form>
 </div>

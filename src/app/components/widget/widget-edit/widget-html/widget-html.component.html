@@ -38,6 +38,16 @@
     <div class="form-group">
       <quill-editor [(ngModel)]="widget.text" name="text"></quill-editor>
     </div>
+    <div class="row">
+      <div class="col-xs-6">
+        <a routerLink="/user/{{uid}}/website/{{wid}}/page/{{pid}}/widget"
+           class="btn btn-warning btn-block">Cancel</a>
+      </div>
+      <div class="col-xs-6">
+        <a (click)="remove()"
+           class="btn btn-danger btn-block">Delete</a>
+      </div>
+    </div>
   </form>
 </div>
 

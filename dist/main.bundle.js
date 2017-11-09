@@ -1335,7 +1335,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/widget/widget-chooser/widget-chooser.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-default navbar-fixed-top\">\n  <div class=\"container-fluid\">\n    <p class=\"navbar-text pull-left\">\n      <a routerLink=\"/user/{{uid}}/website/{{wid}}/page/{{pid}}/widget\"\n         class=\"navbar-link\">\n        <span class=\"glyphicon glyphicon-chevron-left sw-text-black\"></span>\n      </a>\n    </p>\n    <a routerLink=\"/user/{{uid}}/website/{{wid}}/page/{{pid}}/widget/new\"\n       class=\"pull-left navbar-brand thick\">\n      <b>Choose Widget</b>\n    </a>\n  </div>\n</nav>\n\n<!--widget chooser-->\n<div class=\"container-fluid\">\n  <ul class=\"list-group\">\n    <li class=\"list-group-item sw-borderless\">\n      <a class=\"sw-link\"\n         (click)=\"createHead()\">\n        <button class=\"btn sw-button-transparent\">Header</button>\n      </a>\n    </li>\n    <li class=\"list-group-item sw-borderless\">\n      <a class=\"sw-link\" href=\"#\">\n        <button class=\"btn sw-button-transparent\">Label</button>\n      </a>\n    </li>\n    <li class=\"list-group-item sw-borderless\">\n      <a class=\"sw-link\"\n         (click)=\"createHtml()\">\n        <button class=\"btn sw-button-transparent\">HTML</button>\n      </a>\n    </li>\n    <li class=\"list-group-item sw-borderless\">\n      <a class=\"sw-link\" href=\"#\">\n        <button class=\"btn sw-button-transparent\">Text Input</button>\n      </a>\n    </li>\n    <li class=\"list-group-item sw-borderless\">\n      <a class=\"sw-link\" href=\"#\">\n        <button class=\"btn sw-button-transparent\">Link</button>\n      </a>\n    </li>\n    <li class=\"list-group-item sw-borderless\">\n      <a class=\"sw-link\" href=\"#\">\n        <button class=\"btn sw-button-transparent\">Button</button>\n      </a>\n    </li>\n    <li class=\"list-group-item sw-borderless\">\n      <a class=\"sw-link\"\n         (click)=\"createImage()\">\n        <button class=\"btn sw-button-transparent\">Image</button>\n      </a>\n    </li>\n    <li class=\"list-group-item sw-borderless\">\n      <a class=\"sw-link\"\n         (click)=\"createYoutube()\">\n        <button class=\"btn sw-button-transparent\">Youtube</button>\n      </a>\n    </li>\n    <li class=\"list-group-item sw-borderless\">\n      <a class=\"sw-link\" href=\"#\">\n        <button class=\"btn sw-button-transparent\">Data Table</button>\n      </a>\n    </li>\n    <li class=\"list-group-item sw-borderless\">\n      <a class=\"sw-link\" href=\"#\">\n        <button class=\"btn sw-button-transparent\">Repeater</button>\n      </a>\n    </li>\n  </ul>\n</div>\n\n<!-- Footer -->\n<nav class=\"navbar navbar-default navbar-fixed-bottom\">\n  <div class=\"container-fluid navbar-text\">\n    <a routerLink=\"/profile\">\n      <span class=\"glyphicon glyphicon-user sw-icon-padding pull-right\"></span>\n    </a>\n  </div>\n</nav>\n"
+module.exports = "<nav class=\"navbar navbar-default navbar-fixed-top\">\n  <div class=\"container-fluid\">\n    <p class=\"navbar-text pull-left\">\n      <a routerLink=\"/user/{{uid}}/website/{{wid}}/page/{{pid}}/widget\"\n         class=\"navbar-link\">\n        <span class=\"glyphicon glyphicon-chevron-left sw-text-black\"></span>\n      </a>\n    </p>\n    <a routerLink=\"/user/{{uid}}/website/{{wid}}/page/{{pid}}/widget/new\"\n       class=\"pull-left navbar-brand thick\">\n      <b>Choose Widget</b>\n    </a>\n  </div>\n</nav>\n\n<!--widget chooser-->\n<div class=\"container-fluid\">\n  <ul class=\"list-group\">\n    <li class=\"list-group-item sw-borderless\">\n      <a class=\"sw-link\"\n         (click)=\"createHead()\">\n        <button class=\"btn sw-button-transparent\">Header</button>\n      </a>\n    </li>\n    <li class=\"list-group-item sw-borderless\">\n      <a class=\"sw-link\" href=\"#\">\n        <button class=\"btn sw-button-transparent\">Label</button>\n      </a>\n    </li>\n    <li class=\"list-group-item sw-borderless\">\n      <a class=\"sw-link\"\n         (click)=\"createHtml()\">\n        <button class=\"btn sw-button-transparent\">HTML</button>\n      </a>\n    </li>\n    <li class=\"list-group-item sw-borderless\">\n      <a class=\"sw-link\" (click)=\"createText()\">\n        <button class=\"btn sw-button-transparent\">Text Input</button>\n      </a>\n    </li>\n    <li class=\"list-group-item sw-borderless\">\n      <a class=\"sw-link\" href=\"#\">\n        <button class=\"btn sw-button-transparent\">Link</button>\n      </a>\n    </li>\n    <li class=\"list-group-item sw-borderless\">\n      <a class=\"sw-link\" href=\"#\">\n        <button class=\"btn sw-button-transparent\">Button</button>\n      </a>\n    </li>\n    <li class=\"list-group-item sw-borderless\">\n      <a class=\"sw-link\"\n         (click)=\"createImage()\">\n        <button class=\"btn sw-button-transparent\">Image</button>\n      </a>\n    </li>\n    <li class=\"list-group-item sw-borderless\">\n      <a class=\"sw-link\"\n         (click)=\"createYoutube()\">\n        <button class=\"btn sw-button-transparent\">Youtube</button>\n      </a>\n    </li>\n    <li class=\"list-group-item sw-borderless\">\n      <a class=\"sw-link\" href=\"#\">\n        <button class=\"btn sw-button-transparent\">Data Table</button>\n      </a>\n    </li>\n    <li class=\"list-group-item sw-borderless\">\n      <a class=\"sw-link\" href=\"#\">\n        <button class=\"btn sw-button-transparent\">Repeater</button>\n      </a>\n    </li>\n  </ul>\n</div>\n\n<!-- Footer -->\n<nav class=\"navbar navbar-default navbar-fixed-bottom\">\n  <div class=\"container-fluid navbar-text\">\n    <a routerLink=\"/profile\">\n      <span class=\"glyphicon glyphicon-user sw-icon-padding pull-right\"></span>\n    </a>\n  </div>\n</nav>\n"
 
 /***/ }),
 
@@ -1405,6 +1405,18 @@ var WidgetChooserComponent = (function () {
         var _this = this;
         var newWidget = {
             widgetType: 'HTML',
+            pageId: this.pid,
+        };
+        this.widgetService.createWidget(this.pid, newWidget)
+            .subscribe(function (widget) {
+            _this.wgid = widget._id;
+            _this.router.navigate(['user', _this.uid, 'website', _this.wid, 'page', _this.pid, 'widget', _this.wgid]);
+        });
+    };
+    WidgetChooserComponent.prototype.createText = function () {
+        var _this = this;
+        var newWidget = {
+            widgetType: 'Text',
             pageId: this.pid,
         };
         this.widgetService.createWidget(this.pid, newWidget)
@@ -1663,7 +1675,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/widget/widget-edit/widget-html/widget-html.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<!-- top navbar-->\n<nav class=\"navbar navbar-default navbar-fixed-top\">\n  <div class=\"container-fluid\">\n    <p class=\"navbar-text pull-left\">\n      <a routerLink=\"/user/{{uid}}/website/{{wid}}/page/{{pid}}/widget\"\n         class=\"navbar-link\">\n        <span class=\"glyphicon glyphicon-chevron-left sw-text-black\"></span>\n      </a>\n    </p>\n    <a routerLink=\"/user/{{uid}}/website/{{wid}}/page/{{pid}}/widget/{{wid}}\"\n       class=\"pull-left navbar-brand thick\">\n      <b>Widget edit</b>\n    </a>\n    <button type=\"submit\"\n            [disabled]=\"!f.valid\"\n            form=\"widgetForm\"\n            class=\"btn btn-xs sw-button-transparent navbar-link navbar-text pull-right sw-icon-padding\">\n      <span class=\"glyphicon glyphicon-ok sw-text-black\"></span>\n    </button>\n  </div>\n</nav>\n\n<!--form-->\n<div class=\"container-fluid\">\n  <form (ngSubmit)=\"update()\"\n        id=\"widgetForm\"\n        #f =\"ngForm\">\n    <div class=\"form-group\">\n      <label for=\"name\">Name</label>\n      <input type=\"name\"\n             id=\"name\"\n             name=\"name\"\n             placeholder=\"Name of the widget\"\n             ngModel=\"{{widget.name}}\"\n             #name=\"ngModel\"\n             class=\"form-control\"/>\n    </div>\n    <div class=\"form-group\">\n      <quill-editor [(ngModel)]=\"widget.text\" name=\"text\"></quill-editor>\n    </div>\n  </form>\n</div>\n\n<!-- Footer -->\n<nav class=\"navbar navbar-default navbar-fixed-bottom\">\n  <div class=\"container-fluid navbar-text\">\n    <a routerLink=\"/user/{{uid}}\">\n      <span class=\"glyphicon glyphicon-user sw-icon-padding pull-right\"></span>\n    </a>\n  </div>\n</nav>\n"
+module.exports = "<!-- top navbar-->\n<nav class=\"navbar navbar-default navbar-fixed-top\">\n  <div class=\"container-fluid\">\n    <p class=\"navbar-text pull-left\">\n      <a routerLink=\"/user/{{uid}}/website/{{wid}}/page/{{pid}}/widget\"\n         class=\"navbar-link\">\n        <span class=\"glyphicon glyphicon-chevron-left sw-text-black\"></span>\n      </a>\n    </p>\n    <a routerLink=\"/user/{{uid}}/website/{{wid}}/page/{{pid}}/widget/{{wid}}\"\n       class=\"pull-left navbar-brand thick\">\n      <b>Widget edit</b>\n    </a>\n    <button type=\"submit\"\n            [disabled]=\"!f.valid\"\n            form=\"widgetForm\"\n            class=\"btn btn-xs sw-button-transparent navbar-link navbar-text pull-right sw-icon-padding\">\n      <span class=\"glyphicon glyphicon-ok sw-text-black\"></span>\n    </button>\n  </div>\n</nav>\n\n<!--form-->\n<div class=\"container-fluid\">\n  <form (ngSubmit)=\"update()\"\n        id=\"widgetForm\"\n        #f =\"ngForm\">\n    <div class=\"form-group\">\n      <label for=\"name\">Name</label>\n      <input type=\"name\"\n             id=\"name\"\n             name=\"name\"\n             placeholder=\"Name of the widget\"\n             ngModel=\"{{widget.name}}\"\n             #name=\"ngModel\"\n             class=\"form-control\"/>\n    </div>\n    <div class=\"form-group\">\n      <quill-editor [(ngModel)]=\"widget.text\" name=\"text\"></quill-editor>\n    </div>\n    <div class=\"row\">\n      <div class=\"col-xs-6\">\n        <a routerLink=\"/user/{{uid}}/website/{{wid}}/page/{{pid}}/widget\"\n           class=\"btn btn-warning btn-block\">Cancel</a>\n      </div>\n      <div class=\"col-xs-6\">\n        <a (click)=\"remove()\"\n           class=\"btn btn-danger btn-block\">Delete</a>\n      </div>\n    </div>\n  </form>\n</div>\n\n<!-- Footer -->\n<nav class=\"navbar navbar-default navbar-fixed-bottom\">\n  <div class=\"container-fluid navbar-text\">\n    <a routerLink=\"/user/{{uid}}\">\n      <span class=\"glyphicon glyphicon-user sw-icon-padding pull-right\"></span>\n    </a>\n  </div>\n</nav>\n"
 
 /***/ }),
 
@@ -1902,7 +1914,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/widget/widget-edit/widget-text/widget-text.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<!-- top navbar-->\n<nav class=\"navbar navbar-default navbar-fixed-top\">\n  <div class=\"container-fluid\">\n    <p class=\"navbar-text pull-left\">\n      <a routerLink=\"/user/{{uid}}/website/{{wid}}/page/{{pid}}/widget\"\n         class=\"navbar-link\">\n        <span class=\"glyphicon glyphicon-chevron-left sw-text-black\"></span>\n      </a>\n    </p>\n    <a routerLink=\"/user/{{uid}}/website/{{wid}}/page/{{pid}}/widget/{{wid}}\"\n       class=\"pull-left navbar-brand thick\">\n      <b>Widget edit</b>\n    </a>\n    <button type=\"submit\"\n            [disabled]=\"!f.valid\"\n            form=\"widgetForm\"\n            class=\"btn btn-xs sw-button-transparent navbar-link navbar-text pull-right sw-icon-padding\">\n      <span class=\"glyphicon glyphicon-ok sw-text-black\"></span>\n    </button>\n  </div>\n</nav>\n\n<!--form-->\n<div class=\"container-fluid\">\n  <form (ngSubmit)=\"update()\"\n        id=\"widgetForm\"\n        #f =\"ngForm\">\n    <div class=\"form-group\">\n      <label for=\"name\">Name</label>\n      <input type=\"name\"\n             id=\"name\"\n             name=\"name\"\n             placeholder=\"Name of the heading\"\n             ngModel=\"{{widget.name}}\"\n             #name=\"ngModel\"\n             class=\"form-control\"/>\n    </div>\n    <div class=\"form-group\">\n      <label for=\"text\">Text</label>\n      <input type=\"text\"\n             id=\"text\"\n             name=\"text\"\n             placeholder=\"Text of the heading\"\n             ngModel=\"{{widget.text}}\"\n             required\n             #text=\"ngModel\"\n             class=\"form-control\"/>\n    </div>\n    <span class=\"help-block\"\n          *ngIf=\"!text.valid && text.touched\">Text can't be empty!</span>\n    <div class=\"row\">\n      <div class=\"col-xs-6\">\n        <a routerLink=\"/user/{{uid}}/website/{{wid}}/page/{{pid}}/widget\"\n           class=\"btn btn-warning btn-block\">Cancel</a>\n      </div>\n      <div class=\"col-xs-6\">\n        <a (click)=\"remove()\"\n           class=\"btn btn-danger btn-block\">Delete</a>\n      </div>\n      <div class=\"form-group\">\n        <label for=\"row\">Rows</label>\n        <input type=\"number\"\n               id=\"row\"\n               name=\"row\"\n               placeholder=\"number of Rows\"\n               ngModel=\"{{widget.rows}}\"\n               required\n               #text=\"ngModel\"\n               class=\"form-control\"/>\n      </div>\n      <div class=\"form-group\">\n        <label for=\"placeholder\">Placeholder</label>\n        <input type=\"text\"\n               id=\"placeholder\"\n               name=\"placeholder\"\n               placeholder=\"placeholder\"\n               ngModel=\"{{widget.placeholder}}\"\n               required\n               #text=\"ngModel\"\n               class=\"form-control\"/>\n      </div>\n\n      <div class=\"form-group\">\n        <div class=\"input-group\">\n          <input type=\"text\"\n                 readonly\n                 value=\"Formatted\"\n                 class=\"form-control\"/>\n          <span class=\"input-group-addon\">\n            <input [(ngModel)]=\"widget.formatted\"\n                   type=\"checkbox\"/>\n          </span>\n        </div>\n      </div>\n\n    </div>\n  </form>\n</div>\n\n<!-- Footer -->\n<nav class=\"navbar navbar-default navbar-fixed-bottom\">\n  <div class=\"container-fluid navbar-text\">\n    <a routerLink=\"/user/{{uid}}\">\n      <span class=\"glyphicon glyphicon-user sw-icon-padding pull-right\"></span>\n    </a>\n  </div>\n</nav>\n"
+module.exports = "<!-- top navbar-->\n<nav class=\"navbar navbar-default navbar-fixed-top\">\n  <div class=\"container-fluid\">\n    <p class=\"navbar-text pull-left\">\n      <a routerLink=\"/user/{{uid}}/website/{{wid}}/page/{{pid}}/widget\"\n         class=\"navbar-link\">\n        <span class=\"glyphicon glyphicon-chevron-left sw-text-black\"></span>\n      </a>\n    </p>\n    <a routerLink=\"/user/{{uid}}/website/{{wid}}/page/{{pid}}/widget/{{wid}}\"\n       class=\"pull-left navbar-brand thick\">\n      <b>Widget edit</b>\n    </a>\n    <button type=\"submit\"\n            [disabled]=\"!f.valid\"\n            form=\"widgetForm\"\n            class=\"btn btn-xs sw-button-transparent navbar-link navbar-text pull-right sw-icon-padding\">\n      <span class=\"glyphicon glyphicon-ok sw-text-black\"></span>\n    </button>\n  </div>\n</nav>\n\n<!--form-->\n<div class=\"container-fluid\">\n  <form (ngSubmit)=\"update()\"\n        id=\"widgetForm\"\n        #f =\"ngForm\">\n    <div class=\"form-group\">\n      <label for=\"name\">Name</label>\n      <input type=\"name\"\n             id=\"name\"\n             name=\"name\"\n             placeholder=\"Name of the widget\"\n             ngModel=\"{{widget.name}}\"\n             #name=\"ngModel\"\n             class=\"form-control\"/>\n    </div>\n    <div class=\"form-group\">\n      <label for=\"text\">Text</label>\n      <input type=\"text\"\n             id=\"text\"\n             name=\"text\"\n             placeholder=\"Text of the widget\"\n             ngModel=\"{{widget.text}}\"\n             required\n             #text=\"ngModel\"\n             class=\"form-control\"/>\n    </div>\n    <div class=\"form-group\">\n      <label for=\"rows\">Rows</label>\n      <input type=\"number\"\n             id=\"rows\"\n             name=\"rows\"\n             placeholder=\"number of Rows\"\n             ngModel=\"{{widget.rows}}\"\n             required\n             #rows=\"ngModel\"\n             class=\"form-control\"/>\n    </div>\n    <div class=\"form-group\">\n      <label for=\"placeholder\">Placeholder</label>\n      <input type=\"text\"\n             id=\"placeholder\"\n             name=\"placeholder\"\n             placeholder=\"placeholder\"\n             ngModel=\"{{widget.placeholder}}\"\n             required\n             #placeholder=\"ngModel\"\n             class=\"form-control\"/>\n    </div>\n\n    <div class=\"form-group\">\n      <div class=\"input-group\">\n        <input type=\"text\"\n               readonly\n               value=\"Formatted\"\n               class=\"form-control\"/>\n        <span class=\"input-group-addon\">\n            <input ngModel=\"widget.formatted\"\n                   id=\"formatted\"\n                   name=\"formatted\"\n                   #formatted=\"ngModel\"\n                   type=\"checkbox\"/>\n          </span>\n      </div>\n    </div>\n    <span class=\"help-block\"\n          *ngIf=\"!text.valid && text.touched\">Text can't be empty!</span>\n    <div class=\"row\">\n      <div class=\"col-xs-6\">\n        <a routerLink=\"/user/{{uid}}/website/{{wid}}/page/{{pid}}/widget\"\n           class=\"btn btn-warning btn-block\">Cancel</a>\n      </div>\n      <div class=\"col-xs-6\">\n        <a (click)=\"remove()\"\n           class=\"btn btn-danger btn-block\">Delete</a>\n      </div>\n    </div>\n  </form>\n</div>\n\n<!-- Footer -->\n<nav class=\"navbar navbar-default navbar-fixed-bottom\">\n  <div class=\"container-fluid navbar-text\">\n    <a routerLink=\"/user/{{uid}}\">\n      <span class=\"glyphicon glyphicon-user sw-icon-padding pull-right\"></span>\n    </a>\n  </div>\n</nav>\n"
 
 /***/ }),
 
@@ -1912,7 +1924,9 @@ module.exports = "<!-- top navbar-->\n<nav class=\"navbar navbar-default navbar-
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return WidgetTextComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_forms__ = __webpack_require__("../../../forms/@angular/forms.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_widget_service_client__ = __webpack_require__("../../../../../src/app/services/widget.service.client.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_forms__ = __webpack_require__("../../../forms/@angular/forms.es5.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1924,8 +1938,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
+
+
 var WidgetTextComponent = (function () {
-    function WidgetTextComponent() {
+    function WidgetTextComponent(widgetService, activatedRoute, router) {
+        this.widgetService = widgetService;
+        this.activatedRoute = activatedRoute;
+        this.router = router;
         this.widget = {
             _id: '',
             widgetType: '',
@@ -1933,16 +1952,57 @@ var WidgetTextComponent = (function () {
             name: '',
             text: '',
             rows: 0,
-            placeholder: ''
+            placeholder: '',
+            formatted: false
         };
     }
+    WidgetTextComponent.prototype.update = function () {
+        var _this = this;
+        this.name = this.widgetForm.value.name;
+        this.text = this.widgetForm.value.text;
+        this.rows = this.widgetForm.value.rows;
+        this.placeholder = this.widgetForm.value.placeholder;
+        this.formatted = this.widgetForm.value.formatted;
+        var updatedWidget = {
+            name: this.name,
+            widgetType: this.widget.widgetType,
+            pageId: this.widget.pageId,
+            rows: this.rows,
+            text: this.text,
+            placeholder: this.placeholder,
+            formatted: this.formatted
+        };
+        this.widgetService.updateWidget(this.wgid, updatedWidget)
+            .subscribe(function (widget) {
+            _this.widget = widget;
+            _this.router.navigate(['user', _this.uid, 'website', _this.wid, 'page', _this.pid, 'widget']);
+        });
+    };
+    WidgetTextComponent.prototype.remove = function () {
+        var _this = this;
+        this.widgetService.deleteWidget(this.wgid)
+            .subscribe(function (widgets) {
+            _this.router.navigate(['user', _this.uid, 'website', _this.wid, 'page', _this.pid, 'widget']);
+        });
+    };
     WidgetTextComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.activatedRoute.params.subscribe(function (params) {
+            _this.uid = params['uid'];
+            _this.wid = params['wid'];
+            _this.pid = params['pid'];
+            _this.wgid = params['wgid'];
+            _this.widgetService.findWidgetById(_this.wgid)
+                .subscribe(function (widget) {
+                _this.widget = widget;
+            });
+        });
     };
     return WidgetTextComponent;
 }());
 __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_16" /* ViewChild */])('f'),
-    __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_forms__["c" /* NgForm */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_forms__["c" /* NgForm */]) === "function" && _a || Object)
+    __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_3__angular_forms__["c" /* NgForm */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__angular_forms__["c" /* NgForm */]) === "function" && _a || Object)
 ], WidgetTextComponent.prototype, "widgetForm", void 0);
 WidgetTextComponent = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Component */])({
@@ -1950,10 +2010,10 @@ WidgetTextComponent = __decorate([
         template: __webpack_require__("../../../../../src/app/components/widget/widget-edit/widget-text/widget-text.component.html"),
         styles: [__webpack_require__("../../../../../src/app/components/widget/widget-edit/widget-text/widget-text.component.css")]
     }),
-    __metadata("design:paramtypes", [])
+    __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__services_widget_service_client__["a" /* WidgetService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_widget_service_client__["a" /* WidgetService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */]) === "function" && _d || Object])
 ], WidgetTextComponent);
 
-var _a;
+var _a, _b, _c, _d;
 //# sourceMappingURL=widget-text.component.js.map
 
 /***/ }),
@@ -2097,7 +2157,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/widget/widget-list/widget-list.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-default navbar-fixed-top\">\n  <div class=\"container-fluid\">\n    <p class=\"navbar-text pull-left\">\n      <a routerLink=\"/user/{{uid}}/website/{{wid}}/page\"\n         class=\"navbar-link\">\n        <span class=\"glyphicon glyphicon-chevron-left sw-text-black\"></span>\n      </a>\n    </p>\n    <a routerLink=\"/user/{{uid}}/website/{{wid}}/page/{{pid}}/widget\"\n       class=\"pull-left navbar-brand thick\">\n      <b>Widgets</b>\n    </a>\n    <a routerLink=\"/user/{{uid}}/website/{{wid}}/page/{{pid}}/widget/new\"\n       class=\"navbar-link navbar-text pull-right sw-icon-padding\">\n      <span class=\"glyphicon glyphicon-plus sw-text-black\"></span>\n    </a>\n  </div>\n</nav>\n\n<!--widget list-->\n<div *ngFor=\"let widget of widgets\" class=\"container-fluid\">\n  <div>\n    <div class=\"sw-icon-right sw-icon-above\">\n      <a routerLink=\"/user/{{uid}}/website/{{wid}}/page/{{pid}}/widget/{{widget._id}}\">\n        <span class=\"glyphicon glyphicon-cog\"></span>\n      </a>\n      <a href=\"#\">\n        <span class=\"glyphicon glyphicon-menu-hamburger sw-text-black\"></span>\n      </a>\n    </div>\n  </div>\n  <div [ngSwitch]=\"widget.widgetType\">\n    <div *ngSwitchCase=\"'HEADING'\">\n      <div [ngSwitch]=\"widget.size\">\n        <div *ngSwitchCase=\"1\">\n          <h1>{{widget.text}}</h1>\n        </div>\n        <div *ngSwitchCase=\"2\">\n          <h2>{{widget.text}}</h2>\n        </div>\n        <div *ngSwitchCase=\"3\">\n          <h3>{{widget.text}}</h3>\n        </div>\n        <div *ngSwitchCase=\"4\">\n          <h4>{{widget.text}}</h4>\n        </div>\n      </div>\n    </div>\n    <div *ngSwitchCase=\"'IMAGE'\">\n      <div>\n        <img [style.width]=\"widget.width\"\n             [src]=\"widget.url\"/>\n      </div>\n    </div>\n    <div *ngSwitchCase=\"'YOUTUBE'\">\n      <div class=\"embed-responsive embed-responsive-16by9 youtube-widget\">\n        <iframe [style.width]=\"widget.width\"\n                [style.height]=\"widget.width\"\n                [src]=\"this.getYoutubeEmbedUrl(widget.url)\"\n                frameborder=\"0\"\n                allowfullscreen></iframe>\n      </div>\n    </div>\n    <div *ngSwitchCase=\"'HTML'\">\n      <div [innerHTML]=\"widget.text\">\n      </div>\n    </div>\n    <div *ngSwitchCase=\"'Text'\">\n      <div *ngIf=\"widget.formatted\">\n        <quill-editor [(ngModel)]=\"widget.text\" name=\"text\"></quill-editor>\n      </div>\n    </div>\n  </div>\n</div>\n\n<!-- Footer -->\n<nav class=\"navbar navbar-default navbar-fixed-bottom\">\n  <div class=\"container-fluid navbar-text\">\n    <a routerLink=\"/user/{{uid}}\">\n      <span class=\"glyphicon glyphicon-user sw-icon-padding pull-right\"></span>\n    </a>\n  </div>\n</nav>\n"
+module.exports = "<nav class=\"navbar navbar-default navbar-fixed-top\">\n  <div class=\"container-fluid\">\n    <p class=\"navbar-text pull-left\">\n      <a routerLink=\"/user/{{uid}}/website/{{wid}}/page\"\n         class=\"navbar-link\">\n        <span class=\"glyphicon glyphicon-chevron-left sw-text-black\"></span>\n      </a>\n    </p>\n    <a routerLink=\"/user/{{uid}}/website/{{wid}}/page/{{pid}}/widget\"\n       class=\"pull-left navbar-brand thick\">\n      <b>Widgets</b>\n    </a>\n    <a routerLink=\"/user/{{uid}}/website/{{wid}}/page/{{pid}}/widget/new\"\n       class=\"navbar-link navbar-text pull-right sw-icon-padding\">\n      <span class=\"glyphicon glyphicon-plus sw-text-black\"></span>\n    </a>\n  </div>\n</nav>\n\n<!--widget list-->\n<div *ngFor=\"let widget of widgets\" class=\"container-fluid\">\n  <div>\n    <div class=\"sw-icon-right sw-icon-above\">\n      <a routerLink=\"/user/{{uid}}/website/{{wid}}/page/{{pid}}/widget/{{widget._id}}\">\n        <span class=\"glyphicon glyphicon-cog\"></span>\n      </a>\n      <a href=\"#\">\n        <span class=\"glyphicon glyphicon-menu-hamburger sw-text-black\"></span>\n      </a>\n    </div>\n  </div>\n  <div [ngSwitch]=\"widget.widgetType\">\n    <div *ngSwitchCase=\"'HEADING'\">\n      <div [ngSwitch]=\"widget.size\">\n        <div *ngSwitchCase=\"1\">\n          <h1>{{widget.text}}</h1>\n        </div>\n        <div *ngSwitchCase=\"2\">\n          <h2>{{widget.text}}</h2>\n        </div>\n        <div *ngSwitchCase=\"3\">\n          <h3>{{widget.text}}</h3>\n        </div>\n        <div *ngSwitchCase=\"4\">\n          <h4>{{widget.text}}</h4>\n        </div>\n      </div>\n    </div>\n    <div *ngSwitchCase=\"'IMAGE'\">\n      <div>\n        <img [style.width]=\"widget.width\"\n             [src]=\"widget.url\"/>\n      </div>\n    </div>\n    <div *ngSwitchCase=\"'YOUTUBE'\">\n      <div class=\"embed-responsive embed-responsive-16by9 youtube-widget\">\n        <iframe [style.width]=\"widget.width\"\n                [style.height]=\"widget.width\"\n                [src]=\"this.getYoutubeEmbedUrl(widget.url)\"\n                frameborder=\"0\"\n                allowfullscreen></iframe>\n      </div>\n    </div>\n    <div *ngSwitchCase=\"'HTML'\">\n      <div [innerHTML]=\"widget.text\">\n      </div>\n    </div>\n    <div *ngSwitchCase=\"'Text'\">\n      <div *ngIf=\"widget.formatted\">\n        <quill-editor [(ngModel)]=\"widget.text\" name=\"text\"></quill-editor>\n      </div>\n\n      <input *ngIf=\"!widget.formatted && (!widget.rows || widget.rows===1)\"\n             placeholder=\"{{widget.placeholder}}\" class=\"form-control\"/>\n\n      <textarea *ngIf=\"!widget.formatted && (widget.rows > 1)\"\n                rows=\"{{widget.rows}}\" placeholder=\"{{widget.placeholder}}\"\n                class=\"form-control\">{{widget.text}}</textarea>\n    </div>\n  </div>\n</div>\n\n<!-- Footer -->\n<nav class=\"navbar navbar-default navbar-fixed-bottom\">\n  <div class=\"container-fluid navbar-text\">\n    <a routerLink=\"/user/{{uid}}\">\n      <span class=\"glyphicon glyphicon-user sw-icon-padding pull-right\"></span>\n    </a>\n  </div>\n</nav>\n"
 
 /***/ }),
 
