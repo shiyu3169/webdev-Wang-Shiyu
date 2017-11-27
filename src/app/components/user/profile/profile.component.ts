@@ -3,6 +3,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {UserService} from '../../../services/user.service.client';
 import {User} from '../../../models/user.model.client';
 import {NgForm} from '@angular/forms';
+import {SharedService} from '../../../services/shared.service.client';
 
 @Component({
   selector: 'app-profile',
@@ -31,7 +32,8 @@ export class ProfileComponent implements OnInit {
   };
   aUser: User;
 
-  constructor(private userService: UserService, private router: ActivatedRoute, private route: Router) {
+  constructor(private sharedService: SharedService, private userService: UserService,
+              private router: ActivatedRoute, private route: Router) {
   }
 
   update() {
@@ -59,7 +61,7 @@ export class ProfileComponent implements OnInit {
             this.userService.updateUser(this.uid, updatedUser)
               .subscribe(
                 (newU: User) => {
-                  this.route.navigate(['/user/', this.uid]);
+                  this.route.navigate(['/user']);
                 }
               );
             this.submitSuccess = true;
@@ -69,10 +71,19 @@ export class ProfileComponent implements OnInit {
       );
   }
 
+  logout() {
+    this.userService.logout()
+      .subscribe(
+        (status) => {
+          this.route.navigate(['/login']);
+        }
+      );
+ }
+
 
   ngOnInit() {
     this.router.params.subscribe(params => {
-      this.uid = params['uid'];
+      this.uid = this.sharedService.user.uid;
       this.userService.findUserById(this.uid)
         .subscribe(
           (user: User) => {

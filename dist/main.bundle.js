@@ -112,12 +112,14 @@ AppComponent = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__services_widget_service_client__ = __webpack_require__("../../../../../src/app/services/widget.service.client.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__services_flickr_service_client__ = __webpack_require__("../../../../../src/app/services/flickr.service.client.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_33__directives_sortable_directive__ = __webpack_require__("../../../../../src/app/directives/sortable.directive.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_34__services_shared_service_client__ = __webpack_require__("../../../../../src/app/services/shared.service.client.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -198,7 +200,8 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_29__services_website_service_client__["a" /* WebsiteService */],
             __WEBPACK_IMPORTED_MODULE_30__services_page_service_client__["a" /* PageService */],
             __WEBPACK_IMPORTED_MODULE_31__services_widget_service_client__["a" /* WidgetService */],
-            __WEBPACK_IMPORTED_MODULE_32__services_flickr_service_client__["a" /* FlickrService */]
+            __WEBPACK_IMPORTED_MODULE_32__services_flickr_service_client__["a" /* FlickrService */],
+            __WEBPACK_IMPORTED_MODULE_34__services_shared_service_client__["a" /* SharedService */]
         ],
         bootstrap: [__WEBPACK_IMPORTED_MODULE_3__app_component__["a" /* AppComponent */]]
     })
@@ -251,6 +254,7 @@ var APP_ROUTES = [
     { path: '', component: __WEBPACK_IMPORTED_MODULE_2__components_user_login_login_component__["a" /* LoginComponent */] },
     { path: 'login', component: __WEBPACK_IMPORTED_MODULE_2__components_user_login_login_component__["a" /* LoginComponent */] },
     { path: 'register', component: __WEBPACK_IMPORTED_MODULE_4__components_user_register_register_component__["a" /* RegisterComponent */] },
+    { path: 'user', component: __WEBPACK_IMPORTED_MODULE_3__components_user_profile_profile_component__["a" /* ProfileComponent */] },
     { path: 'user/:uid', component: __WEBPACK_IMPORTED_MODULE_3__components_user_profile_profile_component__["a" /* ProfileComponent */] },
     { path: 'user/:uid/website', component: __WEBPACK_IMPORTED_MODULE_9__components_website_website_list_website_list_component__["a" /* WebsiteListComponent */] },
     { path: 'user/:uid/website/new', component: __WEBPACK_IMPORTED_MODULE_10__components_website_website_new_website_new_component__["a" /* WebsiteNewComponent */] },
@@ -743,6 +747,7 @@ module.exports = "<div class=\"container\">\n  <div *ngIf=\"errorFlag\"\n       
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_user_service_client__ = __webpack_require__("../../../../../src/app/services/user.service.client.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_forms__ = __webpack_require__("../../../forms/@angular/forms.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_shared_service_client__ = __webpack_require__("../../../../../src/app/services/shared.service.client.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -756,8 +761,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var LoginComponent = (function () {
-    function LoginComponent(userService, router) {
+    function LoginComponent(sharedService, userService, router) {
+        this.sharedService = sharedService;
         this.userService = userService;
         this.router = router;
     }
@@ -765,14 +772,15 @@ var LoginComponent = (function () {
         var _this = this;
         this.username = this.loginForm.value.username;
         this.password = this.loginForm.value.password;
-        this.userService.findUserByCredentials(this.username, this.password)
+        this.userService.login(this.username, this.password)
             .subscribe(function (user) {
             if (!user) {
                 _this.errorFlag = true;
             }
             else {
                 _this.errorFlag = false;
-                _this.router.navigate(['/user/', user._id]);
+                _this.sharedService.user = user;
+                _this.router.navigate(['/user']);
             }
         }, function (error) {
             _this.errorFlag = true;
@@ -792,10 +800,10 @@ LoginComponent = __decorate([
         template: __webpack_require__("../../../../../src/app/components/user/login/login.component.html"),
         styles: [__webpack_require__("../../../../../src/app/components/user/login/login.component.css")]
     }),
-    __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__services_user_service_client__["a" /* UserService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_user_service_client__["a" /* UserService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */]) === "function" && _c || Object])
+    __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_4__services_shared_service_client__["a" /* SharedService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__services_shared_service_client__["a" /* SharedService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__services_user_service_client__["a" /* UserService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_user_service_client__["a" /* UserService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */]) === "function" && _d || Object])
 ], LoginComponent);
 
-var _a, _b, _c;
+var _a, _b, _c, _d;
 //# sourceMappingURL=login.component.js.map
 
 /***/ }),
@@ -821,7 +829,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/user/profile/profile.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "\n<nav class=\"navbar navbar-default navbar-fixed-top  sw-nav-blue\">\n  <div class=\"container-fluid\">\n\n    <!--heading on the nav bar-->\n    <a routerLink=\"/user/{{uid}}\"\n       class=\"navbar-header pull-left navbar-brand thick\">\n      <b class=\"sw-text-white\">Profile</b>\n    </a>\n\n\n    <!--tick mark-->\n    <p class=\"navbar-text pull-right\">\n      <button type=\"submit\"\n              [disabled]=\"!f.valid\"\n              form=\"profileForm\"\n              class=\"btn btn-xs navbar-link sw-button-transparent\">\n        <span class=\"glyphicon glyphicon-ok sw-text-white\"></span>\n      </button>\n    </p>\n  </div>\n</nav>\n\n<div class=\"container-fluid\">\n  <div *ngIf=\"usernameTaken\"\n       class=\"alert alert-danger\" >\n    Username was taken!\n  </div>\n  <div *ngIf=\"submitSuccess\"\n       class=\"alert alert-success\" >\n    Submit successfully!\n  </div>\n  <form (ngSubmit)=\"update()\"\n        #f =\"ngForm\"\n        id=\"profileForm\">\n    <div class=\"form-group\">\n      <label for=\"username\">Username</label>\n      <input type=\"text\"\n             class=\"form-control\"\n             id=\"username\"\n             name=\"username\"\n             required\n             #username=\"ngModel\"\n             ngModel=\"{{user.username}}\"\n             placeholder=\"username\">\n    </div>\n    <span class=\"help-block\"\n          *ngIf=\"!username.valid && username.touched\">Username can't be empty!</span>\n\n    <div class=\"form-group\">\n      <label for=\"email\">Email address</label>\n      <input type=\"email\"\n             class=\"form-control\"\n             id=\"email\"\n             name=\"email\"\n             email\n             ngModel=\"{{user.email}}\"\n             #email=\"ngModel\"\n             placeholder=\"alice.wonderland@unicorn.com\">\n    </div>\n    <span class=\"help-block\"\n          *ngIf=\"!email.valid && email.touched\">Invalid email!</span>\n    <div class=\"form-group\">\n      <label for=\"firstName\">First Name</label>\n      <input type=\"text\"\n             class=\"form-control\"\n             id=\"firstName\"\n             name=\"firstName\"\n             ngModel=\"{{user.firstName}}\"\n             #firstName=\"ngModel\"\n             placeholder=\"Alice\">\n    </div>\n    <div class=\"form-group\">\n      <label for=\"lastName\">Last Name</label>\n      <input type=\"text\"\n             class=\"form-control\"\n             id=\"lastName\"\n             name=\"lastName\"\n             ngModel=\"{{user.lastName}}\"\n             #lastName=\"ngModel\"\n             placeholder=\"Wonderland\">\n    </div>\n  </form>\n\n  <a class=\"btn btn-primary btn-block\"\n     routerLink=\"/user/{{uid}}/website\">Websites</a>\n  <a class=\"btn btn-danger btn-block \"\n     routerLink=\"/login\" >Logout</a>\n</div>\n\n<!-- Footer -->\n<nav class=\"navbar navbar-default navbar-fixed-bottom sw-nav-blue\">\n  <div class=\"container-fluid\">\n    <a routerLink=\"/user/{{uid}}\"\n       class=\"navbar-text pull-right\">\n      <span class=\"glyphicon glyphicon-user sw-text-white\"></span>\n    </a>\n  </div>\n</nav>\n"
+module.exports = "\n<nav class=\"navbar navbar-default navbar-fixed-top  sw-nav-blue\">\n  <div class=\"container-fluid\">\n\n    <!--heading on the nav bar-->\n    <a routerLink=\"/user/{{uid}}\"\n       class=\"navbar-header pull-left navbar-brand thick\">\n      <b class=\"sw-text-white\">Profile</b>\n    </a>\n\n\n    <!--tick mark-->\n    <p class=\"navbar-text pull-right\">\n      <button type=\"submit\"\n              [disabled]=\"!f.valid\"\n              form=\"profileForm\"\n              class=\"btn btn-xs navbar-link sw-button-transparent\">\n        <span class=\"glyphicon glyphicon-ok sw-text-white\"></span>\n      </button>\n    </p>\n  </div>\n</nav>\n\n<div class=\"container-fluid\">\n  <div *ngIf=\"usernameTaken\"\n       class=\"alert alert-danger\" >\n    Username was taken!\n  </div>\n  <div *ngIf=\"submitSuccess\"\n       class=\"alert alert-success\" >\n    Submit successfully!\n  </div>\n  <form (ngSubmit)=\"update()\"\n        #f =\"ngForm\"\n        id=\"profileForm\">\n    <div class=\"form-group\">\n      <label for=\"username\">Username</label>\n      <input type=\"text\"\n             class=\"form-control\"\n             id=\"username\"\n             name=\"username\"\n             required\n             #username=\"ngModel\"\n             ngModel=\"{{user.username}}\"\n             placeholder=\"username\">\n    </div>\n    <span class=\"help-block\"\n          *ngIf=\"!username.valid && username.touched\">Username can't be empty!</span>\n\n    <div class=\"form-group\">\n      <label for=\"email\">Email address</label>\n      <input type=\"email\"\n             class=\"form-control\"\n             id=\"email\"\n             name=\"email\"\n             email\n             ngModel=\"{{user.email}}\"\n             #email=\"ngModel\"\n             placeholder=\"alice.wonderland@unicorn.com\">\n    </div>\n    <span class=\"help-block\"\n          *ngIf=\"!email.valid && email.touched\">Invalid email!</span>\n    <div class=\"form-group\">\n      <label for=\"firstName\">First Name</label>\n      <input type=\"text\"\n             class=\"form-control\"\n             id=\"firstName\"\n             name=\"firstName\"\n             ngModel=\"{{user.firstName}}\"\n             #firstName=\"ngModel\"\n             placeholder=\"Alice\">\n    </div>\n    <div class=\"form-group\">\n      <label for=\"lastName\">Last Name</label>\n      <input type=\"text\"\n             class=\"form-control\"\n             id=\"lastName\"\n             name=\"lastName\"\n             ngModel=\"{{user.lastName}}\"\n             #lastName=\"ngModel\"\n             placeholder=\"Wonderland\">\n    </div>\n  </form>\n\n  <a class=\"btn btn-primary btn-block\"\n     routerLink=\"/user/{{uid}}/website\">Websites</a>\n  <a class=\"btn btn-danger btn-block\"\n     (click)=\"logout()\">Logout</a>\n</div>\n\n<!-- Footer -->\n<nav class=\"navbar navbar-default navbar-fixed-bottom sw-nav-blue\">\n  <div class=\"container-fluid\">\n    <a routerLink=\"/user/{{uid}}\"\n       class=\"navbar-text pull-right\">\n      <span class=\"glyphicon glyphicon-user sw-text-white\"></span>\n    </a>\n  </div>\n</nav>\n"
 
 /***/ }),
 
@@ -834,6 +842,7 @@ module.exports = "\n<nav class=\"navbar navbar-default navbar-fixed-top  sw-nav-
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_user_service_client__ = __webpack_require__("../../../../../src/app/services/user.service.client.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_forms__ = __webpack_require__("../../../forms/@angular/forms.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_shared_service_client__ = __webpack_require__("../../../../../src/app/services/shared.service.client.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -847,8 +856,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var ProfileComponent = (function () {
-    function ProfileComponent(userService, router, route) {
+    function ProfileComponent(sharedService, userService, router, route) {
+        this.sharedService = sharedService;
         this.userService = userService;
         this.router = router;
         this.route = route;
@@ -885,17 +896,24 @@ var ProfileComponent = (function () {
                 };
                 _this.userService.updateUser(_this.uid, updatedUser)
                     .subscribe(function (newU) {
-                    _this.route.navigate(['/user/', _this.uid]);
+                    _this.route.navigate(['/user']);
                 });
                 _this.submitSuccess = true;
                 _this.prevUsername = _this.username;
             }
         });
     };
+    ProfileComponent.prototype.logout = function () {
+        var _this = this;
+        this.userService.logout()
+            .subscribe(function (status) {
+            _this.route.navigate(['/login']);
+        });
+    };
     ProfileComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.router.params.subscribe(function (params) {
-            _this.uid = params['uid'];
+            _this.uid = _this.sharedService.user.uid;
             _this.userService.findUserById(_this.uid)
                 .subscribe(function (user) {
                 _this.user = user;
@@ -919,10 +937,10 @@ ProfileComponent = __decorate([
         template: __webpack_require__("../../../../../src/app/components/user/profile/profile.component.html"),
         styles: [__webpack_require__("../../../../../src/app/components/user/profile/profile.component.css")]
     }),
-    __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__services_user_service_client__["a" /* UserService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_user_service_client__["a" /* UserService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */]) === "function" && _d || Object])
+    __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_4__services_shared_service_client__["a" /* SharedService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__services_shared_service_client__["a" /* SharedService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__services_user_service_client__["a" /* UserService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_user_service_client__["a" /* UserService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */]) === "function" && _e || Object])
 ], ProfileComponent);
 
-var _a, _b, _c, _d;
+var _a, _b, _c, _d, _e;
 //# sourceMappingURL=profile.component.js.map
 
 /***/ }),
@@ -961,6 +979,7 @@ module.exports = "<div class=\"container\">\n  <div *ngIf=\"usernameError\"\n   
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_user_service_client__ = __webpack_require__("../../../../../src/app/services/user.service.client.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_forms__ = __webpack_require__("../../../forms/@angular/forms.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_shared_service_client__ = __webpack_require__("../../../../../src/app/services/shared.service.client.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -974,8 +993,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var RegisterComponent = (function () {
-    function RegisterComponent(userService, router) {
+    function RegisterComponent(sharedService, userService, router) {
+        this.sharedService = sharedService;
         this.userService = userService;
         this.router = router;
     }
@@ -994,16 +1015,10 @@ var RegisterComponent = (function () {
                 .subscribe(function (user) {
                 _this.user = user;
                 if (!_this.user) {
-                    var newUser = {
-                        username: _this.username,
-                        password: _this.password,
-                        firstName: '',
-                        lastName: '',
-                        email: ''
-                    };
-                    _this.userService.createUser(newUser)
+                    _this.userService.register(_this.username, _this.password)
                         .subscribe(function (newU) {
-                        _this.router.navigate(['user', newU._id]);
+                        _this.sharedService.user = newU;
+                        _this.router.navigate(['/user']);
                     }, function (error) {
                         _this.usernameError = true;
                     });
@@ -1028,10 +1043,10 @@ RegisterComponent = __decorate([
         template: __webpack_require__("../../../../../src/app/components/user/register/register.component.html"),
         styles: [__webpack_require__("../../../../../src/app/components/user/register/register.component.css")]
     }),
-    __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__services_user_service_client__["a" /* UserService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_user_service_client__["a" /* UserService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */]) === "function" && _c || Object])
+    __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_4__services_shared_service_client__["a" /* SharedService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__services_shared_service_client__["a" /* SharedService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__services_user_service_client__["a" /* UserService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_user_service_client__["a" /* UserService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */]) === "function" && _d || Object])
 ], RegisterComponent);
 
-var _a, _b, _c;
+var _a, _b, _c, _d;
 //# sourceMappingURL=register.component.js.map
 
 /***/ }),
@@ -2534,6 +2549,32 @@ var _a;
 
 /***/ }),
 
+/***/ "../../../../../src/app/services/shared.service.client.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SharedService; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+var SharedService = (function () {
+    function SharedService() {
+    }
+    return SharedService;
+}());
+SharedService = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["C" /* Injectable */])()
+], SharedService);
+
+//# sourceMappingURL=shared.service.client.js.map
+
+/***/ }),
+
 /***/ "../../../../../src/app/services/test.service.client.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -2624,7 +2665,40 @@ var UserService = (function () {
     function UserService(http) {
         this.http = http;
         this.baseUrl = __WEBPACK_IMPORTED_MODULE_3__environments_environment__["a" /* environment */].baseUrl;
+        this.options = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["c" /* RequestOptions */]();
     }
+    UserService.prototype.register = function (username, password) {
+        var url = this.baseUrl + '/api/register';
+        var credentials = {
+            usernmae: username,
+            password: password
+        };
+        this.options.withCredentials = true;
+        return this.http.post(url, credentials, this.options)
+            .map(function (response) {
+            return response.json();
+        });
+    };
+    UserService.prototype.login = function (username, password) {
+        var url = this.baseUrl + '/api/login';
+        var credentials = {
+            usernmae: username,
+            password: password
+        };
+        this.options.withCredentials = true;
+        return this.http.post(url, credentials, this.options)
+            .map(function (response) {
+            return response.json();
+        });
+    };
+    UserService.prototype.logout = function () {
+        var url = this.baseUrl + '/api/logout';
+        this.options.withCredentials = true;
+        return this.http.post(url, {}, this.options)
+            .map(function (response) {
+            return response.json();
+        });
+    };
     // returns the user whose username and password match the username and password parameters
     UserService.prototype.findUserByCredentials = function (username, password) {
         var url = this.baseUrl + '/api/user?username=' + username + '&password=' + password;

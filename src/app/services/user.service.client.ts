@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { User } from '../models/user.model.client';
-import { Http, Response } from '@angular/http';
+import { Http, RequestOptions, Response } from '@angular/http';
 import 'rxjs/Rx';
 import { environment } from '../../environments/environment';
 
@@ -9,7 +9,50 @@ export class UserService {
 
   baseUrl = environment.baseUrl;
 
+  options = new RequestOptions();
+
   constructor(private http: Http) {}
+
+  register(username, password) {
+    const url = this.baseUrl + '/api/register';
+    const credentials = {
+      usernmae: username,
+      password: password
+    };
+    this.options.withCredentials = true;
+    return this.http.post(url, credentials, this.options)
+      .map(
+        (response: Response) => {
+          return response.json();
+        }
+      );
+  }
+
+  login(username: String, password: String) {
+    const url = this.baseUrl + '/api/login';
+    const credentials = {
+      usernmae: username,
+      password: password
+    };
+    this.options.withCredentials = true;
+    return this.http.post(url, credentials, this.options)
+      .map(
+        (response: Response) => {
+          return response.json();
+        }
+      );
+  }
+
+  logout() {
+    const url = this.baseUrl + '/api/logout';
+    this.options.withCredentials = true;
+    return this.http.post(url, {}, this.options)
+      .map(
+        (response: Response) => {
+          return response;
+        }
+      );
+  }
 
   // returns the user whose username and password match the username and password parameters
   findUserByCredentials(username: String, password: String) {
