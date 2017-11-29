@@ -82,20 +82,13 @@ export class ProfileComponent implements OnInit {
 
 
   ngOnInit() {
-    this.router.params.subscribe(params => {
-      this.uid = this.sharedService.user.uid;
-      this.userService.findUserById(this.uid)
-        .subscribe(
-          (user: User) => {
-            this.user = user;
-            this.username = this.user.username;
-            this.email = this.user.email;
-            this.firstName = this.user.firstName;
-            this.lastName = this.user.lastName;
-            this.prevUsername = this.username;
-          }
-        );
-    });
+    this.user = this.sharedService.user;
+    this.uid = this.user._id;
+    this.username = this.user.username;
+    this.email = this.user.email;
+    this.firstName = this.user.firstName;
+    this.lastName = this.user.lastName;
+    this.prevUsername = this.username;
   }
 
 }
