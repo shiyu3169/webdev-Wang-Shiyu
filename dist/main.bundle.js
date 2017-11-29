@@ -1013,31 +1013,11 @@ var RegisterComponent = (function () {
         }
         else {
             this.userService.register(this.username, this.password)
-                .subscribe(function (data) {
+                .subscribe(function (user) {
                 _this.router.navigate(['/user']);
             }, function (error) {
-                _this.error = error._body;
+                _this.usernameError = true;
             });
-            // this.userService.findUserByUsername(this.username)
-            //   .subscribe(
-            //     (user: User) => {
-            //       this.user = user;
-            //       if (!this.user) {
-            //         this.userService.register(this.username, this.password)
-            //           .subscribe(
-            //             (newU) => {
-            //               this.sharedService.user = newU;
-            //               this.router.navigate(['/user']);
-            //             }
-            //             ,
-            //             (error: any) => {
-            //               this.usernameError = true;
-            //             });
-            //       } else {
-            //         this.usernameError = true;
-            //       }
-            // }
-            //   );
         }
     };
     RegisterComponent.prototype.ngOnInit = function () {

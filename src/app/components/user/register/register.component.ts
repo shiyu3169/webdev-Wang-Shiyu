@@ -20,7 +20,6 @@ export class RegisterComponent implements OnInit {
   usernameError: boolean;
   passwordError: boolean;
   user: User;
-  error: String;
 
   constructor(private sharedService: SharedService, private userService: UserService, private router: Router) { }
 
@@ -38,33 +37,13 @@ export class RegisterComponent implements OnInit {
     } else {
       this.userService.register(this.username, this.password)
         .subscribe(
-          (data: any) => {
+          (user: any) => {
             this.router.navigate(['/user']);
           },
           (error: any) => {
-            this.error = error._body;
+            this.usernameError = true;
           }
         );
-      // this.userService.findUserByUsername(this.username)
-      //   .subscribe(
-      //     (user: User) => {
-      //       this.user = user;
-      //       if (!this.user) {
-      //         this.userService.register(this.username, this.password)
-      //           .subscribe(
-      //             (newU) => {
-      //               this.sharedService.user = newU;
-      //               this.router.navigate(['/user']);
-      //             }
-      //             ,
-      //             (error: any) => {
-      //               this.usernameError = true;
-      //             });
-      //       } else {
-      //         this.usernameError = true;
-      //       }
-      // }
-      //   );
     }
   }
 
