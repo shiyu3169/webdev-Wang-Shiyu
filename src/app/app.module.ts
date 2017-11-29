@@ -36,6 +36,7 @@ import { FlickrService } from './services/flickr.service.client';
 
 import { SortableDirective } from './directives/sortable.directive';
 import {SharedService} from './services/shared.service.client';
+import {AuthenticationService} from "./services/authentication.service.client";
 @NgModule({
   // Declare components here
   declarations: [
@@ -77,7 +78,8 @@ import {SharedService} from './services/shared.service.client';
     PageService,
     WidgetService,
     FlickrService,
-    SharedService
+    SharedService,
+    AuthenticationService
   ],
   bootstrap: [AppComponent]
 })

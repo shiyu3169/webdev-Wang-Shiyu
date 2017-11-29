@@ -1,3 +1,5 @@
+
+
 module.exports = function (app) {
 
   var userModel = require('../../model/user/user.model.server');
@@ -9,13 +11,16 @@ module.exports = function (app) {
   app.post("/api/user", createUser);
   app.put("/api/user/:uid", updateUser);
   app.delete("/api/user/:uid", deleteUser);
-  app.post("/api/register", register);
-  app.post('/api/login', passport.authenticate('local'), login);
-  app.post('/api/logout', logout);
 
+  // authentication api
+  app.post('/api/login', passport.authenticate('local'), login);
+  app.post("/api/register", register);
+  app.post('/api/logout', logout);
+  app.post('/api/loggedIn', loggedIn);
+
+  passport.use(new LocalStrategy(localStrategy));
   passport.serializeUser(serializeUser);
   passport.deserializeUser(deserializeUser);
-  passport.use(new LocalStrategy(localStrategy));
 
 
   function localStrategy(username, password, done) {
@@ -23,7 +28,7 @@ module.exports = function (app) {
       .findUserByCredentials(username, password)
       .then(
         function(user) {
-          if(user.username === username && user.password === password) {
+          if(user) {
             return done(null, user);
           } else {
             return done(null, false);
@@ -54,6 +59,7 @@ module.exports = function (app) {
   }
 
   function login(req, res) {
+    console.log(req.user);
     res.json(req.user);
   }
 
@@ -70,6 +76,14 @@ module.exports = function (app) {
   function logout(req, res) {
     req.logout();
     res.send(200);
+  }
+
+  function loggedIn(req, res) {
+    if(req.isAuthenticated()) {
+      res.json(req.user);
+    } else {
+      res.send('0');
+    }
   }
 
   function createUser(req, res) {

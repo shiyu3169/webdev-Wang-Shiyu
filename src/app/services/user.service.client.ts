@@ -3,6 +3,8 @@ import { User } from '../models/user.model.client';
 import { Http, RequestOptions, Response } from '@angular/http';
 import 'rxjs/Rx';
 import { environment } from '../../environments/environment';
+import {SharedService} from './shared.service.client';
+import {Router} from '@angular/router';
 
 @Injectable()
 export class UserService {
@@ -11,7 +13,7 @@ export class UserService {
 
   options = new RequestOptions();
 
-  constructor(private http: Http) {}
+  constructor(private http: Http, private sharedService: SharedService, private router: Router) {}
 
   register(username, password) {
     const url = this.baseUrl + '/api/register';
@@ -31,7 +33,7 @@ export class UserService {
   login(username: String, password: String) {
     const url = this.baseUrl + '/api/login';
     const credentials = {
-      usernmae: username,
+      username: username,
       password: password
     };
     this.options.withCredentials = true;
@@ -50,6 +52,24 @@ export class UserService {
       .map(
         (response: Response) => {
           return response;
+        }
+      );
+  }
+
+  loggedIn() {
+    const url = this.baseUrl + '/api/loggedIn';
+    this.options.withCredentials = true;
+    return this.http.post(url, {}, this.options)
+      .map(
+        (res: Response) => {
+          const user = res.json();
+          if (user !== 0) {
+            this.sharedService.user = user;
+            return true;
+          } else {
+            this.router.navigate(['/login']);
+            return false;
+          }
         }
       );
   }

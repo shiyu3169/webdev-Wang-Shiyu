@@ -34015,7 +34015,6 @@ function publishBehavior(value) {
 /** PURE_IMPORTS_START .._AsyncSubject,._multicast PURE_IMPORTS_END */
 
 
-//TODO(benlesh): specify that the second type is actually a ConnectableObservable
 function publishLast() {
     return function (source) { return Object(__WEBPACK_IMPORTED_MODULE_1__multicast__["a" /* multicast */])(new __WEBPACK_IMPORTED_MODULE_0__AsyncSubject__["a" /* AsyncSubject */]())(source); };
 }
