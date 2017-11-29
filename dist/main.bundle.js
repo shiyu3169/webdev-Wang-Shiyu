@@ -2730,7 +2730,7 @@ var UserService = (function () {
     UserService.prototype.register = function (username, password) {
         var url = this.baseUrl + '/api/register';
         var credentials = {
-            usernmae: username,
+            username: username,
             password: password
         };
         this.options.withCredentials = true;

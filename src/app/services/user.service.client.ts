@@ -18,7 +18,7 @@ export class UserService {
   register(username, password) {
     const url = this.baseUrl + '/api/register';
     const credentials = {
-      usernmae: username,
+      username: username,
       password: password
     };
     this.options.withCredentials = true;
