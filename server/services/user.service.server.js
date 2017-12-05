@@ -5,6 +5,7 @@ module.exports = function (app) {
   var userModel = require('../../model/user/user.model.server');
   var passport = require('passport');
   var LocalStrategy = require('passport-local').Strategy;
+  var FacebookStrategy = require('passport-facebook').Strategy;
   var bcrypt = require("bcrypt-nodejs");
 
   app.get("/api/user", findUsers);
@@ -15,11 +16,20 @@ module.exports = function (app) {
 
   // authentication api
   app.post('/api/login', passport.authenticate('local'), login);
+  app.get ('/facebook/login', passport.authenticate('facebook', { scope : 'email' }));
   app.post("/api/register", register);
   app.post('/api/logout', logout);
   app.post('/api/loggedIn', loggedIn);
 
+  var facebookConfig = {
+    clientID     : '369240530187223',
+    clientSecret : 'e8fc8e222f2f2abd282a43fb8d9830ed',
+    callbackURL  : 'https://connect.facebook.net/en_US/sdk.js'
+  };
+
+
   passport.use(new LocalStrategy(localStrategy));
+  passport.use(new FacebookStrategy(facebookConfig, facebookStrategy));
   passport.serializeUser(serializeUser);
   passport.deserializeUser(deserializeUser);
 
@@ -42,6 +52,43 @@ module.exports = function (app) {
         }
       );
   }
+
+
+  function facebookStrategy(token, refreshToken, profile, done) {
+    userModel
+      .findUserByFacebookId(profile.id)
+      .then(
+        function(user) {
+          if(user) {
+            return done(null, user);
+          } else {
+            var names = profile.displayName.split(" ");
+            var newFacebookUser = {
+              lastName:  names[1],
+              firstName: names[0],
+              email:     profile.emails ? profile.emails[0].value:"",
+              facebook: {
+                id:    profile.id,
+                token: token
+              }
+            };
+            return userModel.createUser(newFacebookUser);
+          }
+        },
+        function(err) {
+          if (err) { return done(err); }
+        }
+      )
+      .then(
+        function(user){
+          return done(null, user);
+        },
+        function(err){
+          if (err) { return done(err); }
+        }
+      );
+  }
+
 
   function serializeUser(user, done) {
     done(null, user);
